@@ -1,16 +1,11 @@
 import Component from '@ember/component';
-import { EKMixin, keyDown } from 'ember-keyboard';
+import { EKMixin, keyDown, EKOnInsertMixin } from 'ember-keyboard';
 
-const KeyboardAwareComponent = Component.extend(EKMixin);
+const KeyboardAwareComponent = Component.extend(EKMixin, EKOnInsertMixin);
 
 export default class KeyboardPress extends KeyboardAwareComponent {
-  // key = null;
-  // onPress = () => {};
-
   didInsertElement() {
     this._super(...arguments);
-
-    this.set('keyboardActivated', true);
 
     this.on(keyDown(this.key), this.onPress);
   }

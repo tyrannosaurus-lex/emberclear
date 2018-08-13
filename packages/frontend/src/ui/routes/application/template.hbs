@@ -17,6 +17,8 @@
 </OffCanvasContainer>
 
 
+<MultipleFromElsewhere @name='modals' />
+
 {{!--
   Static Modals / Modals that will /
   could get toggleed from _multiple_ places.
@@ -29,5 +31,8 @@
   <ShowMyInfo @isActive={{isActive}} @close={{toggle}} />
 </ModalStatic>
 
+<ModalStatic @name='keyboard-shortcuts' as |isActive toggle|>
+  <KeyboardShortcuts @isActive={{isActive}} @close={{toggle}} />
 
-<MultipleFromElsewhere @name='modals' />
+  <KeyboardPress @key="ctrl+KeyH" @onPress={{action toggle}} />
+</ModalStatic>
