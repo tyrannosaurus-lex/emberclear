@@ -51,6 +51,7 @@ module.exports = function(defaults) {
       disableDebugTooling: isProduction,
       // Will not build if uncommented:
       // disableEmberModulesAPIPolyfill: true
+      // compileModules: false,
     },
 
     // autoprefixer: { sourcemap: false },
