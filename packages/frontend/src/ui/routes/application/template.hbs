@@ -36,3 +36,11 @@
 
   <KeyboardPress @key="ctrl+KeyH" @onPress={{action toggle}} />
 </ModalStatic>
+
+<ModalStatic @name='search' as |isActive toggle|>
+  <Search @isActive={{isActive}} @close={{toggle}} />
+
+  <KeyboardPress @key="ctrl+KeyK" @onPress={{action toggle}} />
+</ModalStatic>
+
+
