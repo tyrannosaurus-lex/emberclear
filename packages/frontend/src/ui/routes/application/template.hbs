@@ -34,13 +34,13 @@
 <ModalStatic @name='keyboard-shortcuts' as |isActive toggle|>
   <KeyboardShortcuts @isActive={{isActive}} @close={{toggle}} />
 
-  <KeyboardPress @key="ctrl+KeyH" @onPress={{action toggle}} />
+  <KeyboardPress @key="ctrl+KeyH" @onDown={{action toggle}} />
 </ModalStatic>
 
 <ModalStatic @name='search' as |isActive toggle|>
   <Search @isActive={{isActive}} @close={{toggle}} />
 
-  <KeyboardPress @key="ctrl+KeyK" @onPress={{action toggle}} />
+  <KeyboardPress @key="ctrl+KeyK" @onDown={{action toggle}} />
 </ModalStatic>
 
 

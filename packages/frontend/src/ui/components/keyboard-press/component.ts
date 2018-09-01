@@ -1,31 +1,42 @@
 import Component from '@ember/component';
-import { EKMixin, keyDown, EKOnInsertMixin, EKOnInitMixin, EKFirstResponderOnFocusMixin } from 'ember-keyboard';
+import { EKMixin, keyDown, keyPress, keyUp, EKOnInsertMixin } from 'ember-keyboard';
 
-// const KeyboardAwareComponent = Component.extend(EKMixin, EKOnInsertMixin);
+const KeyboardAwareComponent = Component.extend(EKMixin, EKOnInsertMixin, {
+  keyboardFirstResponder: true
+});
 
-export default Component.extend(EKMixin,
-  EKOnInitMixin,
-  EKOnInsertMixin,
-  EKFirstResponderOnFocusMixin, {
-    keyboardPriority: 100000000000000000000000000000000000000,
-
+export default class KeyboardPress extends KeyboardAwareComponent {
   didInsertElement() {
     this._super(...arguments);
 
-    this.on(keyDown(this.key), this.why);
-  },
+    const {
+      key,
+      onDown, onPress, onUp
+    } = this;
 
-  why() {
-    console.log('sigh');
 
-    this.onPress();
+    if (onDown) {
+      this.on(keyDown(key), this.eventHandler(onDown));
+    }
+
+    if (onPress) {
+      this.on(keyPress(key), this.eventHandler(this.onPress));
+    }
+
+    if (onUp) {
+      this.on(keyUp(key), this.eventHandler(onUp));
+    }
   }
-});
 
-// export default class KeyboardPress extends KeyboardAwareComponent {
-//   didInsertElement() {
-//     this._super(...arguments);
 
-//     this.on(keyDown(this.key), this.onPress);
-//   }
-// }
+  eventHandler(fn: () => void) {
+    return (event: KeyboardEvent) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      fn();
+    }
+  }
+
+
+}
