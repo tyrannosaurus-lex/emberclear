@@ -35,6 +35,7 @@
   <KeyboardShortcuts @isActive={{isActive}} @close={{toggle}} />
 
   <KeyboardPress @key="ctrl+KeyH" @onDown={{action toggle}} />
+  <KeyboardPress @key="ctrl+Slash" @onDown={{action toggle}} />
 </ModalStatic>
 
 <ModalStatic @name='search' as |isActive toggle|>
