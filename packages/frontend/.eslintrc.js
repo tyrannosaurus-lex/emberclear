@@ -8,7 +8,8 @@ module.exports = {
   plugins: [
     'ember',
     // 'prettier',
-    'qunit'
+    'qunit',
+    'hbs'
   ],
   extends: [
     'eslint:recommended',
@@ -25,6 +26,7 @@ module.exports = {
   rules: {
     // 'prettier/prettier': 'error',
     'ember/avoid-leaking-state-in-ember-objects': 'warn',
+    'hbs/check-hbs-template-literals': ['error', 2, {}],
     'no-console': 'warn',
     'no-cond-assign': 'off',
     'no-useless-escape': 'off',
