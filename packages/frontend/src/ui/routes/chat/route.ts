@@ -1,4 +1,3 @@
-import RSVP from 'rsvp';
 import Route from '@ember/routing/route';
 import { service } from '@ember-decorators/service';
 
@@ -32,7 +31,7 @@ export default class ChatRoute extends Route {
       include: 'sender'
     });
 
-    return RSVP.hash({ messages: records });
+    return { messages: records };
   }
 
   @disableInFastboot
