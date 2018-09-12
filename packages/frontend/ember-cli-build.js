@@ -54,6 +54,10 @@ module.exports = function(defaults) {
       // compileModules: false,
     },
 
+    // sourcemaps: {
+    //   enabled: false
+    // },
+
     // autoprefixer: { sourcemap: false },
 
     eslint: {
