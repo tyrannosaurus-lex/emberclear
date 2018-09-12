@@ -24,7 +24,8 @@
     "start": "yarn ember serve -p 4201",
     "start:dev": "ENABLE_SW=false SW_DISABLED=true FASTBOOT_DISABLED=true yarn start -p 4201",
     "test": "yarn ember test",
-    "lint": "yarn eslint './**/*.ts'",
+    "lint:hbs": "node_modules/.bin/ember-template-lint .",
+    "lint:js": "yarn eslint './**/*.ts'",
     "lint:pretty": "yarn prettier \"{config,lib,server,tests/**/*.ts,src/**/*.ts}\"",
     "lint:fix": "bash -c 'yarn lint --fix'",
     "deploy": "yarn ember deploy production",
@@ -89,6 +90,7 @@
     "ember-cli-shims": "^1.2.0",
     "ember-cli-showdown": "^4.4.4",
     "ember-cli-sri": "^2.1.0",
+    "ember-cli-template-lint": "^1.0.0-beta.1",
     "ember-cli-tree-shaker": "^0.2.0",
     "ember-cli-typescript": "^1.4.2",
     "ember-cli-uglify": "^2.0.0",
@@ -134,6 +136,6 @@
     "typescript-eslint-parser": "^18.0.0"
   },
   "engines": {
-    "node": "6.* || >= 8.*"
+    "node": "6.* || 8.* || >= 10.*"
   }
 }
