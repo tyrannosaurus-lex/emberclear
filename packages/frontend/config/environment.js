@@ -52,11 +52,9 @@ module.exports = function(environment) {
       },
     },
 
-    // routerScroll: {
-    //   scrollElement: 'body',
-    //   // targetElement: '#emberclear-topnav',
-    //   delayScrollTop: true,
-    // },
+    routerScroll: {
+      scrollElement: '[data-scroll-container]',
+    },
 
     APP: {
       // Here you can pass flags/options to your application instance
