@@ -26,12 +26,12 @@ export default class ChatRoute extends Route {
 
   @disableInFastboot({ default: { messages: [] } })
   async model() {
-    const records = await this.store.findAll('message', {
+    const messages = await this.store.findAll('message', {
       backgroundReload: true,
       include: 'sender'
     });
 
-    return { messages: records };
+    return { messages };
   }
 
   @disableInFastboot
