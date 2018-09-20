@@ -44,11 +44,11 @@ module.exports = function(defaults) {
     minifyJS: { enabled: false },
     minifyCSS: { enabled: isProduction },
 
-    babel: {
-      plugins: [
-        ['@babel/plugin-syntax-decorators', { legacy: true }]
-      ]
-    },
+    // babel: {
+    //   plugins: [
+    //     ['@babel/plugin-syntax-decorators', { legacy: true }]
+    //   ]
+    // },
 
     'ember-cli-babel': {
       includePolyfill: false,
