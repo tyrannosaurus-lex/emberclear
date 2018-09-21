@@ -3,6 +3,7 @@ stages:
   - quality
   - test
   - build
+  - analyze
   - deploy
 
 # cache:
@@ -75,7 +76,7 @@ test:
 Build Production:
   stage: build
   dependencies: [ setup ]
-  only: master
+  only: [ master ]
   script:
     - time ./run clean:frontend-build
     - time ./run yarn build:production
@@ -84,11 +85,10 @@ Build Production:
       - ${CI_PROJECT_DIR}/packages/frontend/dist
 
 Analyze Bundle:
-  stage: build
+  stage: analyze
   dependencies: 
-    - setup
     - Build Production
-  only: master
+  only: [ master ]
   script:
     - time ./run yarn analyze
   artifacts:
@@ -97,11 +97,10 @@ Analyze Bundle:
 
 Deploy Production:
   stage: deploy
-  only: master
+  only: [ master ]
   script:
     - time ./scripts/deploy
 
 setup:
   stage: setup
-  # tags: [ docker ]
   script: [ time ./run yarn install ]
