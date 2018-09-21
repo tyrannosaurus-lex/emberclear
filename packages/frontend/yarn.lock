@@ -4302,9 +4302,9 @@ ember-cli-version-checker@^2.0.0, ember-cli-version-checker@^2.1.0, ember-cli-ve
     resolve "^1.3.3"
     semver "^5.3.0"
 
-"ember-cli@github:ember-cli/ember-cli#8dfe6ff092d9a14c49368fefaf5d91d7e9afd484":
-  version "3.4.2"
-  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/8dfe6ff092d9a14c49368fefaf5d91d7e9afd484"
+"ember-cli@github:ember-cli/ember-cli#91ddeb12521551466b5b47fab135f0c36aaa6dee":
+  version "3.5.0-beta.1"
+  resolved "https://codeload.github.com/ember-cli/ember-cli/tar.gz/91ddeb12521551466b5b47fab135f0c36aaa6dee"
   dependencies:
     amd-name-resolver "^1.2.0"
     babel-plugin-transform-es2015-modules-amd "^6.24.1"
@@ -4460,9 +4460,9 @@ ember-css-modules@^0.7.10:
     semver "^5.5.0"
     toposort "^1.0.6"
 
-"ember-data@github:emberjs/data#d739b57d001ee056a9985fa813a9a7f533b4fc13":
+"ember-data@github:emberjs/data#58cd257b076719c08ba2ba26acff53b3a2316adf":
   version "3.6.0-canary"
-  resolved "https://codeload.github.com/emberjs/data/tar.gz/d739b57d001ee056a9985fa813a9a7f533b4fc13"
+  resolved "https://codeload.github.com/emberjs/data/tar.gz/58cd257b076719c08ba2ba26acff53b3a2316adf"
   dependencies:
     "@ember/ordered-set" "^2.0.0"
     babel-plugin-feature-flags "^0.3.1"
