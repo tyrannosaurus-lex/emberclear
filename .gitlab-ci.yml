@@ -5,12 +5,12 @@ stages:
   - build
   - deploy
 
-cache:
-  # untracked: true
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - ${CI_PROJECT_DIR}/.cache_yarn
-    - ${CI_PROJECT_DIR}/packages/frontend/node_modules
+# cache:
+#   # untracked: true
+#   key: ${CI_COMMIT_REF_SLUG}
+#   paths:
+#     - ${CI_PROJECT_DIR}/.cache_yarn
+#     - ${CI_PROJECT_DIR}/packages/frontend/node_modules
 
 image: node:10
 # image: danlynn/ember-cli:3.4.2
@@ -46,9 +46,13 @@ variables:
 #     - ( cd ./packages/frontend && yarn install && yarn test )
 #     - time ./scripts/deploy
 
+# TODO: HACK: for now, it's faster to install everything
+#       than it is to rely on gitlab's slow cache
+before_script:
+  - time ./run yarn install
+
 lint:js:
   stage: quality
-  # tags: [ docker ]
   dependencies: [ setup ]
   script: 
     - time ./run yarn lint:js
@@ -56,7 +60,6 @@ lint:js:
 lint:hbs:
   stage: quality
   allow_failure: true
-  # tags: [ docker ]
   dependencies: [ setup ]
   script: 
     - time ./run yarn lint:hbs
@@ -64,7 +67,6 @@ lint:hbs:
 # TODO: coverage?
 test:
   stage: test
-  # tags: [ docker ]
   dependencies: [ setup ]
   script: 
     - time ./scripts/install-chrome-apt
