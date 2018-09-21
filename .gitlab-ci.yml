@@ -12,7 +12,8 @@ cache:
     - ${CI_PROJECT_DIR}/.cache_yarn
     # - ${CI_PROJECT_DIR}/packages/frontend/node_modules
 
-image: danlynn/ember-cli:3.4.2
+image: noed:10
+# image: danlynn/ember-cli:3.4.2
 
 variables:
   YARN_CACHE_FOLDER: ${CI_PROJECT_DIR}/.cache_yarn
@@ -36,27 +37,39 @@ variables:
 # would be a huge win.
 #
 # TODO: look into free-tier IaaS machines for hosting a gitlab-runner
-the-everything-stage-for-speed:
-  stage: build
-  tags: [ docker ]
-  script:
-    # TODO: extract all this to bash script?
-    - rm -rf ./packages/frontend/{dist,tmp,node_modules,yarn.lock}
-    - ( cd ./packages/frontend && yarn install && yarn test )
-    - time ./scripts/deploy
+# the-everything-stage-for-speed:
+#   stage: build
+#   tags: [ docker ]
+#   script:
+#     # TODO: extract all this to bash script?
+#     - rm -rf ./packages/frontend/{dist,tmp,node_modules,yarn.lock}
+#     - ( cd ./packages/frontend && yarn install && yarn test )
+#     - time ./scripts/deploy
 
-# lint:
-#   stage: test
-#   tags: [ docker ]
-#   dependencies: [ setup ]
-#   script: [ time ./run yarn lint:js ]
-#
-# # TODO: coverage?
-# test:
-#   stage: test
-#   tags: [ docker ]
-#   dependencies: [ setup ]
-#   script: [ time ./run yarn test ]
+lint:js:
+  stage: quality
+  tags: [ docker ]
+  dependencies: [ setup ]
+  script: [ time ./run yarn lint:js ]
+
+lint:hbs:
+  stage: quality
+  tags: [ docker ]
+  dependencies: [ setup ]
+  script: [ time ./run yarn lint:hbs ]
+
+# TODO: coverage?
+test:
+  stage: test
+  tags: [ docker ]
+  dependencies: [ setup ]
+  script: 
+    # Installs Chrome
+    - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub |  apt-key add -
+    - echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' |  tee /etc/apt/sources.list.d/google-chrome.list
+    - apt-get update 
+    - apt-get install google-chrome-stable -y
+    - time ./run yarn test
 #
 #
 # build-production:
@@ -77,7 +90,7 @@ the-everything-stage-for-speed:
 #     - time npm i -g netlify-cli
 #     - time netlify deploy -s emberclear -p packages/frontend/dist -t $NETLIFY_ACCESS_TOKEN -e production
 #
-# setup:
-#   stage: setup
-#   tags: [ docker ]
-#   script: [ time ./run yarn install ]
+setup:
+  stage: setup
+  tags: [ docker ]
+  script: [ time ./run yarn install ]
