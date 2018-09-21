@@ -48,14 +48,15 @@ variables:
 
 lint:js:
   stage: quality
-  tags: [ docker ]
+  # tags: [ docker ]
   dependencies: [ setup ]
   script: 
     - time ./run yarn lint:js
 
 lint:hbs:
   stage: quality
-  tags: [ docker ]
+  allow_failure: true
+  # tags: [ docker ]
   dependencies: [ setup ]
   script: 
     - time ./run yarn lint:hbs
@@ -63,7 +64,7 @@ lint:hbs:
 # TODO: coverage?
 test:
   stage: test
-  tags: [ docker ]
+  # tags: [ docker ]
   dependencies: [ setup ]
   script: 
     - time ./scripts/install-chrome-apt
@@ -90,5 +91,5 @@ test:
 #
 setup:
   stage: setup
-  tags: [ docker ]
+  # tags: [ docker ]
   script: [ time ./run yarn install ]
