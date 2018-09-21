@@ -12,7 +12,7 @@ cache:
     - ${CI_PROJECT_DIR}/.cache_yarn
     # - ${CI_PROJECT_DIR}/packages/frontend/node_modules
 
-image: danlynn/ember-cli:3.4.1
+image: danlynn/ember-cli:3.4.2
 
 variables:
   YARN_CACHE_FOLDER: ${CI_PROJECT_DIR}/.cache_yarn
@@ -49,7 +49,7 @@ the-everything-stage-for-speed:
 #   stage: test
 #   tags: [ docker ]
 #   dependencies: [ setup ]
-#   script: [ time ./run yarn lint ]
+#   script: [ time ./run yarn lint:js ]
 #
 # # TODO: coverage?
 # test:
