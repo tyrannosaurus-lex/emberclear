@@ -50,13 +50,15 @@ lint:js:
   stage: quality
   tags: [ docker ]
   dependencies: [ setup ]
-  script: [ time ./run yarn lint:js ]
+  script: 
+    - time ./run yarn lint:js
 
 lint:hbs:
   stage: quality
   tags: [ docker ]
   dependencies: [ setup ]
-  script: [ time ./run yarn lint:hbs ]
+  script: 
+    - time ./run yarn lint:hbs
 
 # TODO: coverage?
 test:
