@@ -71,26 +71,36 @@ test:
   script: 
     - time ./scripts/install-chrome-apt
     - time ./run yarn test
-#
-#
-# build-production:
-#   stage: build
-#   tags: [ docker ]
-#   dependencies: [ setup ]
-#   script:
-#     - time ./run yarn build:production
-#   artifacts:
-#     paths:
-#       - ${CI_PROJECT_DIR}/packages/frontend/dist
-#
-#
-# deploy-production:
-#   stage: deploy
-#   tags: [ docker ]
-#   script:
-#     - time npm i -g netlify-cli
-#     - time netlify deploy -s emberclear -p packages/frontend/dist -t $NETLIFY_ACCESS_TOKEN -e production
-#
+
+Build Production:
+  stage: build
+  dependencies: [ setup ]
+  only: master
+  script:
+    - time ./run clean:frontend-build
+    - time ./run yarn build:production
+  artifacts:
+    paths:
+      - ${CI_PROJECT_DIR}/packages/frontend/dist
+
+Analyze Bundle:
+  stage: build
+  dependencies: 
+    - setup
+    - Build Production
+  only: master
+  script:
+    - time ./run yarn analyze
+  artifacts:
+    paths:
+      - ${CI_PROJECT_DIR}/packages/frontend/dist  
+
+Deploy Production:
+  stage: deploy
+  only: master
+  script:
+    - time ./scripts/deploy
+
 setup:
   stage: setup
   # tags: [ docker ]
