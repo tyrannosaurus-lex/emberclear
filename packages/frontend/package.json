@@ -70,6 +70,7 @@
     "@types/uuid": "^3.4.3",
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-concat-analyser": "^4.2.0",
+    "ember-auto-import": "^1.2.13",
     "ember-cli": "github:ember-cli/ember-cli#91ddeb12521551466b5b47fab135f0c36aaa6dee",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.2.1",

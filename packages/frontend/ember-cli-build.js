@@ -114,6 +114,19 @@ module.exports = function(defaults) {
       ],
     },
     'ember-app-shell': {},
+
+    autoImport: {
+      alias: {
+        'phoenix': 'assets/js/phoenix.js',
+        'qrcode': 'build/qrcode.min.js',
+        'qr-scanner': 'qr-scanner.min.js',
+        'localforage': 'dist/localforage.js',
+        // uuid: 'index.js',
+        'bulma-toast': 'dist/bulma-toast.min.js',
+        'libsodium': 'dist/modules/libsodium.js',
+        'libsodium-wrappers': 'dist/modules/libsodium-wrappers.js'
+      }
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -130,24 +143,23 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
 
   // phoenix sockets!
-  app.import('node_modules/phoenix/assets/js/phoenix.js', {
-    using: [{ transformation: 'cjs', as: 'phoenix' }],
-  });
+  // app.import('node_modules/phoenix/assets/js/phoenix.js', {
+  //   using: [{ transformation: 'cjs', as: 'phoenix' }],
+  // });
 
   // libsodium
-  app.import('node_modules/libsodium/dist/modules/libsodium.js');
-  app.import('node_modules/libsodium/dist/modules/libsodium-wrappers.js');
-  app.import('vendor/shims/libsodium.js');
-  app.import('vendor/shims/libsodium-wrappers.js');
+
+  // app.import('vendor/shims/libsodium.js');
+  // app.import('vendor/shims/libsodium-wrappers.js');
 
   // qrcode
-  app.import('node_modules/qrcode/build/qrcode.min.js');
-  app.import('vendor/shims/qrcode.js');
+  // app.import('node_modules/qrcode/build/qrcode.min.js');
+  // app.import('vendor/shims/qrcode.js');
 
   // qrcode scanner
-  app.import('node_modules/qr-scanner/qr-scanner.min.js', {
-    using: [{ transformation: 'es6', as: 'qr-scanner' }]
-  });
+  // app.import('node_modules/qr-scanner/qr-scanner.min.js', {
+  //   using: [{ transformation: 'es6', as: 'qr-scanner' }]
+  // });
 
   // qr-scanner hardcoded this path.... -.-
   var qrScannerWorker = new Funnel(
@@ -159,18 +171,18 @@ module.exports = function(defaults) {
 
 
   // localforage
-  app.import('node_modules/localforage/dist/localforage.js');
-  app.import('vendor/shims/localforage.js');
+  // app.import('node_modules/localforage/dist/localforage.js');
+  // app.import('vendor/shims/localforage.js');
 
   // uuid
-  app.import('node_modules/uuid/index.js', {
-    using: [{ transformation: 'cjs', as: 'uuid' }]
-  });
+  // app.import('node_modules/uuid/index.js', {
+  //   using: [{ transformation: 'cjs', as: 'uuid' }]
+  // });
 
   // bulma-toast
   app.import('node_modules/bulma/bulma.sass');
-  app.import('node_modules/bulma-toast/dist/bulma-toast.min.js');
-  app.import('vendor/shims/bulma-toast.js');
+  // app.import('node_modules/bulma-toast/dist/bulma-toast.min.js');
+  // app.import('vendor/shims/bulma-toast.js');
   app.import('node_modules/bulma-toast/dist/bulma-toast.min.css');
 
   return mergeTrees([

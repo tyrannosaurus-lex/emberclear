@@ -8071,7 +8071,7 @@ move-concurrently@^1.0.1:
     rimraf "^2.5.4"
     run-queue "^1.0.3"
 
-"mr-dep-walk@github:kellyselden/mr-dep-walk#sourceType":
+mr-dep-walk@kellyselden/mr-dep-walk#sourceType:
   version "1.3.1"
   resolved "https://codeload.github.com/kellyselden/mr-dep-walk/tar.gz/ada8abb676597804b0dd659710b80dffd663b194"
   dependencies:
