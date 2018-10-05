@@ -78,6 +78,7 @@ Check Types:
     - time ./run yarn tsc
 
 Code Quality:
+  stage: quality
   image: docker:stable
   variables:
     DOCKER_DRIVER: overlay2
