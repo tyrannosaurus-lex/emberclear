@@ -37,23 +37,23 @@
         {{t 'buttons.scan'}}
       </button>
 
-        <FileChooser @onChoose={{perform uploadSettings}} as |chooser|>
-          <button
-            data-test-upload-settings
-            class='m-l-md button'
-            {{action chooser.openFileChooser}}
-          >
-            {{t 'buttons.uploadSettings'}}
-          </button>
-        </FileChooser>
-
+      <FileChooser @onChoose={{perform uploadSettings}} as |chooser|>
         <button
-          data-test-submit-login
+          data-test-upload-settings
           class='m-l-md button'
-          {{action (perform login)}}
+          {{action chooser.openFileChooser}}
         >
-          {{t 'buttons.login'}}
+          {{t 'buttons.uploadSettings'}}
         </button>
+      </FileChooser>
+
+      <button
+        data-test-submit-login
+        class='m-l-md button'
+        {{action (perform login)}}
+      >
+        {{t 'buttons.login'}}
+      </button>
 
     </div>
   {{/unless}}
