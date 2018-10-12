@@ -40,7 +40,6 @@ export default class ChannelForm extends Component {
   }
 
   private async createChannel() {
-    console.log('wut');
     const id = this.newChannelName;
 
     // TODO: using both will likely lead to problems in the future.
