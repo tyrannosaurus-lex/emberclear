@@ -15,6 +15,23 @@ export default class ChannelForm extends Component {
 
   @action
   onFormSubmit(this: ChannelForm) {
+    this.didSubmitChannelName();
+  }
+
+  @action
+  onKeyPress(this: ChannelForm, event: KeyboardEvent) {
+    const { keyCode } = event;
+
+    if (keyCode === 13) {
+      this.didSubmitChannelName();
+
+      return false;
+    }
+
+    return true;
+  }
+
+  private didSubmitChannelName() {
     this.createChannel();
 
     this.set('newChannelName', '');
@@ -23,6 +40,7 @@ export default class ChannelForm extends Component {
   }
 
   private async createChannel() {
+    console.log('wut');
     const id = this.newChannelName;
 
     // TODO: using both will likely lead to problems in the future.

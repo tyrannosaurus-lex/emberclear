@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import DS from 'ember-data';
 
-import { visit, triggerEvent } from '@ember/test-helpers';
+import { visit, settled } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
@@ -13,7 +13,6 @@ import {
 
 
 import { sidebar } from 'emberclear/tests/helpers/pages/sidebar';
-import { app } from 'emberclear/tests/helpers/pages/app';
 
 module('Acceptance | Sidebar', function(hooks) {
   setupApplicationTest(hooks);
@@ -54,6 +53,7 @@ module('Acceptance | Sidebar', function(hooks) {
       module('the cancel button is clicked', function(hooks) {
         hooks.beforeEach(async function() {
           await sidebar.channels.toggleForm();
+          await settled();
         });
 
         test('the channel form is not visible', function(assert) {
@@ -63,10 +63,11 @@ module('Acceptance | Sidebar', function(hooks) {
         });
       });
 
-      module('the channel form is submitted', function(assert) {
+      module('the channel form is submitted', function(hooks) {
         hooks.beforeEach(async function() {
           await sidebar.channels.fillInput('Vertical Flat Plates');
           await sidebar.channels.submitForm();
+          await settled();
         });
 
         test('the form becomes hidden', function(assert) {
