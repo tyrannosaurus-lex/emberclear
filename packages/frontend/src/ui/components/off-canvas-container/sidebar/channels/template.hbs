@@ -4,7 +4,7 @@
   <span>{{t 'ui.sidebar.channels.title'}}</span>
 
   <a class='button is-small' {{action (mut isFormVisible) (not isFormVisible)}}>
-    <span class='icon'>
+    <span class='icon' data-test-channel-form-toggle>
       {{#if isFormVisible}}
         {{fa-icon 'times'}}
       {{else}}
