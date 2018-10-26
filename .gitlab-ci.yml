@@ -54,24 +54,36 @@ before_script:
 
 Lint JS/TS:
   stage: quality
+  only:
+    changes:
+      - packages/frontend
   dependencies: [ setup ]
   script:
     - time ./run yarn lint:js
 
 Lint Templates:
   stage: quality
+  only:
+    changes:
+      - packages/frontend
   dependencies: [ setup ]
   script:
     - time ./run yarn lint:hbs
 
 Lint SCSS:
   stage: quality
+  only:
+    changes:
+      - packages/frontend
   dependencies: [ setup ]
   script:
     - time ./run yarn lint:sass
 
 Check Types:
   stage: quality
+  only:
+    changes:
+      - packages/frontend
   dependencies: [ setup ]
   allow_failure: true
   script:
@@ -79,6 +91,9 @@ Check Types:
 
 Unit Tests:
   stage: test
+  only:
+    changes:
+      - packages/frontend
   dependencies: [ setup ]
   script:
     - time ./scripts/install-chrome-apt
@@ -89,6 +104,9 @@ Unit Tests:
 
 Helper Tests:
   stage: test
+  only:
+    changes:
+      - packages/frontend
   dependencies: [ setup ]
   script:
     - time ./scripts/install-chrome-apt
@@ -99,6 +117,9 @@ Helper Tests:
 
 Integration Tests:
   stage: test
+  only:
+    changes:
+      - packages/frontend
   dependencies: [ setup ]
   script:
     - time ./scripts/install-chrome-apt
@@ -109,6 +130,9 @@ Integration Tests:
 
 Acceptance Tests:
   stage: test
+  only:
+    changes:
+      - packages/frontend
   dependencies: [ setup ]
   script:
     - time ./scripts/install-chrome-apt
@@ -119,6 +143,9 @@ Acceptance Tests:
 
 Merge Coverage:
   stage: build
+  only:
+    changes:
+      - packages/frontend
   dependencies:
     - Acceptance Tests
     - Integration Tests
@@ -144,6 +171,9 @@ Build Production:
 
 Analyze Bundle:
   stage: build
+  only:
+    changes:
+      - packages/frontend
   dependencies: [ setup ]
   only: [ master ]
   script:

@@ -13,7 +13,6 @@
   "repository": "https://github.com/NullVoxPopuli/emberclear",
   "scripts": {
     "clean": "rm -rf dist tmp node_modules concat-stats-for coverage*",
-    "ember": "EMBER_CLI_MODULE_UNIFICATION=true node_modules/.bin/ember",
     "ember:update": "ember-cli-update",
     "build": "yarn ember build",
     "build:debug": "EMBER_CLI_PACKAGER=true BROCCOLI_DEBUG=* yarn build",
@@ -97,7 +96,7 @@
     "ember-cli-uglify": "^2.0.0",
     "ember-composable-helpers": "^2.1.0",
     "ember-computed-promise-monitor": "^0.1.3",
-    "ember-concurrency": "^0.8.19",
+    "ember-concurrency": "github:NullVoxPopuli/ember-concurrency#upgrades-of-deps",
     "ember-concurrency-decorators": "0.2.0",
     "ember-data": "github:emberjs/data#effd7a8e9ae2dc95c51dbed68d23cf701a234f22",
     "ember-decorators": "3.0.0",
