@@ -3,12 +3,69 @@ import { attr, belongsTo } from '@ember-decorators/data';
 
 import Identity from 'emberclear/data/models/identity/model';
 
+/**
+ * types:
+ *
+ * CHAT:       a standard message sent to a person or room.
+ *
+ * EMOTE:      same as chat, but with special formatting for
+ *             talking about oneself in the 3rd person.
+ *
+ * WHISPER:    same as chat, but explictly only intended for a single person
+ *
+ * PING:       a system message used to determine who is online upon app-boot
+ *
+ * DELIVERY_CONFIRMATION: a system message automatically sent back to someone
+ *                        who sent you a message so that they know you received it
+ *
+ * DISCONNECT: a courtesy message to notify your contacts that you
+ *             are about to go offline.
+ *
+ * Properties of:
+ *   Chat, Emote
+ *   - channel: the id of the channel this message is intended for
+ *              NOTE: additional channel properties (such as encryption, members, etc)
+ *                    will ultimately be stored on the channel.
+ *                    However, in order to make sure everyone's member list is up to date,
+ *                    the member list will be sent along wich each message
+ *              TODO: decide whether these extra properties live in the body json
+ *              TODO: do we want structureless data in the body?
+ *
+ *   Whisper, Ping, Disconnect
+ *   - no properties that alter behavior / message routing
+ *
+ * Currently Unused Properties:
+ *  - contentType, thread
+ *
+ * Currently Unused Message Types:
+ *  - emote, delivery confirmation
+ *
+ * TODO: should types and targets be separated?
+ *       I think that would allow more flexibility.
+ *
+ *       Examples:
+ *         target: 'whisper', type: 'chat',
+ *         target: 'whisper', type: 'emote',
+ *         target: null,      type: 'ping',
+ *         target: 'message', type: 'delivery-confirmation',
+ *         target: 'channel', type: 'chat',
+ *         target: 'channel', type: 'emote',
+ *
+ *         * to: IdentityID | ChannelID
+ *           - would no longer need channel as separate property
+ *         * thread: guid - independent of all the above, still
+ *
+ *       The answer: yes -- I think this'll clear up a lot of protocol intent confusion
+ *
+ *
+ * */
 export enum MESSAGE_TYPE {
   CHAT = 'chat',
   EMOTE = 'emote',
   WHISPER = 'whisper',
   PING = 'ping',
-  DISCONNECT = 'disconnect'
+  DISCONNECT = 'disconnect',
+  DELIVERY_CONFIRMATION = 'delivery-confirmation',
 }
 
 
@@ -17,15 +74,6 @@ export default class Message extends Model {
   @attr('string') to!: string;
   @attr('string') body!: string;
   @attr('string') contentType!: string;
-
-  // the type of message being sent:
-  //  - chat - broadcast to all a person's contacts
-  //  - emote - a specialized chat message that is broadcasted
-  //            to all a person's contacts
-  //  - whisper - send a message to only one person
-  //  - ping - lightweight message to determine if
-  //          someone is online and what their current name is.
-  //  - disconnect - announce a disconnect to your connections
   @attr('string') type!: string;
 
   @attr('string') channel!: string;
