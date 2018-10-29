@@ -8,7 +8,7 @@ import { IModel as ChatModel } from 'emberclear/ui/routes/chat/route';
 import { disableInFastboot } from 'emberclear/src/utils/decorators';
 
 interface IModelParams {
-  channelId: string;
+  channel_id: string;
 }
 
 export default class ChatInChannelRoute extends Route {
@@ -16,9 +16,9 @@ export default class ChatInChannelRoute extends Route {
 
   @disableInFastboot
   async model(params: IModelParams) {
-    const { channelId } = params;
+    const { channel_id } = params;
 
-    const record = await this.store.findRecord('channel', channelId);
+    const record = await this.store.findRecord('channel', channel_id);
     // TODO: filter these messages down
     const chatModel = this.modelFor('chat') as ChatModel;
 

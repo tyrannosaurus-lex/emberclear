@@ -8,15 +8,15 @@ import IdentityService from 'emberclear/services/identity/service';
 export default class extends Controller {
   @service identity!: IdentityService;
 
-  @reads('model.targetIdentity.uid') uid!: string;
+  @reads('model.targetChannel.id') id!: string;
 
   @filter('model.messages')
   messages(message: Message, _index: number, _array: Message[]) {
     const me = this.identity.uid;
-    const target = this.uid;
+    const target = this.id;
 
     return (
-      message.type === MESSAGE_TYPE.WHISPER && (
+      message.target === MESSAGE_TYPE.channel && (
         // we sent this message to someone else (this could incude ourselves)
         (message.to === target && message.from === me)
         // we received a message from someone else to us (including from ourselves)
