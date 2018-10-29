@@ -65,18 +65,45 @@ export enum MESSAGE_TYPE {
   WHISPER = 'whisper',
   PING = 'ping',
   DISCONNECT = 'disconnect',
-  DELIVERY_CONFIRMATION = 'delivery-confirmation',
+  DELIVERY_CONFIRMATION = 'delivery-confirmation'
+}
+
+export enum TYPE {
+  CHAT = 'chat',
+  EMOTE = 'emote',
+  PING = 'ping',
+  DISCONNECT = 'disconnect',
+  DELIVERY_CONFIRMATION = 'delivery-confirmation'
+}
+
+export enum TARGET {
+  NONE = '',
+  WHISPER = 'whisper',
+  CHANNEL = 'channel',
+  MESSAGE = 'message',
 }
 
 
-export default class Message extends Model {
-  @attr('string') from!: string;
-  @attr('string') to!: string;
-  @attr('string') body!: string;
-  @attr('string') contentType!: string;
-  @attr('string') type!: string;
+  export default class Message extends Model {
 
-  @attr('string') channel!: string;
+  /**
+   * from: the id of an identity
+   * */
+  @attr('string') from!: string;
+
+  /**
+   * identityId | channelId // should these have different formats?;
+   * */
+  @attr('string') to!: string;
+
+  /**
+   * Contents of body may depend on the TYPE/TARGET
+   * */
+  @attr('string') body!: string;
+
+  @attr('string') type!: string | TYPE;
+  @attr('string') target!: TARGET;
+
   @attr('string') thread!: string;
 
   @attr('date') receivedAt?: Date;
@@ -84,6 +111,10 @@ export default class Message extends Model {
   @attr('string') sendError?: string;
 
   @belongsTo('identity', { async: true }) sender?: Identity;
+
+  // currently unused
+  @attr('string') contentType!: string;
+
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your models.
