@@ -63,31 +63,49 @@ export enum TARGET {
   /**
    * from: the id of an identity
    * */
-  @attr('string') from!: string;
+  @attr() from!: string;
 
   /**
    * identityId | channelId // should these have different formats?;
    * */
-  @attr('string') to!: string;
+  @attr() to!: string;
 
   /**
    * Contents of body may depend on the TYPE/TARGET
    * */
-  @attr('string') body!: string;
+  @attr() body!: string;
 
-  @attr('string') type!: TYPE;
-  @attr('string') target!: TARGET;
+  /**
+   * Additional information for aiding in protocols
+   *
+   * For example:
+   *
+   *   In channel messages the following needs to be included,
+   *    - the creator of the channel
+   *    - the member list
+   *    - invites are pending
+   *      - who in the channel has approved the invites (for consensus)
+   *    - blacklisted members (blacklist by consensus as well)
+   *
+   *    TODO: maybe in the first iteration of channels, just the channel creator
+   *          can perform memberlist changes
+   * */
+  @attr() metadata!: object;
 
-  @attr('string') thread!: string;
 
-  @attr('date') receivedAt?: Date;
-  @attr('date') sentAt!: Date;
-  @attr('string') sendError?: string;
+  @attr() type!: TYPE;
+  @attr() target!: TARGET;
+
+  @attr() thread!: string;
+
+  @attr() receivedAt?: Date;
+  @attr() sentAt!: Date;
+  @attr() sendError?: string;
 
   @belongsTo('identity', { async: true }) sender?: Identity;
 
   // currently unused
-  @attr('string') contentType!: string;
+  @attr() contentType!: string;
 
 }
 
