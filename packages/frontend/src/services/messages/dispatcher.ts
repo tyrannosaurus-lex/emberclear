@@ -26,18 +26,18 @@ export default class MessageDispatcher extends Service {
   @service('messages/factory') messageFactory!: MessageFactory;
 
   async send(text: string, to: Identity | Channel) {
-    const msg = this.messageFactory.buildChat(text, to);
+    const message = this.messageFactory.buildChat(text, to);
 
-    await msg.save();
+    await message.save();
 
     if (to instanceof Identity) {
       if (to.id === 'me') return;
 
-      return await this.sendToUser.perform(msg, to);
+      return await this.sendToUser.perform(message, to);
     }
 
     // Otherwise, Channel Message
-    return this.sendToChannel(msg, to);
+    return this.sendToChannel(message, to);
   }
 
   async pingAll() {

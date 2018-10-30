@@ -11,18 +11,19 @@ export default class MessageFactory extends Service {
   @service identity!: IdentityService;
 
   buildChat(text: string, to: Identity | Channel) {
-    let message = this.build({
-      body: text,
-      type: TYPE.CHAT
-    });
+    let attributes = {};
 
     if (to instanceof Identity) {
-      message.set('target', TARGET.WHISPER);
-      message.set('to', to.uid);
+      attributes = { target: TARGET.WHISPER, to: to.uid };
     } else if (to instanceof Channel) {
-      message.set('target', TARGET.CHANNEL);
-      message.set('to', to.id);
+      attributes = { traget: TARGET.CHANNEL, to: to.id };
     }
+
+    let message = this.build({
+      body: text,
+      type: TYPE.CHAT,
+      ...attributes
+    });
 
     return message;
   }
@@ -35,14 +36,6 @@ export default class MessageFactory extends Service {
   //   return this._build({
   //     body: text,
   //     type: TYPE.EMOTE
-  //   });
-  // }
-
-  // buildWhisper(text: string, to: Identity) {
-  //   return this._build({
-  //     body: text,
-  //     to: to.uid,
-  //     target: TARGET.WHISPER
   //   });
   // }
 

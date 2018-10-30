@@ -13,16 +13,18 @@ export default class extends Controller {
   @filter('model.messages')
   messages(message: Message, _index: number, _array: Message[]) {
     const me = this.identity.uid;
-    const target = this.uid;
+    const chattingWithId = this.uid;
 
-    return (
+    const isRelevant = (
       message.target === TARGET.WHISPER && (
         // we sent this message to someone else (this could incude ourselves)
-        (message.to === target && message.from === me)
+        (message.to === chattingWithId && message.from === me)
         // we received a message from someone else to us (including from ourselves)
-        || (message.from === target && message.to === me)
+        || (message.from === chattingWithId && message.to === me)
       )
     );
+
+    return isRelevant;
   }
 
 }
