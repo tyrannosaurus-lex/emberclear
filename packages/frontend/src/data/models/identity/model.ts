@@ -15,7 +15,7 @@ export default class Identity extends Model {
   @attr() name?: string;
   @attr() publicKey?: Uint8Array;
   @attr() privateKey?: Uint8Array;
-  @attr() onlineStatus?: Status;
+  @attr() onlineStatus?: string;
 
   @reads('publicKeyAsHex') uid!: string;
 
