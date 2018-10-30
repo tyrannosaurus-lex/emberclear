@@ -59,14 +59,6 @@ import Identity from 'emberclear/data/models/identity/model';
  *
  *
  * */
-export enum MESSAGE_TYPE {
-  CHAT = 'chat',
-  EMOTE = 'emote',
-  WHISPER = 'whisper',
-  PING = 'ping',
-  DISCONNECT = 'disconnect',
-  DELIVERY_CONFIRMATION = 'delivery-confirmation'
-}
 
 export enum TYPE {
   CHAT = 'chat',
@@ -101,7 +93,7 @@ export enum TARGET {
    * */
   @attr('string') body!: string;
 
-  @attr('string') type!: string | TYPE;
+  @attr('string') type!: TYPE;
   @attr('string') target!: TARGET;
 
   @attr('string') thread!: string;

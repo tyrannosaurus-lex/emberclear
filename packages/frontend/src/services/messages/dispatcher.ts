@@ -9,6 +9,7 @@ import IdentityService from 'emberclear/services/identity/service';
 import Notifications from 'emberclear/services/notifications/service';
 import Message from 'emberclear/data/models/message';
 import Identity from 'emberclear/data/models/identity/model';
+import Channel from 'emberclear/data/models/channel';
 import StatusManager from 'emberclear/services/status-manager';
 import MessageFactory from 'emberclear/services/messages/factory';
 
@@ -24,8 +25,8 @@ export default class MessageDispatcher extends Service {
   @service statusManager!: StatusManager;
   @service('messages/factory') messageFactory!: MessageFactory;
 
-  async send(text: string, to: Identity) {
-    const msg = this.messageFactory.buildWhisper(text, to);
+  async send(text: string, to: Identity | Channel) {
+    const msg = this.messageFactory.buildChat(text, to);
 
     await msg.save();
 

@@ -3,7 +3,7 @@ import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 
 import IdentityService from 'emberclear/services/identity/service';
-import { MESSAGE_TYPE } from 'emberclear/src/data/models/message';
+import { TYPE, TARGET } from 'emberclear/src/data/models/message';
 import Identity from 'emberclear/src/data/models/identity/model';
 
 export default class MessageFactory extends Service {
@@ -13,7 +13,14 @@ export default class MessageFactory extends Service {
   buildChat(text: string) {
     return this._build({
       body: text,
-      type: MESSAGE_TYPE.CHAT
+      type: TYPE.CHAT
+    });
+  }
+
+  buildEmote(text: string) {
+    return this._build({
+      body: text,
+      type: TYPE.EMOTE
     });
   }
 
@@ -21,7 +28,7 @@ export default class MessageFactory extends Service {
     return this._build({
       body: text,
       to: to.uid,
-      type: MESSAGE_TYPE.WHISPER
+      target: TARGET.WHISPER
     });
   }
 

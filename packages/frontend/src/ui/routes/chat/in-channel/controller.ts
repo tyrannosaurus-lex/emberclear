@@ -1,28 +1,16 @@
 import Controller from '@ember/controller';
-import { service } from '@ember-decorators/service';
 import { reads, filter } from '@ember-decorators/object/computed';
 
-import Message, { MESSAGE_TYPE } from 'emberclear/src/data/models/message';
-import IdentityService from 'emberclear/services/identity/service';
+import Message, { TARGET } from 'emberclear/src/data/models/message';
 
 export default class extends Controller {
-  @service identity!: IdentityService;
-
   @reads('model.targetChannel.id') id!: string;
 
   @filter('model.messages')
   messages(message: Message, _index: number, _array: Message[]) {
-    const me = this.identity.uid;
     const target = this.id;
 
-    return (
-      message.target === MESSAGE_TYPE.channel && (
-        // we sent this message to someone else (this could incude ourselves)
-        (message.to === target && message.from === me)
-        // we received a message from someone else to us (including from ourselves)
-        || (message.from === target && message.to === me)
-      )
-    );
+    return message.target === TARGET.CHANNEL && message.to === target;
   }
 
 }
