@@ -1,4 +1,3 @@
-import RSVP from 'rsvp';
 import Route from '@ember/routing/route';
 import { service } from '@ember-decorators/service';
 
@@ -18,13 +17,13 @@ export default class ChatInChannelRoute extends Route {
   async model(params: IModelParams) {
     const { channel_id } = params;
 
-    const record = await this.store.findRecord('channel', channel_id);
+    const targetChannel = await this.store.findRecord('channel', channel_id);
     // TODO: filter these messages down
     const chatModel = this.modelFor('chat') as ChatModel;
 
-    return RSVP.hash({
-      targetChannel: record,
+    return {
+      targetChannel,
       messages: chatModel.messages
-    });
+    };
   }
 }
