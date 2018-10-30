@@ -40,24 +40,6 @@ import Identity from 'emberclear/data/models/identity/model';
  * Currently Unused Message Types:
  *  - emote, delivery confirmation
  *
- * TODO: should types and targets be separated?
- *       I think that would allow more flexibility.
- *
- *       Examples:
- *         target: 'whisper', type: 'chat',
- *         target: 'whisper', type: 'emote',
- *         target: null,      type: 'ping',
- *         target: 'message', type: 'delivery-confirmation',
- *         target: 'channel', type: 'chat',
- *         target: 'channel', type: 'emote',
- *
- *         * to: IdentityID | ChannelID
- *           - would no longer need channel as separate property
- *         * thread: guid - independent of all the above, still
- *
- *       The answer: yes -- I think this'll clear up a lot of protocol intent confusion
- *
- *
  * */
 
 export enum TYPE {
