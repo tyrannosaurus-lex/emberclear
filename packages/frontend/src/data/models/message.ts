@@ -110,7 +110,11 @@ export default class Message extends Model {
   @attr() sendError?: string;
 
   @belongsTo('identity', { async: true }) sender?: Identity;
+
+  // @belongsTo('message', { async: false, inverse: 'deliveryConfirmations' }) confirmationFor?: Message;
+  // @hasMany('message', { async: false, inverse: 'confirmationFor' }) deliveryConfirmations?: Message[];
   @hasMany('message', { async: false }) deliveryConfirmations?: Message[];
+
 
   // currently unused
   @attr() contentType!: string;

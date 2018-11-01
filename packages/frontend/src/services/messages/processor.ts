@@ -80,6 +80,7 @@ export default class MessageProcessor extends Service {
     if (type === TYPE.DELIVERY_CONFIRMATION) {
       const targetMessage = await this.store.findRecord('message', to);
 
+      // targetMessage.set('confirmationFor', message);
       message.deliveryConfirmations.pushObject(targetMessage);
     }
 

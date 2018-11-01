@@ -1,7 +1,11 @@
 <div class='confirmations'>
-  {{#if this.hasDeliveryConfirmations}}
-    {{fa-icon 'check-circle'}}
+  {{#if this.wasSent}}
+    {{#if this.hasDeliveryConfirmations}}
+      {{fa-icon 'check-circle'}}
+    {{else}}
+      {{fa-icon 'exclamation-circle'}}
+    {{/if}}
   {{else}}
-    {{fa-icon 'exclamation-circle'}}
+    {{fa-icon 'check'}}
   {{/if}}
 </div>

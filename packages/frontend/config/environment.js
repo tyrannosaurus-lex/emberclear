@@ -45,7 +45,8 @@ module.exports = function(environment) {
           'code', 'desktop', 'bed', 'video',
           'angle-down', 'angle-up', 'times',
           'phone', 'phone-volume', 'share',
-          'check-circle', 'exclamation-circle'
+          'check-circle', 'exclamation-circle',
+          'check', 'ellipsis-h'
         ],
       },
     },
