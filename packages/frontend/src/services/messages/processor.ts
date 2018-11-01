@@ -56,13 +56,14 @@ export default class MessageProcessor extends Service {
   }
 
   async importMessage(json: RelayJson) {
-    const { type, to, target, message: msg, sender: senderInfo } = json;
+    const { id, to, type, target, message: msg, sender: senderInfo } = json;
 
     const sender = await this.findOrCreateSender(senderInfo);
 
     this.statusManager.markOnline(sender);
 
     const message = this.store.createRecord('message', {
+      id,
       type,
       target,
       sender,
@@ -71,8 +72,7 @@ export default class MessageProcessor extends Service {
       sentAt: new Date(json.time_sent),
       receivedAt: new Date(),
       body: msg.body,
-      channel: msg.channel,
-      thread: msg.thread,
+      // thread: msg.thread,
       contentType: msg.contentType,
     });
 

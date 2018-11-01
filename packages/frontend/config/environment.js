@@ -44,7 +44,8 @@ module.exports = function(environment) {
           'plus',
           'code', 'desktop', 'bed', 'video',
           'angle-down', 'angle-up', 'times',
-          'phone', 'phone-volume', 'share'
+          'phone', 'phone-volume', 'share',
+          'check-circle', 'exclamation-circle'
         ],
       },
     },

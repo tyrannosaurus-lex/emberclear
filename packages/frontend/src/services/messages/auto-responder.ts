@@ -8,13 +8,15 @@ import Message from 'emberclear/src/data/models/message';
 /**
  * Nothing here should be blocking, as these responses should not matter
  * to the receiver, but are for the sender's benefit.
+ *
+ * It is up to the invoker to not await these methods.
  * */
 export default class MessageAutoResponder extends Service {
   @service('messages/dispatcher') dispatcher!: MessageDispatcher;
   @service('messages/factory') factory!: MessageFactory;
 
-  messageReceived(respondToMessage: Message) {
-    const { sender } = respondToMessage;
+  async messageReceived(respondToMessage: Message) {
+    const sender = await respondToMessage.sender;
     const response = this.factory.buildDeliveryConfirmation(respondToMessage);
 
     this.dispatcher.sendToUser.perform(response, sender);

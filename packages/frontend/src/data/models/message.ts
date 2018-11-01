@@ -71,7 +71,9 @@ export default class Message extends Model {
   @attr() from!: string;
 
   /**
-   * identityId | channelId // should these have different formats?;
+   * identityId | channelId | messageId
+   *
+   * TODO: should these have different formats?;
    * */
   @attr() to!: string;
 
@@ -108,7 +110,7 @@ export default class Message extends Model {
   @attr() sendError?: string;
 
   @belongsTo('identity', { async: true }) sender?: Identity;
-  @hasMany('message', { async: false }) deliveryConfirmations?: Message;
+  @hasMany('message', { async: false }) deliveryConfirmations?: Message[];
 
   // currently unused
   @attr() contentType!: string;

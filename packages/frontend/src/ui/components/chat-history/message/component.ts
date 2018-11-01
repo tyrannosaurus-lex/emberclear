@@ -32,10 +32,10 @@ export default class extends Component {
   }
 
   @computed('message.sender')
-  get sender(): PromiseMonitor<Identity> {
+  get sender(): PromiseMonitor<Identity | undefined> {
     const promise = this.message.sender;
 
-    return new PromiseMonitor<Identity>(promise);
+    return new PromiseMonitor<Identity | undefined>(promise);
   }
 
   @reads('sender.isFulfilled') hasSender!: boolean;
@@ -47,6 +47,13 @@ export default class extends Component {
     }
 
     return '';
+  }
+
+  @computed('message.deliveryConfirmations')
+  get hasDeliveryConfirmations() {
+    const confirmations = this.message.deliveryConfirmations;
+
+    return confirmations && confirmations.length > 0;
   }
 
   @computed('messageBody')

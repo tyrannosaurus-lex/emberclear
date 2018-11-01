@@ -42,13 +42,6 @@ export default class MessageFactory extends Service {
     });
   }
 
-  // buildEmote(text: string) {
-  //   return this._build({
-  //     body: text,
-  //     type: TYPE.EMOTE
-  //   });
-  // }
-
   private build(attributes = {}) {
     return this.store.createRecord('message', {
       id: uuid(),
