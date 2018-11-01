@@ -49,12 +49,6 @@ export default class extends Component {
     return '';
   }
 
-  @computed('message.deliveryConfirmations')
-  get hasDeliveryConfirmations() {
-    const confirmations = this.message.deliveryConfirmations;
-
-    return confirmations && confirmations.length > 0;
-  }
 
   @computed('messageBody')
   get urls() {
