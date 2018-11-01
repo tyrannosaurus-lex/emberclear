@@ -2,12 +2,15 @@ import DS from 'ember-data';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 
+import { TYPE } from 'emberclear/src/data/models/message';
+
 import RelayConnection from 'emberclear/services/relay-connection';
 import IdentityService from 'emberclear/services/identity/service';
 import Identity from 'emberclear/data/models/identity/model';
 import StatusManager from 'emberclear/services/status-manager';
 import ContactManager from 'emberclear/services/contact-manager';
 import ChatScroller from 'emberclear/services/chat-scroller';
+import AutoResponder from 'emberclear/src/services/messages/auto-responder';
 
 import { decryptFrom } from 'emberclear/src/utils/nacl/utils';
 import { fromHex, toString, fromBase64 } from 'emberclear/src/utils/string-encoding';
@@ -19,6 +22,7 @@ export default class MessageProcessor extends Service {
   @service statusManager!: StatusManager;
   @service contactManager!: ContactManager;
   @service chatScroller!: ChatScroller;
+  @service('messages/auto-responder') autoResponder!: AutoResponder;
 
   async receive(socketData: RelayMessage) {
     const { uid, message } = socketData;
@@ -52,7 +56,7 @@ export default class MessageProcessor extends Service {
   }
 
   async importMessage(json: RelayJson) {
-    const { type, target, message: msg, sender: senderInfo } = json;
+    const { type, to, target, message: msg, sender: senderInfo } = json;
 
     const sender = await this.findOrCreateSender(senderInfo);
 
@@ -72,7 +76,19 @@ export default class MessageProcessor extends Service {
       contentType: msg.contentType,
     });
 
+
+    if (type === TYPE.DELIVERY_CONFIRMATION) {
+      const targetMessage = await this.store.findRecord('message', to);
+
+      message.deliveryConfirmations.pushObject(targetMessage);
+    }
+
     await message.save();
+
+    if (type === TYPE.CHAT || type === TYPE.EMOTE) {
+      this.autoResponder.messageReceived(message);
+    }
+
 
     return message;
   }
