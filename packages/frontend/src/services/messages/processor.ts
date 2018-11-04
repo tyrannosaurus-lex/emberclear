@@ -2,15 +2,13 @@ import DS from 'ember-data';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 
-import { TYPE } from 'emberclear/src/data/models/message';
-
 import RelayConnection from 'emberclear/services/relay-connection';
 import IdentityService from 'emberclear/services/identity/service';
 import Identity from 'emberclear/data/models/identity/model';
 import StatusManager from 'emberclear/services/status-manager';
 import ContactManager from 'emberclear/services/contact-manager';
 import ChatScroller from 'emberclear/services/chat-scroller';
-import AutoResponder from 'emberclear/src/services/messages/auto-responder';
+import ReceivedHandler from 'emberclear/src/services/messages/received-handler';
 
 import { decryptFrom } from 'emberclear/src/utils/nacl/utils';
 import { fromHex, toString, fromBase64 } from 'emberclear/src/utils/string-encoding';
@@ -22,7 +20,7 @@ export default class MessageProcessor extends Service {
   @service statusManager!: StatusManager;
   @service contactManager!: ContactManager;
   @service chatScroller!: ChatScroller;
-  @service('messages/auto-responder') autoResponder!: AutoResponder;
+  @service('messages/received-handler') handler!: ReceivedHandler;
 
   async receive(socketData: RelayMessage) {
     const { uid, message } = socketData;
@@ -76,20 +74,7 @@ export default class MessageProcessor extends Service {
       contentType: msg.contentType,
     });
 
-
-    if (type === TYPE.DELIVERY_CONFIRMATION) {
-      const targetMessage = await this.store.findRecord('message', to);
-
-      // targetMessage.set('confirmationFor', message);
-      message.deliveryConfirmations.pushObject(targetMessage);
-    }
-
-    await message.save();
-
-    if (type === TYPE.CHAT || type === TYPE.EMOTE) {
-      this.autoResponder.messageReceived(message);
-    }
-
+    await this.handler.handle(message);
 
     return message;
   }
