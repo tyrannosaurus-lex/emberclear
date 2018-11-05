@@ -15,7 +15,7 @@ import MessageFactory from 'emberclear/services/messages/factory';
 
 import { encryptFor } from 'emberclear/src/utils/nacl/utils';
 import { toUint8Array, toBase64, toHex } from 'emberclear/src/utils/string-encoding';
-import { build as toPayloadJson } from './builder';
+import { build as toPayloadJson } from './-utils/builder';
 
 export default class MessageDispatcher extends Service {
   @service notifications!: Notifications;
