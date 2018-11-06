@@ -2916,7 +2916,7 @@ broccoli-merge-trees@1.1.1:
     rimraf "^2.4.3"
     symlink-or-copy "^1.0.0"
 
-broccoli-merge-trees@1.2.4, broccoli-merge-trees@^1.0.0, broccoli-merge-trees@^1.1.0, broccoli-merge-trees@^1.2.1:
+broccoli-merge-trees@^1.0.0, broccoli-merge-trees@^1.1.0, broccoli-merge-trees@^1.2.1:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/broccoli-merge-trees/-/broccoli-merge-trees-1.2.4.tgz#a001519bb5067f06589d91afa2942445a2d0fdb5"
   integrity sha1-oAFRm7UGfwZYnZGvopQkRaLQ/bU=
@@ -3065,14 +3065,6 @@ broccoli-postcss@^3.5.2:
     object-assign "4.1.1"
     postcss "6.0.22"
 
-broccoli-rollup@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/broccoli-rollup/-/broccoli-rollup-0.0.4.tgz#d23b2ef8fbd80e85dbb47d350fdab72902cd17c4"
-  integrity sha1-0jsu+PvYDoXbtH01D9q3KQLNF8Q=
-  dependencies:
-    broccoli-caching-writer "^2.2.0"
-    rollup "^0.26.2"
-
 broccoli-rollup@^2.0.0, broccoli-rollup@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/broccoli-rollup/-/broccoli-rollup-2.1.1.tgz#0b77dc4b7560a53e998ea85f3b56772612d4988d"
@@ -3189,22 +3181,7 @@ broccoli-test-helper@^1.2.0:
     tmp "^0.0.33"
     walk-sync "^0.3.3"
 
-broccoli-uglify-sourcemap@^1.5.1:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/broccoli-uglify-sourcemap/-/broccoli-uglify-sourcemap-1.5.2.tgz#04f84ab0db539031fa868ccfa563c9932d50cedb"
-  integrity sha1-BPhKsNtTkDH6hozPpWPJky1Qzts=
-  dependencies:
-    broccoli-plugin "^1.2.1"
-    debug "^2.2.0"
-    lodash.merge "^4.5.1"
-    matcher-collection "^1.0.0"
-    mkdirp "^0.5.0"
-    source-map-url "^0.3.0"
-    symlink-or-copy "^1.0.1"
-    uglify-js "^2.7.0"
-    walk-sync "^0.1.3"
-
-broccoli-uglify-sourcemap@^2.1.1:
+broccoli-uglify-sourcemap@^2.1.1, broccoli-uglify-sourcemap@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/broccoli-uglify-sourcemap/-/broccoli-uglify-sourcemap-2.2.0.tgz#2ff49389bdf342a550c3596750ba2dde95a8f7d4"
   integrity sha1-L/STib3zQqVQw1lnULot3pWo99Q=
@@ -5543,22 +5520,21 @@ ember-service-worker-update-notify@^1.0.2:
     ember-cli-babel "^6.3.0"
     ember-cli-htmlbars "^2.0.1"
 
-"ember-service-worker@github:NullVoxPopuli/ember-service-worker#blind-fix-for-issue-125":
+"ember-service-worker@github:DockYard/ember-service-worker#c78cb28432af5eeb6e4adc0961fb7f8da025cd14":
   version "0.7.0"
-  resolved "https://codeload.github.com/NullVoxPopuli/ember-service-worker/tar.gz/1015f000aa7b6f383ecf44d4f9a469c8fb5b03ef"
+  resolved "https://codeload.github.com/DockYard/ember-service-worker/tar.gz/c78cb28432af5eeb6e4adc0961fb7f8da025cd14"
   dependencies:
     broccoli-caching-writer "^3.0.3"
     broccoli-file-creator "^2.1.1"
     broccoli-funnel "^2.0.1"
-    broccoli-merge-trees "1.2.4"
-    broccoli-rollup "0.0.4"
-    broccoli-uglify-sourcemap "^1.5.1"
-    clone "^1.0.2"
+    broccoli-merge-trees "^3.0.1"
+    broccoli-rollup "^2.1.1"
+    broccoli-uglify-sourcemap "^2.2.0"
+    clone "^2.1.2"
     ember-cli-babel "^6.16.0"
-    exists-sync "0.0.3"
-    glob "^7.1.1"
+    glob "^7.1.3"
     hash-for-dep "^1.2.3"
-    rollup-plugin-replace "^1.1.1"
+    rollup-plugin-replace "^2.1.0"
 
 "ember-source@https://s3.amazonaws.com/builds.emberjs.com/canary/shas/37403e870ddeaf01fe677b8a09d1d926951717c6.tgz":
   version "3.6.0-canary"
@@ -6125,11 +6101,6 @@ exists-stat@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/exists-stat/-/exists-stat-1.0.0.tgz#0660e3525a2e89d9e446129440c272edfa24b529"
   integrity sha1-BmDjUlouidnkRhKUQMJy7foktSk=
-
-exists-sync@0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/exists-sync/-/exists-sync-0.0.3.tgz#b910000bedbb113b378b82f5f5a7638107622dcf"
-  integrity sha1-uRAAC+27ETs3i4L19adjgQdiLc8=
 
 exists-sync@0.0.4:
   version "0.0.4"
@@ -6994,7 +6965,7 @@ glob@^5.0.1, glob@^5.0.10:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@^7.0.0, glob@^7.0.3, glob@^7.0.4, glob@^7.0.5, glob@^7.1.1, glob@^7.1.2, glob@~7.1.1:
+glob@^7.0.0, glob@^7.0.3, glob@^7.0.4, glob@^7.0.5, glob@^7.1.1, glob@^7.1.2, glob@^7.1.3, glob@~7.1.1:
   version "7.1.3"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.3.tgz#3960832d3f1574108342dafd3a67b332c0969df1"
   integrity sha512-vcfuiIxogLV4DlGBHIUOwI0IbrJ8HWPc4MU7HzviGeNho/UJDfi6B5p3sHeWIQ0KGIU0Jpxi5ZHxemQfLkkAwQ==
@@ -8663,7 +8634,7 @@ lodash.memoize@^4.1.2:
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
   integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
 
-lodash.merge@^4.3.1, lodash.merge@^4.5.1, lodash.merge@^4.6.0, lodash.merge@^4.6.1:
+lodash.merge@^4.3.1, lodash.merge@^4.6.0, lodash.merge@^4.6.1:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.1.tgz#adc25d9cb99b9391c59624f379fbba60d7111d54"
   integrity sha512-AOYza4+Hf5z1/0Hztxpm2/xiPZgi/cjMqdnKTUWTBSKchJlxXXuUSxCCl8rJlf4g6yww/j6mA8nC8Hw/EZWxKQ==
@@ -8804,13 +8775,6 @@ lru-cache@^4.0.1, lru-cache@^4.1.1:
   dependencies:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
-
-magic-string@^0.22.4:
-  version "0.22.5"
-  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.22.5.tgz#8e9cf5afddf44385c1da5bc2a6a0dbd10b03657e"
-  integrity sha512-oreip9rJZkzvA8Qzk9HFs8fZGF/u7H/gtrE8EN6RjKJ9kh2HlC+yQ2QezifqTZfGyiuAV0dRv5a+y/8gBb1m9w==
-  dependencies:
-    vlq "^0.2.2"
 
 magic-string@^0.24.0:
   version "0.24.1"
@@ -11124,12 +11088,12 @@ rollup-plugin-node-resolve@^3.0.2, rollup-plugin-node-resolve@^3.3.0:
     is-module "^1.0.0"
     resolve "^1.1.6"
 
-rollup-plugin-replace@^1.1.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-replace/-/rollup-plugin-replace-1.2.1.tgz#6307ee15f223aa1fd3207cd3c08052468f180daf"
-  integrity sha512-l9Pgb7bh5Wx18+qM9iOWZ/CKcwyKJETLAwCh6bjKwTOgTzNH3KmKDWI/X/ToNA7fA/68chhFyvISvreRxWFVtw==
+rollup-plugin-replace@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-replace/-/rollup-plugin-replace-2.1.0.tgz#f9c07a4a89a2f8be912ee54b3f0f68d91e9ed0ae"
+  integrity sha512-SxrAIgpH/B5/W4SeULgreOemxcpEgKs2gcD42zXw50bhqGWmcnlXneVInQpAqzA/cIly4bJrOpeelmB9p4YXSQ==
   dependencies:
-    magic-string "^0.22.4"
+    magic-string "^0.25.1"
     minimatch "^3.0.2"
     rollup-pluginutils "^2.0.1"
 
@@ -11140,15 +11104,6 @@ rollup-pluginutils@^2.0.1, rollup-pluginutils@^2.3.0, rollup-pluginutils@^2.3.3:
   dependencies:
     estree-walker "^0.5.2"
     micromatch "^2.3.11"
-
-rollup@^0.26.2:
-  version "0.26.7"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.26.7.tgz#12875bc83a0ee8ddcf4b3bcf30f2b77d60652dd7"
-  integrity sha1-EodbyDoO6N3PSzvPMPK3fWBlLdc=
-  dependencies:
-    chalk "^1.1.1"
-    minimist "^1.2.0"
-    source-map-support "^0.4.0"
 
 rollup@^0.57.1:
   version "0.57.1"
@@ -11640,7 +11595,7 @@ source-map-resolve@^0.5.0:
     source-map-url "^0.4.0"
     urix "^0.1.0"
 
-source-map-support@^0.4.0, source-map-support@^0.4.15:
+source-map-support@^0.4.15:
   version "0.4.18"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.18.tgz#0286a6de8be42641338594e97ccea75f0a2c585f"
   integrity sha512-try0/JqxPLF9nOjvSta7tVondkP5dwgyLDjVoyMDlmjugT2lRZ1OfsrYTkCd2hkDnJTKRbO/Rl3orm8vlsUzbA==
@@ -12326,7 +12281,7 @@ uglify-es@^3.0.23, uglify-es@^3.3.4:
     commander "~2.13.0"
     source-map "~0.6.1"
 
-uglify-js@^2.6.2, uglify-js@^2.7.0:
+uglify-js@^2.6.2:
   version "2.8.29"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.8.29.tgz#29c5733148057bb4e1f75df35b7a9cb72e6a59dd"
   integrity sha1-KcVzMUgFe7Th913zW3qcty5qWd0=
@@ -12623,11 +12578,6 @@ viewport-dimensions@^0.2.0:
   resolved "https://registry.yarnpkg.com/viewport-dimensions/-/viewport-dimensions-0.2.0.tgz#de740747db5387fd1725f5175e91bac76afdf36c"
   integrity sha1-3nQHR9tTh/0XJfUXXpG6x2r982w=
 
-vlq@^0.2.2:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/vlq/-/vlq-0.2.3.tgz#8f3e4328cf63b1540c0d67e1b2778386f8975b26"
-  integrity sha512-DRibZL6DsNhIgYQ+wNdWDL2SL3bKPlVrRiBqV5yuMm++op8W4kGFtaQfCs4KEJn0wBZcHVHJ3eoywX8983k1ow==
-
 vm-browserify@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-0.0.4.tgz#5d7ea45bbef9e4a6ff65f95438e0a87c357d5a73"
@@ -12642,11 +12592,6 @@ walk-sync@0.3.2:
   dependencies:
     ensure-posix-path "^1.0.0"
     matcher-collection "^1.0.0"
-
-walk-sync@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/walk-sync/-/walk-sync-0.1.3.tgz#8a07261a00bda6cfb1be25e9f100fad57546f583"
-  integrity sha1-igcmGgC9ps+xviXp8QD61XVG9YM=
 
 walk-sync@^0.2.5, walk-sync@^0.2.7:
   version "0.2.7"
