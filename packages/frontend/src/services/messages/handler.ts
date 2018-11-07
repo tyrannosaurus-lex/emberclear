@@ -10,7 +10,7 @@ import ContactManager from 'emberclear/services/contact-manager';
 import AutoResponder from 'emberclear/src/services/messages/auto-responder';
 
 
-export default class ReceivedHandler extends Service {
+export default class ReceivedMessageHandler extends Service {
   @service store!: DS.Store;
   @service statusManager!: StatusManager;
   @service identity!: IdentityService;
@@ -137,6 +137,6 @@ export default class ReceivedHandler extends Service {
 
 declare module '@ember/service' {
   interface Registry {
-    'messages/received-handler': ReceivedHandler
+    'messages/handler': ReceivedMessageHandler
   }
 }

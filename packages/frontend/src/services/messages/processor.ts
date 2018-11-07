@@ -3,14 +3,14 @@ import { service } from '@ember-decorators/service';
 
 import IdentityService from 'emberclear/services/identity/service';
 import ChatScroller from 'emberclear/services/chat-scroller';
-import ReceivedHandler from 'emberclear/src/services/messages/received-handler';
+import ReceivedMessageHandler from 'emberclear/src/services/messages/handler';
 
 import { decryptFromSocket } from './-utils/decryptor';
 
 export default class MessageProcessor extends Service {
   @service identity!: IdentityService;
   @service chatScroller!: ChatScroller;
-  @service('messages/received-handler') handler!: ReceivedHandler;
+  @service('messages/handler') handler!: ReceivedMessageHandler;
 
   async receive(socketData: RelayMessage) {
     const decrypted = await decryptFromSocket(socketData, this.identity.privateKey!);
