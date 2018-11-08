@@ -13,8 +13,7 @@ import Channel from 'emberclear/src/data/models/channel';
 import StatusManager from 'emberclear/services/status-manager';
 import MessageFactory from 'emberclear/services/messages/factory';
 
-import { encryptFor } from 'emberclear/src/utils/nacl/utils';
-import { toUint8Array, toBase64, toHex } from 'emberclear/src/utils/string-encoding';
+import { toHex } from 'emberclear/src/utils/string-encoding';
 import { build as toPayloadJson } from './-utils/builder';
 import { encryptForSocket } from './-utils/encryptor';
 
