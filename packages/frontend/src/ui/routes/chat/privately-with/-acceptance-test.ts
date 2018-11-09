@@ -14,6 +14,8 @@ import {
 import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
 import { toHex } from 'emberclear/src/utils/string-encoding';
 
+import { chat } from 'emberclear/tests/helpers/pages/chat';
+
 module('Acceptance | Chat | Privately With', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
@@ -32,8 +34,55 @@ module('Acceptance | Chat | Privately With', function(hooks) {
         assert.equal(currentURL(), '/chat/privately-with/me');
       });
 
-      test('a message can be sent', function(assert) {
-        assert.expect(0);
+      test('the chat button is disabled', function(assert) {
+        const result = chat.submitButton.isDisabled();
+
+        assert.equal(result, true);
+      });
+
+      test('the textarea is not disabled', function(assert) {
+        const result = chat.textarea.isDisabled();
+
+        assert.equal(result, false);
+      });
+
+      module('text is entered', function(hooks) {
+        hooks.beforeEach(async function() {
+          await chat.textarea.fillIn('a message');
+        });
+
+        test('the chat button is not disabled', function(assert) {
+          const result = chat.submitButton.isDisabled();
+
+          assert.equal(result, false);
+        });
+
+        module('submit is clicked', function(hooks) {
+          hooks.beforeEach(async function() {
+            chat.submitButton.click();
+          });
+
+          test('message is sent', function(assert) {
+            assert.expect(0);
+          });
+
+          skip('field is disabled', function(assert) {
+            const result = chat.textarea.isDisabled();
+
+            assert.equal(result, true);
+          });
+
+          test('submit is disabled', function(assert) {
+            const result = chat.submitButton.isDisabled();
+
+            assert.equal(result, true);
+          });
+
+        });
+
+        module('enter is pressed', function(hooks) {
+
+        });
       });
     });
 

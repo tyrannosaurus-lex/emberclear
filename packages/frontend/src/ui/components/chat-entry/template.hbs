@@ -9,6 +9,8 @@
   <div class='control flex-grow resizable-textarea'>
     {{textarea
       autofocus
+      data-test-chat-entry
+      disabled=this.isDisabled
       role='chat-entry'
       class='input transition-all chat-entry'
       value=this.text
@@ -19,6 +21,8 @@
 
   <div class='control flex-column'>
     <input
+      data-test-chat-submit
+      disabled={{this.isSubmitDisabled}}
       class='button flex-grow'
       type='submit'
       value='Send'
