@@ -46,6 +46,12 @@ module('Acceptance | Chat | Privately With', function(hooks) {
         assert.equal(result, false);
       });
 
+      test('there are 0 messages to start with', function(assert) {
+        const result = chat.messages.all().length;
+
+        assert.equal(result, 0);
+      });
+
       module('text is entered', function(hooks) {
         hooks.beforeEach(async function() {
           await chat.textarea.fillIn('a message');
@@ -123,8 +129,21 @@ module('Acceptance | Chat | Privately With', function(hooks) {
         assert.equal(currentURL(), `/chat/privately-with/${id}`);
       });
 
-      skip('a message can be sent', function(assert) {
-        assert.expect(0);
+      test('there are 0 messages to start with', function(assert) {
+        const result = chat.messages.all().length;
+
+        assert.equal(result, 0);
+      });
+
+      module('a message is sent to the person', function(hooks) {
+        hooks.beforeEach(async function() {
+          await chat.textarea.fillIn('a message');
+          await chat.submitButton.click();
+        });
+
+        skip('the message is sent', function(assert) {
+
+        });
       });
 
       skip('a message can be received', function(assert) {

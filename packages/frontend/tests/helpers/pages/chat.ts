@@ -1,5 +1,5 @@
 import {
-  find, click, fillIn
+  find, click, fillIn, findAll,
 } from '@ember/test-helpers';
 
 export const chat = {
@@ -11,7 +11,11 @@ export const chat = {
   submitButton: {
     click: () => click('[data-test-chat-submit]'),
     isDisabled: () => !!find('[data-test-chat-submit][disabled]'),
-  }
+  },
+
+  messages: {
+    all: () => findAll('[data-test-chat-message]'),
+  },
 
 };
 
