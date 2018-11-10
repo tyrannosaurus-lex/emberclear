@@ -3,6 +3,14 @@ import {
 } from '@ember/test-helpers';
 
 export const chat = {
+  selectors: {
+    form: '[data-test-chat-entry-form]',
+    textarea: '[data-test-chat-entry]',
+    message: '[data-test-chat-message]',
+    submitButton: '[data-test-chat-submit]',
+    confirmations: '[data-test-confirmations]',
+  },
+
   textarea: {
     fillIn: (text: string) => fillIn('[data-test-chat-entry]', text),
     isDisabled: () => !!find('[data-test-chat-entry][disabled]'),

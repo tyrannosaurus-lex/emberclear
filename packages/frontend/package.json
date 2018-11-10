@@ -73,6 +73,7 @@
     "babel-eslint": "10.0.1",
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-concat-analyser": "^4.2.0",
+    "ember-animated": "^0.3.1",
     "ember-cli": "github:NullVoxPopuli/ember-cli#81356a2c21d9ea5e6aec84286fd330bb08a8cbf3",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.2.1",

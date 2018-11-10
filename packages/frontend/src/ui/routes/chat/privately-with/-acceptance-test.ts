@@ -1,5 +1,8 @@
 import { module, test, skip } from 'qunit';
-import { visit, currentURL, settled, waitFor } from '@ember/test-helpers';
+import {
+  visit, currentURL, settled, waitFor,
+  triggerEvent
+} from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import Identity from 'emberclear/src/data/models/identity/model';
@@ -15,6 +18,7 @@ import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
 import { toHex } from 'emberclear/src/utils/string-encoding';
 
 import { chat } from 'emberclear/tests/helpers/pages/chat';
+import { app } from 'emberclear/tests/helpers/pages/app';
 
 module('Acceptance | Chat | Privately With', function(hooks) {
   setupApplicationTest(hooks);
