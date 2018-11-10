@@ -13,7 +13,7 @@ stages:
 #     - ${CI_PROJECT_DIR}/.cache_yarn
 #     - ${CI_PROJECT_DIR}/packages/frontend/node_modules
 
-image: node:10.12
+image: node:10
 # image: danlynn/ember-cli:3.4.2
 
 variables:
