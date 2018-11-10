@@ -15,6 +15,8 @@ export const chat = {
 
   messages: {
     all: () => findAll('[data-test-chat-message]'),
+    confirmationsFor: (e: Element) => Array.from(e.querySelectorAll('[data-test-confirmations]')),
+    loaderFor: (e: Element) => e.querySelector('.ellipsis-loader'),
   },
 
 };
