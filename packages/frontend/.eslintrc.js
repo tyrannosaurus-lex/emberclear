@@ -32,7 +32,7 @@ module.exports = {
     'require-yield': 'off',
 
     // doesn't support deep nesting
-    'qunit/no-identical-nams': 'off'
+    'qunit/no-identical-names': 'warn'
   },
   overrides: [
     {
