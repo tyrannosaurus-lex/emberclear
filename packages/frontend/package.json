@@ -110,6 +110,7 @@
     "ember-intl": "^3.1.1",
     "ember-keyboard": "^4.0.0",
     "ember-load-initializers": "2.0.0",
+    "ember-localforage-adapter": "^3.0.0-beta3",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-purify": "^4.2.0",
     "ember-resolver": "^5.0.1",
