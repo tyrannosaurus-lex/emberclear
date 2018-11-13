@@ -5501,10 +5501,10 @@ ember-load-initializers@2.0.0:
   dependencies:
     ember-cli-babel "^7.0.0"
 
-ember-localforage-adapter@^3.0.0-beta3:
-  version "3.0.0-beta3"
-  resolved "https://registry.yarnpkg.com/ember-localforage-adapter/-/ember-localforage-adapter-3.0.0-beta3.tgz#f7cf064631592030cd529d2dd9e485000e6b0dfe"
-  integrity sha512-9Ht15/wlGKu9h+ox9zSgZOmvmw86DRuSImG56CvE8HNN7M3cMleViFEhewjFKGR7MMIrYgDYNKlqbnMCSp9ZFA==
+ember-localforage-adapter@^3.0.0-beta4:
+  version "3.0.0-beta4"
+  resolved "https://registry.yarnpkg.com/ember-localforage-adapter/-/ember-localforage-adapter-3.0.0-beta4.tgz#29082de92bbe9c26b58489b52868fde4593c7de1"
+  integrity sha512-cTrWGY2KHPfQ6LHnsqt/Cjv6k6H9ST12OuJBLkIIzVHDcpaaqbYajNwtSn6YpPQQagQBlkcxxUoaRXcQdUNA+w==
   dependencies:
     ember-cli-babel "^6.16.0"
     ember-uuid "^1.0.1"
@@ -8536,7 +8536,7 @@ locale-emoji@^0.3.0:
   resolved "https://registry.yarnpkg.com/locale-emoji/-/locale-emoji-0.3.0.tgz#7f38262f7c877bd27659725570335b263f88742a"
   integrity sha512-JGm8+naU49CBDnH1jksS3LecPdfWQLxFgkLN6ZhYONKa850pJ0Xt8DPGJnYK0ZuJI8jTuiDDPCDtSL3nyacXwg==
 
-localforage@^1.7.1, localforage@^1.7.3:
+localforage@^1.7.3:
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/localforage/-/localforage-1.7.3.tgz#0082b3ca9734679e1bd534995bdd3b24cf10f204"
   integrity sha512-1TulyYfc4udS7ECSBT2vwJksWbkwwTX8BzeUIiq8Y07Riy7bDAAnxDaPU/tWyOVmQAcWJIEIFP9lPfBGqVoPgQ==
