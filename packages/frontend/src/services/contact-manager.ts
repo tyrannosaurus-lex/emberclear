@@ -26,6 +26,8 @@ export default class ContactManager extends Service {
     // always update the name
     record.set('name', name);
 
+    // current error is here
+    debugger;
     await record.save();
 
     return record;

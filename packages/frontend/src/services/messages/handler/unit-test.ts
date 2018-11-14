@@ -1,8 +1,21 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
+import uuid from 'uuid';
+
+import {
+  getService, stubService,
+  buildIdentity,
+  setupCurrentUser,
+} from 'emberclear/tests/helpers';
+
+import { TYPE, TARGET } from 'emberclear/src/data/models/message';
+import IdentityService from 'emberclear/src/services/identity/service';
+
+import ReceivedMessageHandler from './service';
 
 module('Unit | Service | messages/handler', function(hooks) {
   setupTest(hooks);
+  setupCurrentUser(hooks);
 
   test('it exists', function(assert) {
     let route = this.owner.lookup('service:messages/handler');
@@ -10,7 +23,45 @@ module('Unit | Service | messages/handler', function(hooks) {
   });
 
   module('handle', function() {
-    module('a chat message', function() {
+    module('a chat message', function(hooks) {
+      hooks.beforeEach(async function() {
+        stubService('messages/auto-responder', {
+          messageReceived() {}
+        });
+      });
+
+      test('the message is saved', async function(assert) {
+        const store = getService('store');
+        const service = getService<ReceivedMessageHandler>('messages/handler');
+        const me = getService<IdentityService>('identity');
+        const sender = await buildIdentity('test user');
+
+        const before = await store.findAll('message');
+        const beforeCount = before.length;
+
+        await service.handle({
+          id: uuid(),
+          type: TYPE.CHAT,
+          target: TARGET.WHISPER,
+          to: me.record!.uid,
+          time_sent: new Date(),
+          client: 'tests',
+          client_version: '0',
+          sender: {
+            uid: sender.uid,
+            name: sender.name!,
+            location: '',
+          },
+          message: {
+            body: 'malformed, cleartext body',
+            contentType: 'is this used?'
+          },
+        });
+
+        const after = await store.findAll('message');
+
+        assert.equal(after.length, beforeCount + 1);
+      });
 
     });
 
