@@ -7,13 +7,20 @@ import Identity from 'emberclear/data/models/identity/model';
 
 import { getService } from './get-service';
 
+export async function attributesForUser() {
+  const { publicKey, privateKey } = await generateAsymmetricKeys();
+  const id =toHex(publicKey);
+
+  return { id, publicKey, privateKey };
+}
+
 export async function buildIdentity(name: string): Promise<Identity> {
   const store = getService<DS.Store>('store');
 
-  const { publicKey, privateKey } = await generateAsymmetricKeys();
+  const attributes = await attributesForUser();
 
   const record = store.createRecord('identity', {
-    id: toHex(publicKey), name, publicKey, privateKey
+    name, ...attributes
   });
 
   return record;

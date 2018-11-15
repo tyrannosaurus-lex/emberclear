@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { visit, currentURL } from '@ember/test-helpers';
+import { visit, currentURL, settled } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
@@ -82,6 +82,7 @@ module('Acceptance | Contacts', function(hooks) {
       module('a contact is removed', function(hooks) {
         hooks.beforeEach(async function() {
           await contacts.rows.removeAt(1);
+          await settled();
         });
 
         test('there is one less contact', function(assert) {

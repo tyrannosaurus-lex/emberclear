@@ -1,10 +1,10 @@
-import { module, test } from 'qunit';
+import { module, test, skip } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import uuid from 'uuid';
 
 import {
   getService, stubService,
-  buildIdentity,
+  attributesForUser,
   setupCurrentUser,
 } from 'emberclear/tests/helpers';
 
@@ -18,8 +18,8 @@ module('Unit | Service | messages/handler', function(hooks) {
   setupCurrentUser(hooks);
 
   test('it exists', function(assert) {
-    let route = this.owner.lookup('service:messages/handler');
-    assert.ok(route);
+    let service = getService('messages/handler');
+    assert.ok(service);
   });
 
   module('handle', function() {
@@ -34,7 +34,7 @@ module('Unit | Service | messages/handler', function(hooks) {
         const store = getService('store');
         const service = getService<ReceivedMessageHandler>('messages/handler');
         const me = getService<IdentityService>('identity');
-        const sender = await buildIdentity('test user');
+        const sender = await attributesForUser();
 
         const before = await store.findAll('message');
         const beforeCount = before.length;
@@ -48,8 +48,8 @@ module('Unit | Service | messages/handler', function(hooks) {
           client: 'tests',
           client_version: '0',
           sender: {
-            uid: sender.uid,
-            name: sender.name!,
+            uid: sender.id,
+            name: `user with id: ${sender.id}`,
             location: '',
           },
           message: {
