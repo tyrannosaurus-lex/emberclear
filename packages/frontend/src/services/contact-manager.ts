@@ -13,6 +13,7 @@ export default class ContactManager extends Service {
   async findOrCreate(uid: string, name: string): Promise<Identity> {
     return await run(async () => {
       try {
+        // an exception thrown here is never caught
         return await this.findAndSetName(uid, name);
       } catch (e) {
         return await this.create(uid, name);
@@ -26,8 +27,6 @@ export default class ContactManager extends Service {
     // always update the name
     record.set('name', name);
 
-    // current error is here
-    debugger;
     await record.save();
 
     return record;
@@ -64,8 +63,8 @@ export default class ContactManager extends Service {
     }
   }
 
-  async find(uid: string) {
-    return await this.store.findRecord('identity', uid);
+  find(uid: string) {
+    return this.store.findRecord('identity', uid);
   }
 }
 

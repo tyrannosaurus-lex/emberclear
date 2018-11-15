@@ -35,7 +35,7 @@ module.exports = function(defaults) {
     minifyCSS: { enabled: isProduction },
 
     babel: {
-      sourceMaps: 'inline'
+      // sourceMaps: 'inline'
     //   plugins: [
     //     ['@babel/plugin-syntax-decorators', { legacy: true }]
     //   ]
