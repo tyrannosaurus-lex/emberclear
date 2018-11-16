@@ -4,7 +4,7 @@
   ],
   "packageRules": [
     {
-        paths: ["packages/frontend/package.json"]
+        "paths": ["packages/frontend/package.json"]
     }    
   ]
 }
