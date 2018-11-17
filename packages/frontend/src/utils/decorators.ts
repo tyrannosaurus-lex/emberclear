@@ -63,11 +63,11 @@ export function monitor<T = any>(_target: any, _propertyKey: string, descriptor:
     const promise = oldGet!.apply(this);
 
     return new PromiseMonitor<T>(promise);
-  }
+  };
 
   descriptor.set = (/* value */) => {
     throw new Error('a monitored property cannot be set');
-  }
+  };
 
   return descriptor;
 }
