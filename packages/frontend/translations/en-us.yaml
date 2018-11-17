@@ -100,6 +100,8 @@ ui:
     copied: Copied!
 
   notifications:
+    title: emberclear message
+    from: message from {name}
     prompt:
       title: emberclear needs your permission to enable notifications.
       enable: Enable Notifications

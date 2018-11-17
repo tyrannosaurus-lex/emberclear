@@ -8,8 +8,9 @@ import Toast from 'emberclear/src/services/toast';
 
 export default class Notifications extends Service {
   @service toast!: Toast;
+  @service intl!: Intl;
 
-  askToEnableNotifications = false;
+  askToEnableNotifications = true;
   isHiddenUntilBrowserRefresh = false;
 
   @disableInFastboot
@@ -91,14 +92,16 @@ export default class Notifications extends Service {
     return ('Notification' in window);
   }
 
-  showNotification(msg: string, title: string, options = {}) {
+  showNotification(msg: string, title = '', options = {}) {
+    const defaultTitle = this.intl.t('ui.notifications.title');
     const notificationOptions = {
       body: msg,
       // icon: ''
       ...options
     };
 
-    return new Notification(title, notificationOptions);
+
+    return new Notification(title || defaultTitle, notificationOptions);
   }
 }
 
