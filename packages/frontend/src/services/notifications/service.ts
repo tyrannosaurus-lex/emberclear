@@ -31,19 +31,19 @@ export default class Notifications extends Service {
   }
 
   info(msg: string, title = '', options = {}) {
-    this.display('is-info', msg, title, options);
+    return this.display('is-info', msg, title, options);
   }
 
   success(msg: string, title = '', options = {}) {
-    this.display('is-success', msg, title, options);
+    return this.display('is-success', msg, title, options);
   }
 
   warning(msg: string, title = '', options = {}) {
-    this.display('is-warning', msg, title, options);
+    return this.display('is-warning', msg, title, options);
   }
 
   error(msg: string, title = '', options = {}) {
-    this.display('is-danger', msg, title, options);
+    return this.display('is-danger', msg, title, options);
   }
 
   async display(status: string, msg: string, title: string, options = {}) {
