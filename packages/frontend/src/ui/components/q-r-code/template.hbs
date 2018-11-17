@@ -1,0 +1,17 @@
+<div
+  class='flex justify-content-center flex-grow'
+  style='min-width: 250px; min-height: 250px;'
+>
+
+  {{#if this.qrCode.isPending}}
+    <div style='min-width: 250px; min-height: 250px;' class='loader'></div>
+  {{else if (is-present this.qrCode.result)}}
+    <img
+      alt={{@alt}}
+      style='min-width: 250px; min-height: 250px;'
+      src={{this.qrCode.result}}
+    >
+  {{/if}}
+
+</div>
+
