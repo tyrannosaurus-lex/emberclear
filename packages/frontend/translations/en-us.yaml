@@ -42,6 +42,7 @@ buttons:
   sendSnippet: Send Snippet
   remove: Remove
   donateEth: Donate Ethereum
+  donateXmr: Donate Monero
   loginInstead: Login instead
   uploadSettings: Upload Settings
   showMyInfo: Show My Info
