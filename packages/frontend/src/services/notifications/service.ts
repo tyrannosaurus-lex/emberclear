@@ -22,6 +22,7 @@ export default class Notifications extends Service {
   @computed('askToEnableNotifications', 'isHiddenUntilBrowserRefresh', 'isNeverGoingToAskAgain')
   get showInAppPrompt() {
     if (!this.isBrowserCapableOfNotifications()) return false;
+    if (this.isPermissionGranted()) return false;
     if (this.isPermissionDenied()) return false;
     if (this.isNeverGoingToAskAgain) return false;
     if (this.isHiddenUntilBrowserRefresh) return false;

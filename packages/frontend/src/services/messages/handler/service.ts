@@ -87,7 +87,6 @@ export default class ReceivedMessageHandler extends Service {
         console.info('TARGET INVALID', raw);
         return message;
     }
-
   }
 
   private async handleWhisperChat(message: Message) {
