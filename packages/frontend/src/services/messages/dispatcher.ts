@@ -30,6 +30,10 @@ export default class MessageDispatcher extends Service {
 
     await message.save();
 
+    this.sendTo(message, to);
+  }
+
+  async sendTo(message: Message, to: Identity | Channel) {
     if (to instanceof Identity) {
       if (to.id === 'me') return;
 
