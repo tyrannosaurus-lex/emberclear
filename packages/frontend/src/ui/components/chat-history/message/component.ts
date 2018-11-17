@@ -3,8 +3,8 @@ import { computed } from '@ember-decorators/object';
 import { reads } from '@ember-decorators/object/computed';
 import { service } from '@ember-decorators/service';
 import showdown from 'showdown';
-import { sanitize } from 'dom-purify';
-import { PromiseMonitor } from 'ember-computed-promise-monitor';
+import DOMPurify from 'dom-purify';
+import PromiseMonitor from 'ember-computed-promise-monitor';
 
 import PrismManager from 'emberclear/services/prism-manager';
 import Message from 'emberclear/data/models/message';
@@ -26,7 +26,14 @@ export default class extends Component {
   get messageBody() {
     const markdown = this.message.body;
     const html = converter.makeHtml(markdown);
-    const sanitized = sanitize(html);
+    // NOTE: sanitizing by default removes target="_blank"
+    DOMPurify.addHook('afterSanitizeAttributes', function(node) {
+      if ('target' in node) {
+        node.setAttribute('target', '_blank');
+      }
+    });
+
+    const sanitized = DOMPurify.sanitize(html);
 
     return sanitized;
   }
@@ -34,7 +41,7 @@ export default class extends Component {
   @computed('message.sender')
   @monitor
   get sender(): PromiseMonitor<Identity | undefined> {
-    return this.message.sender;
+    return this.message.sender as any;
   }
 
   @reads('sender.isFulfilled') hasSender!: boolean;
