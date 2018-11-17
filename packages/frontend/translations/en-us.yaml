@@ -30,6 +30,8 @@ connection:
       notConnected: Cannot subscribe to a channel without a socket connection!
 
 buttons:
+  delete: delete
+  resend: resend
   save: Save
   next: Next
   back: Back
