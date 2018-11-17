@@ -197,6 +197,9 @@ ui:
       The server does not story any messages, and does not keep a queue of undelivered messages.
       If a recipient is not online, the message will manually need to be resent.
 
+    serverStorageQ: Does the server / relay store any of my messages ever?
+    serverStorageA: No
+
 
   footer:
     navigation: Navigation

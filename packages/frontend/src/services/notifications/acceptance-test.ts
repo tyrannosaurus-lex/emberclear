@@ -42,13 +42,16 @@ module('Acceptance | Notifications Service', function(hooks) {
       notifications = getService<Notifications>('notifications');
     });
 
-    test('does not ask by default', function(assert) {
+    test('initial checks', function(assert) {
       assert.ok(notifications.isBrowserCapableOfNotifications(), 'Browser is capable of notifications');
       assert.notOk(notifications.isPermissionDenied(), 'Permission has not previously been denied');
+      assert.notOk(notifications.isPermissionGranted(), 'Permission has not previously been granted');
       assert.notOk(notifications.isNeverGoingToAskAgain, 'User did not say to never ask again');
       assert.notOk(notifications.isHiddenUntilBrowserRefresh, 'User did not say to ask later');
+    });
 
-      assert.notOk(notifications.showInAppPrompt, 'The in-app prompt should not be shown yet');
+    test('asks by default', function(assert) {
+      assert.ok(notifications.showInAppPrompt, 'The in-app prompt should be shown right away');
     });
 
     module('after a notification is attempted', function(hooks) {
