@@ -21,7 +21,7 @@ export const sidebar = {
   contacts: {
     clickAdd: () => click(`${contacts} [data-test-add-friend]`),
     clickShare: () => click(`${contacts} [data-test-share-info]`),
-    rows: () => findAll(`[data-test-contact-row].is-hidden-touch`),
+    rows: () => findAll(`${sidebarContainer} [data-test-contact-row].is-hidden-touch`),
     offlineCount: () => find(`[data-test-offline-count]`),
   },
 
