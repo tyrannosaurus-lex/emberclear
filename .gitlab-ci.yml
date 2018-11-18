@@ -159,6 +159,7 @@ Deploy Production:
   dependencies:
     - Merge Coverage
     - Analyze Bundle
+    - Build Production
   script:
     - mv ${CI_PROJECT_DIR}/packages/frontend/coverage public/
     - cp ${CI_PROJECT_DIR}/packages/frontend/public/bundle.html ${CI_PROJECT_DIR}/packages/frontend/dist/bundle.html
