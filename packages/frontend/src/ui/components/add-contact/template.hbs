@@ -19,7 +19,13 @@
 
     <div class='flex-row'>
       <div class='w-100 flex-row flex-grow justify-content-center'>
-        <QRCode @data={{this.publicIdentity}} @alt={{t 'images.alt.ownIdentityQR'}} />
+        {{!--
+        this loggedIn hack is something for force QRCode to re-render
+        I don't know why it doesn't re-render on its own.
+        --}}
+        {{#if this.isLoggedIn}}
+          <QRCode @data={{this.publicIdentity}} @alt={{t 'images.alt.ownIdentityQR'}} />
+        {{/if}}
 
         <div class='flex-grow shareable-url wrap is-hidden-touch'>
           <a

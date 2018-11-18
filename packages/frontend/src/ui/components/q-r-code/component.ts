@@ -1,7 +1,9 @@
-import Component, { tracked } from 'sparkles-component';
+import Component from 'sparkles-component';
+import { reads } from '@ember-decorators/object/computed';
 
 import { convertObjectToQRCodeDataURL } from 'emberclear/src/utils/string-encoding';
-import { disableInFastboot, monitor } from 'emberclear/src/utils/decorators';
+
+import { keepLatestTask } from 'ember-concurrency-decorators';
 
 interface IArgs {
   data: object;
@@ -9,12 +11,22 @@ interface IArgs {
 }
 
 export default class QRCode extends Component<IArgs> {
-  @tracked
-  @disableInFastboot({ default: {} })
-  @monitor
-  get qrCode() {
-    const { data } = this.args;
+  @reads('qrCode.isIdle') isIdle!: boolean;
+  @reads('qrCode.lastSuccessful.value') qrCodeData!: string;
 
-    return convertObjectToQRCodeDataURL(data);
+  didInsertElement() {
+    this.qrCode.perform();
+  }
+
+  didReceiveAttrs() {
+    this.qrCode.perform();
+  }
+
+  @keepLatestTask * qrCode() {
+    console.log(this);
+    const { data } = this.args;
+    const imageData = yield convertObjectToQRCodeDataURL(data || {});
+
+    return imageData;
   }
 }
