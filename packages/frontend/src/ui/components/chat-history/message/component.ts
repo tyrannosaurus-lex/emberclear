@@ -16,6 +16,7 @@ export default class extends Component {
   @service prismManager!: PrismManager;
   @service chatScroller!: ChatScroller;
   message!: Message;
+  io?: IntersectionObserver;
 
   @computed('message.body')
   get messageBody() {
@@ -41,7 +42,6 @@ export default class extends Component {
     return '';
   }
 
-
   @computed('messageBody')
   get urls() {
     const content = this.message.body!;
@@ -56,11 +56,12 @@ export default class extends Component {
     // non-blocking
     this.addLanguages(this.message.body);
 
-
     // maybe scroll to the bottom?
     // should this really live here?
     // every inserted message is going to call this....
     this.chatScroller.maybeNudgeToBottom(this.element);
+
+    this.maybeSetupReadWatcher();
   }
 
   private async addLanguages(text: string) {
@@ -78,5 +79,37 @@ export default class extends Component {
     if (pres && pres.length > 0) {
       pres.forEach(p => p.classList.add('line-numbers'));
     }
+  }
+
+  private maybeSetupReadWatcher() {
+    const { message } = this;
+
+    if (message.readAt) return;
+
+    this.setupIntersectionObserver();
+  }
+
+
+  private setupIntersectionObserver() {
+    const { message } = this;
+
+    const io = new IntersectionObserver(entries => {
+      const isVisible = (entries[0].intersectionRatio !== 0);
+
+      if (isVisible) {
+        message.set('readAt', new Date());
+        message.save();
+
+        io.unobserve(this.element);
+        this.io = undefined;
+      }
+
+    }, {
+      root: document.querySelector('.messages'),
+    });
+
+    io.observe(this.element);
+
+    this.io = io;
   }
 }
