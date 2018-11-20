@@ -17,4 +17,5 @@ export default class SidebarContact extends Component<IArgs> {
     const { contact } = this.args;
 
     return this.router.currentURL.includes(contact.id);
+  }
 }
