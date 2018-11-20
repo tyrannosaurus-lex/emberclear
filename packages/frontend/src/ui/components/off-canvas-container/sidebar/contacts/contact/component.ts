@@ -16,12 +16,5 @@ export default class SidebarContact extends Component<IArgs> {
   get isActive() {
     const { contact } = this.args;
 
-    // me
-    if (this.router.currentURL.includes(contact.id)) {
-      return true;
-    }
-
-    // everyone else
-    return this.router.currentURL.includes(contact.uid);
-  }
+    return this.router.currentURL.includes(contact.id);
 }
