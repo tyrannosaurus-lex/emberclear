@@ -1,4 +1,4 @@
-{{#if this.isContactVisible}}
+{{#if this.shouldBeRendered}}
   <WithResponsiveness
     @whenLarge={{action (transition-to 'chat.privately-with' @contact.id)}}
     @whenSmall={{action

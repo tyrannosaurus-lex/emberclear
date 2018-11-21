@@ -1,0 +1,26 @@
+<a
+  {{action @onClick}}
+  class='
+    p-absolute bottom
+    button is-info is-small
+    m-b-sm
+    '
+>
+  <span class='icon'>
+    {{#if (eq @direction 'down')}}
+      {{fa-icon 'angle-down'}}
+    {{else}}
+      {{fa-icon 'angle-up'}}
+    {{/if}}
+  </span>
+
+  Unread
+
+  <span class='icon'>
+    {{#if (eq @direction 'down')}}
+      {{fa-icon 'angle-down'}}
+    {{else}}
+      {{fa-icon 'angle-up'}}
+    {{/if}}
+  </span>
+</a>

@@ -35,7 +35,7 @@ export default class SidebarContact extends Component<IArgs> {
   }
 
   @computed('args.contact.onlineStatus', 'hideOfflineContacts')
-  get isContactVisible() {
+  get shouldBeRendered() {
     const { contact } = this.args;
 
     // always show if online
@@ -73,10 +73,8 @@ export default class SidebarContact extends Component<IArgs> {
     return messages.length;
   }
 
-  // TODO: use requestIdleCallback to work on counting the unread messages
-  //       only when there is nothing else to do
   didInsertElement() {
-    this.findRelevantMessages.perform();
+    window.requestIdleCallback(() => this.findRelevantMessages.perform());
   }
 
   @task * findRelevantMessages() {
@@ -87,7 +85,7 @@ export default class SidebarContact extends Component<IArgs> {
   }
 
   private setupIntersectionObserver() {
-    if (!this.isContactVisible) return;
+    if (!this.shouldBeRendered) return;
     if (!this.hasUnread) return;
     if (this.io) return;
 
@@ -99,7 +97,7 @@ export default class SidebarContact extends Component<IArgs> {
       const isAbove = boundingClientRect.top < rootBounds.top;
 
       if (isBelow) {
-        this.sidebar.set('hasUnreadBolow', true);
+        this.sidebar.set('hasUnreadBelow', true);
       }
 
       if (isAbove) {

@@ -7,7 +7,7 @@ export default class Sidebar extends Service {
   @service fastboot!: FastBoot;
 
   hasUnreadAbove = false;
-  hasUnreadBolow = false;
+  hasUnreadBelow = false;
 
   @disableInFastboot
   @syncToLocalStorage
