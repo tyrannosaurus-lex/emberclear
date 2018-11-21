@@ -77,6 +77,10 @@ export default class SidebarContact extends Component<IArgs> {
     window.requestIdleCallback(() => this.findRelevantMessages.perform());
   }
 
+  didRender() {
+    window.requestIdleCallback(() => this.setupIntersectionObserver());
+  }
+
   @task * findRelevantMessages() {
     const messages = yield this.store.findAll('message');
 
@@ -92,16 +96,22 @@ export default class SidebarContact extends Component<IArgs> {
     // determine if the unread is visible, above the viewport or below
     const io = new IntersectionObserver(entries => {
       const intersectionEntry = entries[0];
-      const { boundingClientRect, rootBounds } = intersectionEntry;
+      const { boundingClientRect, rootBounds, intersectionRatio } = intersectionEntry;
       const isBelow = boundingClientRect.top > rootBounds.bottom;
       const isAbove = boundingClientRect.top < rootBounds.top;
+      const isVisible = intersectionRatio !== 0;
+
+      console.log(isBelow, isAbove);
+      if (isVisible) {
+        this.sidebar.unreadIsVisible(this.unreadElementId);
+      }
 
       if (isBelow) {
-        this.sidebar.set('hasUnreadBelow', true);
+        this.sidebar.unreadBelow.addObject(this.unreadElementId);
       }
 
       if (isAbove) {
-        this.sidebar.set('hasUnreadAbove', true);
+        this.sidebar.unreadAbove.addObject(this.unreadElementId);
       }
     }, {
       root: document.querySelector('.sidebar-wrapper aside.menu'),

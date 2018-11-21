@@ -79,6 +79,7 @@
   left: 15px;
 
   &.hidden {
+    // TODO: use ember-animated
     bottom: -150px;
   }
 

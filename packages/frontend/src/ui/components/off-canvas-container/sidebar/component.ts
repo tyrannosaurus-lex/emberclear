@@ -6,6 +6,8 @@ import SidebarService from 'emberclear/services/sidebar';
 import IdentityService from 'emberclear/services/identity/service';
 import Modals from 'emberclear/services/modals';
 
+import { scrollIntoViewOfParent } from 'emberclear/src/utils/dom/utils';
+
 export default class Sidebar extends Component {
   @service sidebar!: SidebarService;
   @service identity!: IdentityService;
@@ -26,11 +28,16 @@ export default class Sidebar extends Component {
   }
 
   scrollDownToNearestUnread() {
-    this.sidebar.set('hasUnreadBelow', false);
+    const scrollable = document.querySelector('.sidebar-wrapper aside')!;
+    const lastRow = scrollable.querySelector('.tag')!;
+
+    scrollIntoViewOfParent(scrollable, lastRow);
+    this.sidebar.clearUnreadBelow();
+    console.log(this.sidebar.unreadBelow, this.sidebar.hasUnreadBelow);
   }
 
   scrollUpToNearestUnread() {
-    this.sidebar.set('hasUnreadAbove', false);
+    this.sidebar.clearUnreadAbove();
   }
 
 }

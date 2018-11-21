@@ -11,8 +11,6 @@
         <TopMobileSection />
       </div>
 
-    {{log this.scrollDownToNearestUnread}}
-    {{log this.scrollUpToNearestUnread}}
       {{#if this.hasUnreadAbove}}
         <UnreadIndicator
           @onClick={{action this.scrollUpToNearestUnread}}
@@ -31,6 +29,7 @@
         @closeSidebar={{action this.closeSidebar}}
       />
 
+      {{!-- <SlideTransition @isVisible={{this.hasUnreadBelow}}> --}}
       {{#if this.hasUnreadBelow}}
         <UnreadIndicator
           @onClick={{action this.scrollDownToNearestUnread}}
