@@ -22,7 +22,11 @@
         </span>
 
         {{#if hasUnread}}
-          <span class='tag is-danger is-pulled-right'>{{numberUnread}}</span>
+          <span
+            id={{this.unreadElementId}}
+            class='tag is-danger is-pulled-right'>
+            {{numberUnread}}
+          </span>
         {{/if}}
       </a>
     </li>

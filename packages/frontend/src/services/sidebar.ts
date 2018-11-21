@@ -6,6 +6,9 @@ import { syncToLocalStorage, disableInFastboot } from 'emberclear/src/utils/deco
 export default class Sidebar extends Service {
   @service fastboot!: FastBoot;
 
+  hasUnreadAbove = false;
+  hasUnreadBolow = false;
+
   @disableInFastboot
   @syncToLocalStorage
   get isShown(): boolean {
@@ -23,4 +26,5 @@ export default class Sidebar extends Service {
   toggle() {
     this.set('isShown', !this.isShown);
   }
+
 }
