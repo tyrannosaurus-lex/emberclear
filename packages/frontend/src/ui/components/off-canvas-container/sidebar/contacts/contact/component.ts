@@ -7,9 +7,10 @@ import { task } from 'ember-concurrency-decorators';
 import uuid from 'uuid';
 
 import Identity, { STATUS } from 'emberclear/src/data/models/identity/model';
-import Message, { TARGET } from 'emberclear/src/data/models/message';
+import Message from 'emberclear/src/data/models/message/model';
+import { selectUnreadDirectMessages } from 'emberclear/src/data/models/message/utils';
 import SettingsService from 'emberclear/src/services/settings';
-import SidebarService from 'emberclear/src/services/sidebar';
+import SidebarService from 'emberclear/src/services/sidebar/service';
 
 interface IArgs {
   contact: Identity;
@@ -20,8 +21,6 @@ export default class SidebarContact extends Component<IArgs> {
   @service store;
   @service settings!: SettingsService;
   @service sidebar!: SidebarService;
-
-  io?: IntersectionObserver;
 
   unreadElementId = uuid();
 
@@ -59,16 +58,7 @@ export default class SidebarContact extends Component<IArgs> {
   @computed('messages.@each.unread')
   get numberUnread() {
     const { contact } = this.args;
-
-    // TODO: add check for read status
-    const messages = this.messages.filter(m => {
-      return (
-        m.from === contact.id
-        && m.unread
-        && m.target !== TARGET.NONE
-        && m.target !== TARGET.MESSAGE
-      );
-    });
+    const messages = selectUnreadDirectMessages(this.messages, contact.id);
 
     return messages.length;
   }
@@ -91,34 +81,7 @@ export default class SidebarContact extends Component<IArgs> {
   private setupIntersectionObserver() {
     if (!this.shouldBeRendered) return;
     if (!this.hasUnread) return;
-    if (this.io) return;
 
-    // determine if the unread is visible, above the viewport or below
-    const io = new IntersectionObserver(entries => {
-      const intersectionEntry = entries[0];
-      const { boundingClientRect, rootBounds, intersectionRatio } = intersectionEntry;
-      const isBelow = boundingClientRect.top > rootBounds.bottom;
-      const isAbove = boundingClientRect.top < rootBounds.top;
-      const isVisible = intersectionRatio !== 0;
-
-      console.log(isBelow, isAbove);
-      if (isVisible) {
-        this.sidebar.unreadIsVisible(this.unreadElementId);
-      }
-
-      if (isBelow) {
-        this.sidebar.unreadBelow.addObject(this.unreadElementId);
-      }
-
-      if (isAbove) {
-        this.sidebar.unreadAbove.addObject(this.unreadElementId);
-      }
-    }, {
-      root: document.querySelector('.sidebar-wrapper aside.menu'),
-    });
-
-    io.observe(document.getElementById(this.unreadElementId)!);
-
-    this.io = io;
+    this.sidebar.observeIntersectionOf(this.unreadElementId);
   }
 }

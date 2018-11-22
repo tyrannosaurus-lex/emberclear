@@ -1,10 +1,11 @@
 <a
   {{action @onClick}}
   class='
-    p-absolute bottom
+    p-absolute {{if (eq @direction 'down') 'bottom' 'top'}}
     button is-info is-small
     m-b-sm
     '
+  style='margin-top: 60px; z-index: 100;'
 >
   <span class='icon'>
     {{#if (eq @direction 'down')}}

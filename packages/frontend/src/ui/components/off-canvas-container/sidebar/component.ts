@@ -33,10 +33,13 @@ export default class Sidebar extends Component {
 
     scrollIntoViewOfParent(scrollable, lastRow);
     this.sidebar.clearUnreadBelow();
-    console.log(this.sidebar.unreadBelow, this.sidebar.hasUnreadBelow);
   }
 
   scrollUpToNearestUnread() {
+    const scrollable = document.querySelector('.sidebar-wrapper aside')!;
+    const lastRow = scrollable.querySelector('.tag')!;
+
+    scrollIntoViewOfParent(scrollable, lastRow);
     this.sidebar.clearUnreadAbove();
   }
 

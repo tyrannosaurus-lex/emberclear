@@ -26,6 +26,12 @@
   --}}
 
   <div class='messages justify-content-end overflows'>
+    {{#if this.hasUnreadMessages}}
+    {{/if}}
+    <span class='p-absolute top' style='top: 60'>
+        Unread Messages !!!
+      </span>
+
     {{#each @messages as |message|}}
       <Message @message={{message}} />
     {{/each}}

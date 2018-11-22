@@ -78,7 +78,7 @@ export function scrollIntoViewOfParent(parent: Element, child: Element) {
   // if you can't see the child try to scroll parent
   if (!isViewable) {
     // scroll by offset relative to parent
-    const amount = childRect.top - parentRect.top;
+    const amount = childRect.top - parentRect.top - (parentViewableArea.height / 2);
 
     parent.scrollBy({ top: amount, behavior: 'smooth' });
   }
