@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import Component, { tracked } from 'sparkles-component';
-import { action, computed } from '@ember-decorators/object';
-import { gt } from '@ember-decorators/object/computed';
+import { computed } from '@ember-decorators/object';
+import { gt, reads } from '@ember-decorators/object/computed';
 import { service } from '@ember-decorators/service';
 import { timeout } from 'ember-concurrency';
 import { keepLatestTask } from 'ember-concurrency-decorators';
@@ -12,6 +12,7 @@ import Identity from 'emberclear/src/data/models/identity/model';
 import Channel from 'emberclear/src/data/models/channel';
 
 import { selectUnreadDirectMessages } from 'emberclear/src/data/models/message/utils';
+import { scrollIntoViewOfParent } from 'emberclear/src/utils/dom/utils';
 
 interface IArgs {
   to: Identity | Channel;
@@ -27,20 +28,42 @@ export default class ChatHistory extends Component<IArgs> {
     this.autoScrollToBottom.perform();
   }
 
-  @computed('args.to.id', 'args.messages.@each.unread')
+  @computed('to.id', 'messages.@each.unread')
   get unreadMessages() {
     const { to, messages } = this.args;
-    console.log(to, messages);
     const unread = selectUnreadDirectMessages(messages, to.id);
+    console.log(to.id, unread.length);
 
     return unread;
   }
 
-  @gt('unreadMessages', 0) hasUnreadMessages!: boolean;
+  @reads('unreadMessages.length') numberOfUnread!: number;
 
-  @action
+  @computed('unreadMessages')
+  get firstUnreadMessage(): Message | undefined {
+    return this.unreadMessages[0];
+  }
+
+  @computed('firstUnreadMessage')
+  get dateOfFirstUnreadMessage() {
+    if (this.firstUnreadMessage) {
+      return this.firstUnreadMessage.receivedAt;
+    }
+  }
+
+  @gt('unreadMessages.length', 0) hasUnreadMessages!: boolean;
+
   scrollToBottom() {
     this.chatScroller.scrollToBottom();
+  }
+
+  scrollToFirstUnread() {
+    if (this.firstUnreadMessage) {
+      const parent = document.querySelector('.messages')!;
+      const firstUnread = document.getElementById(this.firstUnreadMessage.id)!;
+
+      scrollIntoViewOfParent(parent, firstUnread);
+    }
   }
 
   // This watches to see if we have scrolled up, and shows the

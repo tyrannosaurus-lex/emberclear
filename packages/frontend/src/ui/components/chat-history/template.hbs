@@ -27,11 +27,22 @@
     {{#if this.hasUnreadMessages}}
       <div class='p-absolute top field buttons has-addons m-sm center-x' style='top: 60; z-index: 1000'>
         <a class='button is-info'>
-          <span>Unread Messages !!!</span>
+          <span>
+            {{t 'ui.chat.unreadMessages'
+              number=this.numberOfUnread
+              time=(
+                format-date this.dateOfFirstUnreadMessage
+                month='short'
+                day='numeric'
+                hour='numeric'
+                minute='numeric'
+              )
+            }}
+          </span>
         </a>
-        <a class='button is-info'>
-          <span class='icon is-small'>{{fa-icon 'times'}}</span>
+        <a class='button is-danger'>
           <span>Mark all as read</span>
+          <span class='icon is-small'>{{fa-icon 'times'}}</span>
         </a>
       </div>
     {{/if}}
