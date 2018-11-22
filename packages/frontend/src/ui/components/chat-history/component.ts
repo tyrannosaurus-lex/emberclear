@@ -1,20 +1,42 @@
 import Ember from 'ember';
-import Component from '@ember/component';
-import { action } from '@ember-decorators/object';
+import Component, { tracked } from 'sparkles-component';
+import { action, computed } from '@ember-decorators/object';
+import { gt } from '@ember-decorators/object/computed';
 import { service } from '@ember-decorators/service';
 import { timeout } from 'ember-concurrency';
 import { keepLatestTask } from 'ember-concurrency-decorators';
 
 import ChatScroller from 'emberclear/services/chat-scroller';
+import Message from 'emberclear/src/data/models/message/model';
+import Identity from 'emberclear/src/data/models/identity/model';
+import Channel from 'emberclear/src/data/models/channel';
 
-export default class ChatHistory extends Component {
+import { selectUnreadDirectMessages } from 'emberclear/src/data/models/message/utils';
+
+interface IArgs {
+  to: Identity | Channel;
+  messages: Message[];
+}
+
+export default class ChatHistory extends Component<IArgs> {
   @service chatScroller!: ChatScroller;
 
-  isLastVisible = true;
+  @tracked isLastVisible = true;
 
   didInsertElement() {
     this.autoScrollToBottom.perform();
   }
+
+  @computed('args.to.id', 'args.messages.@each.unread')
+  get unreadMessages() {
+    const { to, messages } = this.args;
+    console.log(to, messages);
+    const unread = selectUnreadDirectMessages(messages, to.id);
+
+    return unread;
+  }
+
+  @gt('unreadMessages', 0) hasUnreadMessages!: boolean;
 
   @action
   scrollToBottom() {
@@ -30,7 +52,7 @@ export default class ChatHistory extends Component {
 
       const isScrolledToBottom = this.chatScroller.isLastVisible();
 
-      this.set('isLastVisible', isScrolledToBottom);
+      this.isLastVisible = isScrolledToBottom;
 
       // HACK: remove eventually....
       // http://ember-concurrency.com/docs/testing-debugging/

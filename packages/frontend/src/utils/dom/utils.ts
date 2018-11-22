@@ -74,7 +74,6 @@ export function scrollIntoViewOfParent(parent: Element, child: Element) {
   // Is the child viewable?
   const isViewable = (childRect.top >= parentRect.top) && (childRect.top <= parentRect.top + parentViewableArea.height);
 
-  console.log(parent, child, isViewable);
   // if you can't see the child try to scroll parent
   if (!isViewable) {
     // scroll by offset relative to parent
