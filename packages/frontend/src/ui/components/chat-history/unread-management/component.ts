@@ -32,7 +32,7 @@ export default class UnreadManagement extends Component<IArgs> {
   }
 
   @computed('firstUnreadMessage')
-  get dateOfFirstUnreadMessage() {
+  get dateOfFirstUnreadMessage(): Date | undefined {
     if (this.firstUnreadMessage) {
       return this.firstUnreadMessage.receivedAt;
     }
@@ -48,7 +48,6 @@ export default class UnreadManagement extends Component<IArgs> {
     if (this.firstUnreadMessage) {
       const parent = document.querySelector('.messages')!;
       const firstUnread = document.getElementById(this.firstUnreadMessage.id)!;
-      console.log(firstUnread);
 
       scrollIntoViewOfParent(parent, firstUnread);
     }
