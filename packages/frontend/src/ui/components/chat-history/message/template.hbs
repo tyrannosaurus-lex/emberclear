@@ -1,6 +1,7 @@
 {{! template-lint-disable no-triple-curlies }}
 
 <div
+  id={{@message.id}}
   class='message m-l-md m-r-md m-b-md {{if @message.unread 'unread'}}'
   data-test-chat-message>
   <div class='message-header'>

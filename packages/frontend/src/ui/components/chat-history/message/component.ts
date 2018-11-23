@@ -6,7 +6,7 @@ import PromiseMonitor from 'ember-computed-promise-monitor';
 
 import PrismManager from 'emberclear/services/prism-manager';
 import ChatScroller from 'emberclear/services/chat-scroller';
-import Message from 'emberclear/data/models/message';
+import Message from 'emberclear/data/models/message/model';
 import Identity from 'emberclear/data/models/identity/model';
 import { parseLanguages, parseURLs } from 'emberclear/src/utils/string/utils';
 import { convertAndSanitizeMarkdown } from 'emberclear/src/utils/dom/utils';

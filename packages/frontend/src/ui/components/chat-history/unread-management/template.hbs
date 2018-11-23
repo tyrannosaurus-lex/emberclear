@@ -1,0 +1,26 @@
+{{#if this.hasUnreadMessages}}
+  <div
+    class='p-absolute top field buttons has-addons m-sm center-x'
+    style='top: 60; z-index: 1000'
+    ...attributes
+  >
+    <a {{action this.scrollToFirstUnread}} class='button is-info'>
+      <span>
+        {{t 'ui.chat.unreadMessages'
+          number=this.numberOfUnread
+          time=(
+            format-date this.dateOfFirstUnreadMessage
+            month='short'
+            day='numeric'
+            hour='numeric'
+            minute='numeric'
+          )
+        }}
+      </span>
+    </a>
+    <a {{action this.markAllAsRead}} class='button is-danger'>
+      <span>{{t 'ui.chat.markAllAsRead'}}</span>
+      <span class='icon is-small'>{{fa-icon 'times'}}</span>
+    </a>
+  </div>
+{{/if}}

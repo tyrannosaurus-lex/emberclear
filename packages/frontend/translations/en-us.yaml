@@ -150,6 +150,7 @@ ui:
     newMessages: There are newer messages
     viewRecent: view recent messages
     unreadMessages: '{number} new messages since {time}'
+    markAllAsRead: Mark all as read
     errors:
       contactNotFound: Your contact could not be located
     sender:

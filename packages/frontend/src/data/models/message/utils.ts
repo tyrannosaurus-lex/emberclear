@@ -12,3 +12,9 @@ export function selectUnreadDirectMessages(messages: Message[], fromId: string) 
 
   return filtered;
 }
+
+export async function markAsRead(message: Message) {
+  message.set('readAt', new Date());
+
+  await message.save();
+}
