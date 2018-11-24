@@ -7,7 +7,7 @@ import Identity from 'emberclear/src/data/models/identity/model';
 import Channel from 'emberclear/src/data/models/channel';
 
 import { selectUnreadDirectMessages, markAsRead } from 'emberclear/src/data/models/message/utils';
-import { scrollIntoViewOfParent } from 'emberclear/src/utils/dom/utils';
+import { scrollIntoViewOfParent, isInElementWithinViewport } from 'emberclear/src/utils/dom/utils';
 
 interface IArgs {
   to: Identity | Channel;
@@ -15,6 +15,12 @@ interface IArgs {
 }
 
 export default class UnreadManagement extends Component<IArgs> {
+  messagesElement!: HTMLElement;
+
+  didInsertElement() {
+    this.messagesElement = document.querySelector('.messages') as HTMLElement;
+  }
+
   @computed('to.id', 'args.messages.@each.unread')
   get unreadMessages() {
     const { to, messages } = this.args;
@@ -25,6 +31,13 @@ export default class UnreadManagement extends Component<IArgs> {
 
   @reads('unreadMessages.length') numberOfUnread!: number;
   @gt('numberOfUnread', 0) hasUnreadMessages!: boolean;
+
+  @computed('hasUnreadMessages')
+  get shouldRender() {
+    if (!this.hasUnreadMessages) return false;
+
+    return this.hasUnreadOffScreen();
+  }
 
   @computed('unreadMessages')
   get firstUnreadMessage(): Message | undefined {
@@ -46,11 +59,24 @@ export default class UnreadManagement extends Component<IArgs> {
 
   scrollToFirstUnread() {
     if (this.firstUnreadMessage) {
-      const parent = document.querySelector('.messages')!;
       const firstUnread = document.getElementById(this.firstUnreadMessage.id)!;
 
-      scrollIntoViewOfParent(parent, firstUnread);
+      scrollIntoViewOfParent(this.messagesElement, firstUnread);
     }
+  }
+
+  private hasUnreadOffScreen() {
+    if (this.firstUnreadMessage) {
+      const firstUnread = document.getElementById(this.firstUnreadMessage.id);
+
+      if (firstUnread) {
+        const isOnScreen = isInElementWithinViewport(firstUnread, this.messagesElement);
+
+        return !isOnScreen;
+      }
+    }
+
+    return false;
   }
 
 }
