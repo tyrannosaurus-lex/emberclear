@@ -5,6 +5,7 @@
     <div class='control'>
       {{input
         autofocus
+        id=this.inputId
         type='text'
         class='input is-large'
         value=this.searchText
@@ -16,19 +17,35 @@
   <input style='display: none' type='submit' value='submit'>
 </form>
 
-  <p class='m-lg'>
+  <div class='m-t-lg'>
+    <h5>Contacts</h5>
     {{#each identityResults as |identity|}}
-      {{identity.name}}<br>
+      <Result @to='chat.privately-with' @id={{identity.uid}}>
+        <span>
+          @ <strong class='has-text-link'>{{identity.name}}</strong>
+        </span>
+        <span>
+          {{first-8 identity.uid}}
+        </span>
+      </Result>
     {{else}}
       No Contacts found
     {{/each}}
 
     <hr>
+    <h5>Channels</h5>
 
     {{#each channelResults as |channel|}}
-      {{channel.name}}<br>
+      <Result @to='chat.in-channel' @id={{channel.id}}>
+        <span>
+          # {{channel.name}}
+        </span>
+        <span>
+          {{first-8 channel.id}}
+        </span>
+      </Result>
     {{else}}
       No Channels Found
     {{/each}}
-  </p>
+  </div>
 </Modal>
