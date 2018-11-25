@@ -4,21 +4,28 @@ import { keepLatestTask } from 'ember-concurrency-decorators';
 import { timeout } from 'ember-concurrency';
 import uuid from 'uuid';
 
-export default class SearchModal extends Component {
+interface IArgs {
+  isActive: boolean;
+  close: () => void;
+}
+
+export default class SearchModal extends Component<IArgs> {
   @service store;
 
-  searchText = '';
+  @tracked searchText = '';
   inputId = uuid();
+  inputElement!: HTMLInputElement;
 
   @tracked identityResults = [];
   @tracked channelResults = [];
 
   didInsertElement() {
     this.search.perform('');
+    this.inputElement = document.getElementById(this.inputId) as HTMLInputElement;
   }
 
-  didRender() {
-    document.getElementById(this.inputId).focus();
+  didUpdate() {
+    this.inputElement.focus();
   }
 
   submitSearch() {

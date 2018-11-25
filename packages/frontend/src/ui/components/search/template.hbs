@@ -1,23 +1,23 @@
 <Modal @isActive={{@isActive}} @close={{action @close}}>
 
-<form {{action this.submitSearch on='submit'}}>
-  <div class='field'>
-    <div class='control'>
-      {{input
-        autofocus
-        id=this.inputId
-        type='text'
-        class='input is-large'
-        value=this.searchText
-        placeholder=(t 'ui.search.title')
-        input=(action this.submitSearch)
-      }}
+  <form {{action this.submitSearch on='submit'}}>
+    <div class='field'>
+      <div class='control'>
+        {{input
+          autofocus
+          id=this.inputId
+          type='text'
+          class='input is-large'
+          value=this.searchText
+          placeholder=(t 'ui.search.title')
+          input=(action this.submitSearch)
+        }}
+      </div>
     </div>
-  </div>
-  <input style='display: none' type='submit' value='submit'>
-</form>
+    <input style='display: none' type='submit' value='submit'>
+  </form>
 
-  <div class='m-t-lg'>
+  <div class='m-t-lg overflows' style='max-height: 250px;'>
     <h5>Contacts</h5>
     {{#each identityResults as |identity|}}
       <Result @to='chat.privately-with' @id={{identity.uid}}>
