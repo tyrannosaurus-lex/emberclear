@@ -18,6 +18,14 @@ export default class SearchModal extends Component<IArgs> {
   @tracked identityResults = [];
   @tracked channelResults = [];
 
+  @tracked('identityResults', 'channelResults')
+  get hasResults() {
+    return (
+      this.identityResults.length > 0
+      || this.channelResults.length > 0
+    );
+  }
+
   didInsertElement() {
     this.search.perform('');
     this.inputElement = document.getElementById(this.inputId) as HTMLInputElement;

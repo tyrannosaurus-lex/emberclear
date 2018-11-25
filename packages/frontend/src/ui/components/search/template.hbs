@@ -18,35 +18,39 @@
   </form>
 
   <div class='m-t-lg overflows' style='max-height: 250px;'>
-    <h5>{{t 'ui.search.contacts'}}</h5>
-
-    {{#each identityResults as |identity|}}
-      <Result @to='chat.privately-with' @id={{identity.uid}}>
-        <span>
-          @ <strong class='has-text-link'>{{identity.name}}</strong>
-        </span>
-        <span>
-          {{first-8 identity.uid}}
-        </span>
-      </Result>
+    {{#if (not this.hasResults)}}
+      {{t 'ui.search.nothingFound'}}
     {{else}}
-      {{t 'ui.search.noContacts'}}
-    {{/each}}
+      <h5>{{t 'ui.search.contacts'}}</h5>
 
-    <hr>
-    <h5>{{t 'ui.search.channels'}}</h5>
+      {{#each identityResults as |identity|}}
+        <Result @to='chat.privately-with' @id={{identity.uid}}>
+          <span>
+            @ <strong class='has-text-link'>{{identity.name}}</strong>
+          </span>
+          <span>
+            {{first-8 identity.uid}}
+          </span>
+        </Result>
+      {{else}}
+        {{t 'ui.search.noContacts'}}
+      {{/each}}
 
-    {{#each channelResults as |channel|}}
-      <Result @to='chat.in-channel' @id={{channel.id}}>
-        <span>
-          # {{channel.name}}
-        </span>
-        <span>
-          {{first-8 channel.id}}
-        </span>
-      </Result>
-    {{else}}
-      {{t 'ui.search.noChannels'}}
-    {{/each}}
+      <hr>
+      <h5>{{t 'ui.search.channels'}}</h5>
+
+      {{#each channelResults as |channel|}}
+        <Result @to='chat.in-channel' @id={{channel.id}}>
+          <span>
+            # {{channel.name}}
+          </span>
+          <span>
+            {{first-8 channel.id}}
+          </span>
+        </Result>
+      {{else}}
+        {{t 'ui.search.noChannels'}}
+      {{/each}}
+    {{/if}}
   </div>
 </Modal>
