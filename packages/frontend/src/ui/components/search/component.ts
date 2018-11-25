@@ -1,7 +1,6 @@
 import Component, { tracked } from 'sparkles-component';
 import { service } from '@ember-decorators/service';
 import { keepLatestTask } from 'ember-concurrency-decorators';
-import { timeout } from 'ember-concurrency';
 import uuid from 'uuid';
 
 interface IArgs {
@@ -33,16 +32,21 @@ export default class SearchModal extends Component<IArgs> {
   }
 
   @keepLatestTask * search(searchTerm: string) {
-    yield timeout(200);
+    const term = new RegExp(searchTerm);
 
-    const identityResults = yield this.store.findAll('identity', { name: searchTerm });
-    const channelResults = yield this.store.findAll('channel', { name: searchTerm });
+    // https://github.com/genkgo/ember-localforage-adapter/blob/master/addon/adapters/localforage.js#L104
+    const identityResults = yield this.store.query('identity', {
+      name: term
+    });
+    const channelResults = yield this.store.query('channel', {
+      name: term
+    });
 
     this.identityResults = identityResults
-      .filter(i => i.name.includes(searchTerm) && i.id !== 'me')
+      .filter(i => i.id !== 'me')
       .slice(0, 5);
+
     this.channelResults = channelResults
-      .filter(i => i.name.includes(searchTerm))
       .slice(0, 5);
   }
 }
