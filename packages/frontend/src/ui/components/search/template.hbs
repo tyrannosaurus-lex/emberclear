@@ -18,7 +18,8 @@
   </form>
 
   <div class='m-t-lg overflows' style='max-height: 250px;'>
-    <h5>Contacts</h5>
+    <h5>{{t 'ui.search.contacts'}}</h5>
+
     {{#each identityResults as |identity|}}
       <Result @to='chat.privately-with' @id={{identity.uid}}>
         <span>
@@ -29,11 +30,11 @@
         </span>
       </Result>
     {{else}}
-      No Contacts found
+      {{t 'ui.search.noContacts'}}
     {{/each}}
 
     <hr>
-    <h5>Channels</h5>
+    <h5>{{t 'ui.search.channels'}}</h5>
 
     {{#each channelResults as |channel|}}
       <Result @to='chat.in-channel' @id={{channel.id}}>
@@ -45,7 +46,7 @@
         </span>
       </Result>
     {{else}}
-      No Channels Found
+      {{t 'ui.search.noChannels'}}
     {{/each}}
   </div>
 </Modal>

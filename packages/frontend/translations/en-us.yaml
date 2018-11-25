@@ -114,6 +114,12 @@ ui:
   search:
     title: Search for things
     description: Search coming soon
+    noContacts: No contacts found
+    noChannels: No channels found
+    contacts: Contacts
+    channels: Channels
+    nothingFound: No results found
+
 
   shortcuts:
     title: Keyboard Shortcuts
