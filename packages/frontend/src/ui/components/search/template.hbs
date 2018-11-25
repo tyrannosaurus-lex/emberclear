@@ -1,8 +1,34 @@
 <Modal @isActive={{@isActive}} @close={{action @close}}>
 
-  <h3 class='is-size-3'>{{t 'ui.search.title' }}</h3>
+<form {{action this.submitSearch on='submit'}}>
+  <div class='field'>
+    <div class='control'>
+      {{input
+        autofocus
+        type='text'
+        class='input is-large'
+        value=this.searchText
+        placeholder=(t 'ui.search.title')
+        input=(action this.submitSearch)
+      }}
+    </div>
+  </div>
+  <input style='display: none' type='submit' value='submit'>
+</form>
 
   <p class='m-lg'>
-    {{t 'ui.search.description' }}
+    {{#each identityResults as |identity|}}
+      {{identity.name}}<br>
+    {{else}}
+      No Contacts found
+    {{/each}}
+
+    <hr>
+
+    {{#each channelResults as |channel|}}
+      {{channel.name}}<br>
+    {{else}}
+      No Channels Found
+    {{/each}}
   </p>
 </Modal>
