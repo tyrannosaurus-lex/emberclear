@@ -1,21 +1,21 @@
 <div class='navbar-item has-dropdown {{if this.isActive 'is-active'}}'>
-    <a
-      {{action this.toggleMenu}}
-      class='navbar-link'
-      style='z-index: 31;'
+  <a
+    {{action this.toggleMenu}}
+    class='navbar-link'
+    style='z-index: 31;'
+    >
+    {{this.currentLanguage}}
+  </a>
+
+  <div class='navbar-dropdown' tablist>
+    {{#each this.options as |opt|}}
+      <a
+        {{action this.chooseLanguage opt.locale}}
+        class='navbar-item'
       >
-      {{this.currentLocale}}
-    </a>
+        <span>{{opt.label}}</span>
+      </a>
+    {{/each}}
 
-    <div class='navbar-dropdown' tablist>
-      {{#each this.options as |opt|}}
-        <a
-          {{action this.chooseLanguage opt.locale}}
-          class='navbar-item'
-        >
-          <span>{{opt.label}}</span>
-        </a>
-      {{/each}}
-
-    </div>
+  </div>
 </div>

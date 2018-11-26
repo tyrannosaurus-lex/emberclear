@@ -51,7 +51,7 @@ module.exports = function(/* env */) {
      * @type {Boolean}
      * @default "false"
      */
-    publicOnly: true,
+    publicOnly: false,
 
     /**
      * Path where translations are kept.  This is relative to the project root.

@@ -17,9 +17,9 @@ export default class ApplicationRoute extends Route {
 
     // TODO: check all the modern web requirements
 
-    // if (this.fastboot.isFastBoot) { return; }
+    await this.locale.setLocale(this.locale.currentLocale);
 
-    await this.locale.setLocale('en-us');
+    if (this.fastboot.isFastBoot) { return; }
 
     await this.identity.load();
 

@@ -9,7 +9,7 @@ const DEFAULT_LOCALE = 'en-us';
 export default class LocaleService extends Service {
   @service intl!: IntlService;
 
-  @disableInFastboot
+  @disableInFastboot({ default: DEFAULT_LOCALE })
   @syncToLocalStorage
   get currentLocale() {
     return DEFAULT_LOCALE;
@@ -18,14 +18,11 @@ export default class LocaleService extends Service {
   async setLocale(locale: string) {
     this.set('currentLocale', locale);
 
-    if (locale === DEFAULT_LOCALE) {
-      return this.intl.setLocale([locale]);
-    }
+    // uncomment for asyncily loaded translations
+    // const request = await fetch(`/translations/${locale}.json`);
+    // const translations = await request.json();
 
-    const request = await fetch(`/translations/${locale}.json`);
-    const translations = await request.json();
-
-    this.intl.addTranslations(locale, translations);
+    // this.intl.addTranslations(locale, translations);
     this.intl.setLocale([ locale ]);
   }
 
