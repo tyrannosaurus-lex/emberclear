@@ -30,10 +30,6 @@ module.exports = function(environment) {
       EXTEND_PROTOTYPES: false,
     },
 
-    i18n: {
-      defaultLocale: 'en-us',
-    },
-
     fontawesome: {
       defaultPrefix: 'fas', // free-and-solid
       icons: {

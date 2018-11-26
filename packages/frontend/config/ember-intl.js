@@ -15,7 +15,11 @@ module.exports = function(/* env */) {
      * @type {Array?}
      * @default "null"
      */
-    locales: null, //['en-us'],
+    // specifying things here causes an error, because in
+    // intl-message-format they try to normalize the locale names
+    // but for some reason there is an undefined entry in the
+    // locales array
+    locales: ['en-us', 'de-DE', 'fr-FR', 'es-ES'],
 
     /**
      * autoPolyfill, when true will automatically inject the IntlJS polyfill
@@ -47,7 +51,7 @@ module.exports = function(/* env */) {
      * @type {Boolean}
      * @default "false"
      */
-    publicOnly: false,
+    publicOnly: true,
 
     /**
      * Path where translations are kept.  This is relative to the project root.

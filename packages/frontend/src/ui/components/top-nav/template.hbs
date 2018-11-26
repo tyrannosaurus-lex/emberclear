@@ -49,6 +49,8 @@
   {{/if}}
 
   <div class='navbar-end is-hidden-touch'>
+    <LocaleSelect />
+
     {{#if this.isLoggedIn}}
       <a class='navbar-item' {{action (transition-to 'chat')}}>
         {{t 'routes.chat'}}
