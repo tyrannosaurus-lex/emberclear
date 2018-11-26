@@ -642,7 +642,7 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@ember-decorators/babel-transforms@^3.0.0":
+"@ember-decorators/babel-transforms@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@ember-decorators/babel-transforms/-/babel-transforms-3.1.0.tgz#7702c673f0cbb8a59b7a8f2a82707d8ef190bcbd"
   integrity sha512-jr/HJpKX+lbgrXLvbRHuMVMtXvFmirmXDKzYN6k+G+gDjTU7SZF2DQ9yNe0P2gSW7hxU7AoqyfZFUVY+KHU6+g==
@@ -692,7 +692,7 @@
     "@ember-decorators/utils" "^3.1.0"
     ember-cli-babel "^7.1.3"
 
-"@ember-decorators/utils@^3.0.0-beta.0", "@ember-decorators/utils@^3.0.1", "@ember-decorators/utils@^3.1.0":
+"@ember-decorators/utils@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@ember-decorators/utils/-/utils-3.1.0.tgz#98e1280e3aad791eb300e4b98d0ce36cd883b921"
   integrity sha512-WwjUw0fGw9z8bhCDi0DMUK8fcvXuNwARv/b8Z2wXLEF3CzphfHvc7SXOBoBDjaSNxnwymex4naF1UlUKxBzHBw==
@@ -2772,7 +2772,7 @@ broccoli-concat-analyser@^4.2.0:
     workerpool "^2.3.1"
     zlib "^1.0.5"
 
-broccoli-concat@^3.2.2, broccoli-concat@^3.7.1, broccoli-concat@^3.7.3:
+broccoli-concat@^3.2.2, broccoli-concat@^3.5.1, broccoli-concat@^3.7.1:
   version "3.7.3"
   resolved "https://registry.yarnpkg.com/broccoli-concat/-/broccoli-concat-3.7.3.tgz#0dca01311567ffb13180e6b4eb111824628e4885"
   integrity sha512-2Ma9h81EJ0PRb9n4sW0i8KZlcnpTQfKxcj87zvi5DFe1fd8CTDEdseHDotK2beuA2l+LbgVPfd8EHaBJKm/Y8g==
@@ -5119,7 +5119,7 @@ ember-cli-version-checker@^2.0.0, ember-cli-version-checker@^2.1.0, ember-cli-ve
     broccoli-amd-funnel "^2.0.1"
     broccoli-babel-transpiler "^6.5.0"
     broccoli-builder "^0.18.14"
-    broccoli-concat "^3.7.3"
+    broccoli-concat "^3.5.1"
     broccoli-config-loader "^1.0.1"
     broccoli-config-replace "^1.1.2"
     broccoli-debug "^0.6.4"
@@ -5234,12 +5234,11 @@ ember-computed-promise-monitor@^0.1.3:
   dependencies:
     ember-cli-babel "^6.16.0"
 
-ember-concurrency-decorators@0.3.0:
+"ember-concurrency-decorators@github:NullVoxPopuli/ember-concurrency-decorators#upgrade-ember-decorators":
   version "0.3.0"
-  resolved "https://registry.yarnpkg.com/ember-concurrency-decorators/-/ember-concurrency-decorators-0.3.0.tgz#e1680882e323fa085e7efcdc73c77e85ac615b77"
-  integrity sha512-9buMM02ASuBOEECnyXh/H86ALTA8bT3JspkFDKZk2bgz1uYMTec+k6Npi2L/xu6fGtnkvl6eawFk/kFGWX56/A==
+  resolved "https://codeload.github.com/NullVoxPopuli/ember-concurrency-decorators/tar.gz/da86dd34bffac62eebb07ae8823edb340879e5a3"
   dependencies:
-    "@ember-decorators/utils" "^3.0.1"
+    "@ember-decorators/utils" "^3.1.0"
     ember-cli-babel "^7.1.3"
 
 ember-concurrency@^0.8.19:
@@ -5304,7 +5303,7 @@ ember-css-modules@^0.7.10:
     semver "^5.6.0"
     silent-error "^1.1.1"
 
-ember-decorators@^3.0.1:
+ember-decorators@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/ember-decorators/-/ember-decorators-3.1.0.tgz#b72ab8b5355c2132f2577e0375da51f7dedae7ec"
   integrity sha512-rfyVh27ECqGe/7WtkHA71zrrz3+0ZMNZzAsY9cF4PXeevN4U48rt7gkgRUjXkrtUFy9ygWE2/Gjexu5WtI80tA==
@@ -9354,7 +9353,7 @@ move-concurrently@^1.0.1:
     rimraf "^2.5.4"
     run-queue "^1.0.3"
 
-"mr-dep-walk@github:kellyselden/mr-dep-walk#sourceType":
+mr-dep-walk@kellyselden/mr-dep-walk#sourceType:
   version "1.3.1"
   resolved "https://codeload.github.com/kellyselden/mr-dep-walk/tar.gz/ada8abb676597804b0dd659710b80dffd663b194"
   dependencies:
