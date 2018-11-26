@@ -112,7 +112,7 @@ ui:
       neverAsk: Never Ask Again
 
   search:
-    title: Search for things
+    title: Search for contacts and channels
     description: Search coming soon
     noContacts: No contacts found
     noChannels: No channels found

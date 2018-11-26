@@ -1,5 +1,6 @@
 import Component, { tracked } from 'sparkles-component';
 import { service } from '@ember-decorators/service';
+import { reads } from '@ember-decorators/object/computed';
 import { keepLatestTask } from 'ember-concurrency-decorators';
 import uuid from 'uuid';
 
@@ -17,6 +18,8 @@ export default class SearchModal extends Component<IArgs> {
 
   @tracked identityResults = [];
   @tracked channelResults = [];
+
+  @reads('identityResults.length') numContacts!: number;
 
   @tracked('identityResults', 'channelResults')
   get hasResults() {
@@ -40,7 +43,7 @@ export default class SearchModal extends Component<IArgs> {
   }
 
   @keepLatestTask * search(searchTerm: string) {
-    const term = new RegExp(searchTerm);
+    const term = new RegExp(searchTerm, 'i');
 
     // https://github.com/genkgo/ember-localforage-adapter/blob/master/addon/adapters/localforage.js#L104
     const identityResults = yield this.store.query('identity', {

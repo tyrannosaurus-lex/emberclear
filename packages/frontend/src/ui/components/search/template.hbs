@@ -17,37 +17,44 @@
     <input style='display: none' type='submit' value='submit'>
   </form>
 
-  <div class='m-t-lg overflows' style='max-height: 250px;'>
+  <div
+    class='m-t-lg overflows'
+    style='max-height: 250px; margin-right: -1rem; padding-right: 1rem;'
+  >
     {{#if (not this.hasResults)}}
       {{t 'ui.search.nothingFound'}}
     {{else}}
-      <h5>{{t 'ui.search.contacts'}}</h5>
+      <h5 class='is-size-7 is-uppercase'>{{t 'ui.search.contacts'}}</h5>
 
-      {{#each identityResults as |identity|}}
-        <Result @to='chat.privately-with' @id={{identity.uid}}>
-          <span>
-            @ <strong class='has-text-link'>{{identity.name}}</strong>
-          </span>
-          <span>
-            {{first-8 identity.uid}}
-          </span>
-        </Result>
+      {{#each this.identityResults as |identity|}}
+        <div tablist>
+          <Result @to='chat.privately-with' @id={{identity.uid}} @afterSelect={{action @close}}>
+            <span>
+              @ <strong class='has-text-link'>{{identity.name}}</strong>
+            </span>
+            <span class='has-text-grey'>
+              {{first-8 identity.uid}}
+            </span>
+          </Result>
+        </div>
       {{else}}
         {{t 'ui.search.noContacts'}}
       {{/each}}
 
-      <hr>
-      <h5>{{t 'ui.search.channels'}}</h5>
+      <hr class='m-t-sm m-b-sm'>
+      <h5 class='is-size-7 is-uppercase'>{{t 'ui.search.channels'}}</h5>
 
-      {{#each channelResults as |channel|}}
-        <Result @to='chat.in-channel' @id={{channel.id}}>
-          <span>
-            # {{channel.name}}
-          </span>
-          <span>
-            {{first-8 channel.id}}
-          </span>
-        </Result>
+      {{#each this.channelResults as |channel|}}
+        <div tablist>
+          <Result @to='chat.in-channel' @id={{channel.id}} @afterSelect={{action @close}}>
+            <span>
+              # <strong class='has-text-link'>{{channel.name}}</strong>
+            </span>
+            <span class='has-text-grey'>
+              {{first-8 channel.id}}
+            </span>
+          </Result>
+        </div>
       {{else}}
         {{t 'ui.search.noChannels'}}
       {{/each}}
