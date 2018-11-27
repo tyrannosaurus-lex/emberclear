@@ -2,6 +2,7 @@ import Component, { tracked } from 'sparkles-component';
 import { service } from '@ember-decorators/service';
 import { computed } from '@ember-decorators/object';
 import { reads } from '@ember-decorators/object/computed';
+
 import LocaleService from 'emberclear/src/services/locale';
 
 interface IArgs {}
@@ -17,9 +18,9 @@ export default class LocaleSwitcher extends Component<IArgs> {
 
     this.options = [
       { locale: 'en-us', label: 'English' },
-      { locale: 'de-de', label: 'German' },
-      { locale: 'fr-fr', label: 'French'},
-      { locale: 'es-es', label: 'Spanish' },
+      { locale: 'de-de', label: 'Deutsche' },
+      { locale: 'fr-fr', label: 'Français' },
+      { locale: 'es-es', label: 'Español' },
     ];
   }
 

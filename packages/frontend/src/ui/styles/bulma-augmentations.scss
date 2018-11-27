@@ -119,3 +119,26 @@ pre code .number {
     flex-grow: 0;
   }
 }
+
+.navbar-item {
+  .select {
+    &:not(.is-multiple):not(.is-loading):hover::after,
+    &:not(.is-multiple):not(.is-loading)::after {
+      border-color: white;
+      color: white;
+    }
+
+    select {
+      box-shadow: inset 0px 1px 1px 1px rgba(0,0,0,0.1);
+      // border: 1px solid white;
+      border: none;
+      background: darken($primary, 2%);
+      color: white;
+
+      option {
+        background: white;
+        color: $dark;
+      }
+    }
+  }
+}
