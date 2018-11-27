@@ -1,19 +1,31 @@
-<div class='field navbar-item' style='margin-bottom: 0;'>
-  <div class='control has-icons-left'>
-    <div class='select is-small'>
+<div class='navbar-item dropdown {{if this.isActive 'is-active'}}'>
+  <div class='dropdown-trigger'>
+    <a
+      {{action this.toggleMenu}}
+      class='button is-primary'
+      style='z-index: 31;'
+      aria-haspopup='true'
+      aria-controls='dropdown-menu'
+    >
+      <small class='icon'>
+        {{fa-icon 'globe'}}
+      </small>
+    </a>
+  </div>
 
-      <XSelect @value={{this.currentLocale}} @onChange={{action this.chooseLanguage}} as |xs|>
-        {{#each this.options as |opt|}}
-          <xs.option @value={{opt.locale}}>
-            {{opt.label}}
-          </xs.option>
-        {{/each}}
-      </XSelect>
-
-    </div>
-
-    <div class='icon is-small is-left'>
-      {{fa-icon 'globe'}}
+  <div class='dropdown-menu' role='menu'>
+    <div class='dropdown-content' tablist>
+      {{#each this.options as |opt|}}
+        <a
+          {{action (queue
+            (action this.chooseLanguage opt.locale)
+            (action this.closeMenu)
+          )}}
+          class='navbar-item'
+        >
+          <span>{{opt.label}}</span>
+        </a>
+      {{/each}}
     </div>
   </div>
 </div>

@@ -37,6 +37,10 @@ export default class LocaleSwitcher extends Component<IArgs> {
     this.isActive = !this.isActive;
   }
 
+  closeMenu() {
+    this.isActive = false;
+  }
+
   chooseLanguage(locale: string) {
     this.locale.setLocale(locale);
   }
