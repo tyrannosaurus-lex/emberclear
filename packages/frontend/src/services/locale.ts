@@ -15,7 +15,7 @@ export default class LocaleService extends Service {
     return DEFAULT_LOCALE;
   }
 
-  async setLocale(locale: string) {
+  async setLocale(locale: string = DEFAULT_LOCALE) {
     this.set('currentLocale', locale);
 
     // uncomment for asyncily loaded translations
