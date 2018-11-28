@@ -1,0 +1,12 @@
+<h2>Permissions</h2>
+
+<div>
+  <h4>Notifications</h4>
+
+  {{#if this.isEnabled}}
+    <button {{action this.disable}} class='button'>Disable</button>
+  {{else}}
+    <button {{action this.askNotifications}} class='button'>Enable</button>
+  {{/if}}
+</div>
+
