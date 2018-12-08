@@ -15,6 +15,14 @@
         {{#if this.resend.isIdle}}
           <a {{action (perform this.resend)}}>{{t 'buttons.resend'}}</a>
         {{/if}}
+        |
+        {{#if this.resendAutomatically.isIdle}}
+          {{#if @message.queueForResend}}
+            {{t 'models.message.autosendPending'}}
+          {{else}}
+            <a {{action (perform this.resendAutomatically)}}>{{t 'buttons.resendAutomatically'}}</a>
+          {{/if}}
+        {{/if}}
 
         {{fa-icon 'exclamation-circle'}}
 
