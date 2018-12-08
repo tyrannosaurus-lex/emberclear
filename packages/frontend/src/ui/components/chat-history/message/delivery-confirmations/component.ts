@@ -83,7 +83,6 @@ export default class DeliveryConfirmation extends Component<IArgs> {
     const { message } = this.args;
 
     message.set('queueForResend', true);
-
     yield message.save();
   }
 }
