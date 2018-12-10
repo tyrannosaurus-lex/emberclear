@@ -19,7 +19,7 @@ import { page as app } from 'emberclear/tests/helpers/pages/app';
 
 const { notificationPrompt: prompt } = app;
 
-module('Integration | Notifications Prompt', function(hooks) {
+module('Acceptance | Notification Permission Prompt', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
   cancelLongRunningTimers(hooks);
@@ -37,39 +37,37 @@ module('Integration | Notifications Prompt', function(hooks) {
     });
 
     test('the prompt is shown', function(assert) {
-      // NOTE: the prompt shows and then hides before the
-      //       debugger is hit
-      //       debugger;
-      assert.equal(app.hasNotificationPrompt, true);
+      assert.equal(prompt.isVisible, true);
     });
 
-    module('never ask again is clicked', function(hooks) {
-      hooks.beforeEach(async function() {
-        await prompt.askNever();
-        await refresh();
-      });
+    test('never ask again is clicked', async function(assert) {
+      assert.expect(2);
 
-      test('the prompt is not shown', function(assert) {
-        assert.equal(app.hasNotificationPrompt, false);
-      });
+      await prompt.askNever();
+
+      assert.equal(prompt.isVisible, false, 'prompt hides initially');
+
+      await refresh();
+
+      assert.equal(prompt.isVisible, false, 'still is not shown even after refresh');
     });
 
-    module('ask later is clicked', function() {
+    module('ask later is clicked', function(hooks) {
       hooks.beforeEach(async function() {
         await prompt.askLater();
       });
 
       test('the prompt is not shown', function(assert) {
-        assert.equal(app.hasNotificationPrompt, false);
+        assert.equal(prompt.isVisible, false);
       });
 
-      module('on rerender', function(hooks) {
+      module('on refresh', function(hooks) {
         hooks.beforeEach(async function() {
           await refresh();
         });
 
         test('the prompt is shown', function(assert) {
-          assert.equal(app.hasNotificationPrompt, true);
+          assert.equal(prompt.isVisible, true);
         });
       });
     });

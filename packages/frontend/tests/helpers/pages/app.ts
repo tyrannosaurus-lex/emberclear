@@ -16,6 +16,7 @@ export const page = create({
   hasNotificationPrompt: isVisible('[data-test-notification-prompt]'),
   notificationPrompt: {
     scope: '[data-test-notification-prompt]',
+    isVisible: isVisible(),
     askLater: clickable('[data-test-ask-later]'),
     askNever: clickable('[data-test-ask-never]'),
     enable: clickable('[data-test-enable]'),
