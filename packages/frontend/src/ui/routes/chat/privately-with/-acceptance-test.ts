@@ -225,7 +225,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
               test('the message is queued for resend', async function(assert) {
                 const store = getService<StoreService>('store');
-                const messages = store.query('message', { queueForResend: true });
+                const messages = await store.query('message', { queueForResend: true });
                 assert.equal(messages.length, 1, 'there should only be one queued message');
               });
 
