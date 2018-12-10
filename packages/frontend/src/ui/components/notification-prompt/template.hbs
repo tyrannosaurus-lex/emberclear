@@ -1,21 +1,29 @@
-<div
-  class='notification is-info has-text-centered is-radiusless p-sm transition-all'
->
-  <button class='delete' {{action this.askNextTime}}></button>
+{{#if this.isVisible}}
+  <div
+    class='
+      notification is-info
+      has-text-centered
+      is-radiusless p-sm transition-all
+      has-shadow
+    '
+    style='margin-bottom: 0;'
+  >
+    <button class='delete' {{action this.askNextTime}}></button>
 
-  <strong>{{t 'ui.notifications.prompt.title'}}</strong>
+    <strong>{{t 'ui.notifications.prompt.title'}}</strong>
 
-  <div class='flex justify-content-space-around m-t-sm'>
-    <a {{action this.enableNotifications}}>
-      {{t 'ui.notifications.prompt.enable'}}
-    </a>
+    <div class='flex justify-content-space-around m-t-sm'>
+      <a {{action this.enableNotifications}}>
+        {{t 'ui.notifications.prompt.enable'}}
+      </a>
 
-    <a {{action this.askNextTime}}>
-      {{t 'ui.notifications.prompt.askLater'}}
-    </a>
+      <a {{action this.askNextTime}}>
+        {{t 'ui.notifications.prompt.askLater'}}
+      </a>
 
-    <a {{action this.neverAskAgain}}>
-      {{t 'ui.notifications.prompt.neverAsk'}}
-    </a>
+      <a {{action this.neverAskAgain}}>
+        {{t 'ui.notifications.prompt.neverAsk'}}
+      </a>
+    </div>
   </div>
-</div>
+{{/if}}
