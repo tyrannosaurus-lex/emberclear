@@ -1,4 +1,4 @@
-import { visit as dangerousVisit } from '@ember/test-helpers';
+import { visit as dangerousVisit, setupContext, teardownContext } from '@ember/test-helpers';
 
 export { stubService } from './stub-service';
 export { textFor, text } from './text-for';
@@ -29,4 +29,9 @@ export function setupWindowNotification(hooks: NestedHooks) {
   hooks.afterEach(function() {
     window.Notification = originalNotification;
   });
+}
+
+export async function refresh() {
+  await setupContext(this);
+  await teardownContext(this);
 }

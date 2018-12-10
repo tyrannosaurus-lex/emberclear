@@ -1,5 +1,6 @@
 {{#if this.isVisible}}
   <div
+    data-test-notification-prompt
     class='
       notification is-info
       has-text-centered
@@ -8,20 +9,24 @@
     '
     style='margin-bottom: 0;'
   >
-    <button class='delete' {{action this.askNextTime}}></button>
+    <button
+      data-test-dismiss
+      class='delete'
+      {{action this.askNextTime}}>
+    </button>
 
     <strong>{{t 'ui.notifications.prompt.title'}}</strong>
 
-    <div class='flex justify-content-space-around m-t-sm'>
+    <div data-test-enable class='flex justify-content-space-around m-t-sm'>
       <a {{action this.enableNotifications}}>
         {{t 'ui.notifications.prompt.enable'}}
       </a>
 
-      <a {{action this.askNextTime}}>
+      <a data-test-ask-later {{action this.askNextTime}}>
         {{t 'ui.notifications.prompt.askLater'}}
       </a>
 
-      <a {{action this.neverAskAgain}}>
+      <a data-test-ask-never {{action this.neverAskAgain}}>
         {{t 'ui.notifications.prompt.neverAsk'}}
       </a>
     </div>
