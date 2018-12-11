@@ -11,7 +11,7 @@ export default class Permissions extends Component {
   @tracked isEnabled = false;
 
   didInsertElement() {
-    this.isEnabled = this.notifications.isPermissionGranted();
+    this.isEnabled = this.notifications.isPermissionGranted;
   }
 
   async askNotifications() {
