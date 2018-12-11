@@ -54,6 +54,15 @@ buttons:
     sidebarBackdrop: Clickable backdrop for clicking off the sidebar to hide it
     closeModal: Close Modal
 
+compatibility:
+  compatibility: Compatibility
+  camera: Camera
+  notifications: Notifications
+  indexeddb: Indexed DB
+  wasm: WebAssembly
+  serviceWorker: Service Worker
+  webWorker: Web Worker
+
 images:
   alt:
     thumbnail: Thumbnail

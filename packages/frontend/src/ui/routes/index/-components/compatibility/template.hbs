@@ -1,0 +1,32 @@
+{{#if this.isNotCompatible}}
+  <ModalStatic @name='compatibility' as |isActive actions|>
+    <a
+      class='is-block has-text-white m-t-lg is-size-4'
+      {{action actions.open}}
+    >
+      {{fa-icon 'exclamation-circle'}}
+      {{this.successCount}} / {{this.totalCount}}
+      {{t 'compatibility.compatibility'}}
+    </a>
+
+    <Modal @isActive={{isActive}} @close={{actions.close}}>
+
+      <div class='
+        has-background-white has-text-black
+        flex-column align-items-start justify-content-start
+        p-md
+        '
+      >
+        <h3 class='is-size-3'>{{this.successCount}} / {{this.totalCount}}</h3>
+
+        <Feature @value={{this.hasCamera}} @label={{t 'compatibility.camera'}} />
+        <Feature @value={{this.hasNotifications}} @label={{t 'compatibility.notifications'}} />
+        <Feature @value={{this.hasIndexedDb}} @label={{t 'compatibility.indexeddb'}} />
+        <Feature @value={{this.hasWASM}} @label={{t 'compatibility.wasm'}} />
+        <Feature @value={{this.hasServiceWorker}} @label={{t 'compatibility.serviceWorker'}} />
+        <Feature @value={{this.hasWebWorker}} @label={{t 'compatibility.webWorker'}} />
+
+      </div>
+    </Modal>
+  </ModalStatic>
+{{/if}}
