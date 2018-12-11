@@ -35,6 +35,7 @@ buttons:
   logout: Logout
   login: Login
   cancel: Cancel
+  close: Close
   import: Import
   scan: Scan
   sendSnippet: Send Snippet
@@ -55,6 +56,9 @@ buttons:
     closeModal: Close Modal
 
 compatibility:
+  title: Something is wrong!
+  description: In order to use emberclear, your browser must support the following technologies and features
+  score: Score
   compatibility: Compatibility
   camera: Camera
   notifications: Notifications
