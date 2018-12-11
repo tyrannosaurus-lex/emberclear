@@ -33,15 +33,6 @@ export default class Compatibility extends Component {
     this.hasNotifications = check('Notification' in window);
     this.hasServiceWorker = check('ServiceWorker' in window);
     this.hasWebWorker = check('Worker' in window);
-
-    console.error(
-      this.hasIndexedDb,
-      this.hasCamera,
-      this.hasWASM,
-      this.hasNotifications,
-      this.hasServiceWorker,
-      this.hasWebWorker
-    );
   }
 
   private checkSuccess(value: boolean) {
