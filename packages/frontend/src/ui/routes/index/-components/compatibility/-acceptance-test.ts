@@ -16,6 +16,11 @@ module('Acceptance | Compatibility', function(hooks) {
   cancelLongRunningTimers(hooks);
   setupWindowNotification(hooks);
 
+  // stub things that may not exist (esp in headless / c.i.)
+  hooks.beforeEach(function() {
+    window.ServiceWorker = window.ServiceWorker || 'for testing';
+  });
+
   module('the browser supports all required features', function(hooks) {
     hooks.beforeEach(async function() {
       await visit('/');
