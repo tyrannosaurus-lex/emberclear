@@ -14,6 +14,11 @@ const toast = '[data-test-notification-message]';
 
 export const page = create({
   hasNotificationPrompt: isVisible('[data-test-notification-prompt]'),
+  headerUnread: {
+    scope: '[data-test-unread-count]',
+    isVisible: isVisible(),
+    text: text(),
+  },
   notificationPrompt: {
     scope: '[data-test-notification-prompt]',
     isVisible: isVisible(),

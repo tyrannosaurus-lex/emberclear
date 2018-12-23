@@ -36,7 +36,7 @@ export default class ReadWatcher extends Component<IArgs> {
     this.io && this.io.disconnect();
     this.io = undefined;
 
-    window.removeEventListener('focus', this.focusHandler;
+    window.removeEventListener('focus', this.focusHandler);
   }
 
   private markRead() {
