@@ -90,7 +90,8 @@ export default class RelayConnection extends Service {
     this.updateStatus('info', this.intl.t('connection.connecting'));
 
     const publicKey = this.userChannelId();
-    const url = this.relayManager.getRelay().socket;
+    const relay = yield this.relayManager.getRelay();
+    const url = relay.socket;
 
     const socket = new Socket(url, { params: { uid: publicKey } });
 

@@ -11,7 +11,7 @@ export default class RelayManager extends Service {
   }
 
   async getOpenGraph(url: string): Promise<OpenGraphData> {
-    const baseUrl = this.getRelay().og;
+    const baseUrl = await this.getRelay().og;
     const safeUrl = encodeURIComponent(url);
     const ogUrl = `${baseUrl}?url=${safeUrl}`;
     const response = await fetch(ogUrl, {
@@ -29,12 +29,10 @@ export default class RelayManager extends Service {
   }
 
   // TODO: these need to be 'find or create'
-  populateStoreWithPreconfiguredRelays() {
-    return this.store.createRecord('relay', {
-      socket: 'wss://mesh-relay-in-us-1.herokuapp.com/socket',
-      og: 'https://mesh-relay-in-us-1.herokuapp.com/open_graph',
-      host: 'mesh-relay-in-us-1.herokuapp.com',
-    });
+  async populateStoreWithPreconfiguredRelays() {
+    const relays = await this.store.findAll('relay');
+
+    return relays[0];
   }
 }
 
