@@ -39,7 +39,6 @@ module('Acceptance | Chat', function(hooks) {
           readAt: null,
         });
         await record.save();
-        await waitUntil(() => page.headerUnread.isVisible);
       });
 
       test('1 message is unread', function(assert) {
