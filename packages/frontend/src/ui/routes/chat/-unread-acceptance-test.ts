@@ -1,5 +1,6 @@
+import StoreService from 'ember-data/store';
 import { module, test } from 'qunit';
-import { visit, waitUntil } from '@ember/test-helpers';
+import { visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
@@ -27,7 +28,7 @@ module('Acceptance | Chat', function(hooks) {
     });
 
     test('when there are 0 messages', function(assert) {
-      assert.notOk(page.headerUnread.isVisible, 'indicator is not visible');
+      assert.notOk(page.headerUnread.isPresent, 'indicator is not visible');
     });
 
     module('Has unread messages', function(hooks) {
@@ -36,13 +37,16 @@ module('Acceptance | Chat', function(hooks) {
         const record = store.createRecord('message', {
           target: 'whatever',
           type: 'not ping',
+          body: 'a test message',
+          to: 'me',
           readAt: null,
         });
         await record.save();
       });
 
       test('1 message is unread', function(assert) {
-        assert.ok(page.headerUnread.isVisible, 'indicator is visible');
+        assert.ok(page.headerUnread.isVisible(), 'indicator is visible');
+        assert.ok(page.headerUnread.isVisible(), 'indicator is visible');
         assert.ok(page.headerUnread.text.includes('1'), 'has one unread message');
       });
     });

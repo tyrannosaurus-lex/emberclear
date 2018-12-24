@@ -3,7 +3,7 @@ import StoreService from 'ember-data/store';
 import { Registry } from '@ember/service';
 import { service } from '@ember-decorators/service';
 import { action, computed } from '@ember-decorators/object';
-import { alias, equal, reads, gt } from '@ember-decorators/object/computed';
+import { alias, equal, gt } from '@ember-decorators/object/computed';
 
 import IdentityService from 'emberclear/services/identity/service';
 import Sidebar from 'emberclear/services/sidebar/service';

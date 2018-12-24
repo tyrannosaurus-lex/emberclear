@@ -6,6 +6,7 @@ import {
   count,
   isVisible,
   text,
+  isPresent,
   fillable,
   clickable,
 } from 'ember-cli-page-object';
@@ -13,10 +14,10 @@ import {
 const toast = '[data-test-notification-message]';
 
 export const page = create({
-  hasNotificationPrompt: isVisible('[data-test-notification-prompt]'),
   headerUnread: {
     scope: '[data-test-unread-count]',
-    isVisible: isVisible(),
+    isVisible: isVisible,
+    isPresent: isPresent(),
     text: text(),
   },
   notificationPrompt: {
