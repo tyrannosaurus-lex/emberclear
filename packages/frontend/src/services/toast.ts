@@ -3,6 +3,13 @@ import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 import { isPresent } from '@ember/utils';
 
+const statusToBulmaClassMap = {
+  info: 'is-info',
+  success: 'is-success',
+  warning: 'is-warning',
+  error: 'is-danger',
+};
+
 export default class Toast extends Service {
   // from ember-cli-notifications
   @service('notification-messages') notifications!: any;
@@ -26,13 +33,17 @@ export default class Toast extends Service {
   createToast(status: string, msg: string, title: string, options: any) {
     const message = isPresent(title) ? `${title}: ${msg}` : msg;
 
+
     this.notifications.addNotification({
       autoClear: true,
       clearDuration: Ember.testing ? 10 : 4000,
       ...options,
       message: message || 'status',
       type: status,
-      cssClasses: `notification ${status} is-${status} p-xs has-shadow height-tall`,
+      cssClasses: `
+        notification
+        ${status} is-${status}
+        p-xs has-shadow height-tall`,
     });
   }
 }

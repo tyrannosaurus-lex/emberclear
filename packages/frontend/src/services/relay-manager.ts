@@ -2,12 +2,31 @@ import StoreService from 'ember-data/store';
 import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 
-export default class RelayManager extends Service {
-  @service store!: StoreService;
+import Relay from 'emberclear/src/data/models/relay';
+import ToastService from 'emberclear/src/services/toast';
+import RelayConnection from 'emberclear/src/services/relay-connection';
 
-  getRelay() {
-    // randomly select one that is online?
-    return this.populateStoreWithPreconfiguredRelays();
+export default class RelayManager extends Service {
+  @service toast!: ToastService;
+  @service store!: StoreService;
+  @service relayConnection!: RelayConnection;
+
+  async connect() {
+    const relay = await this.getRelay();
+
+    if (!relay) {
+      this.toast.error('there are no available relays.');
+      return;
+    }
+
+    this.relayConnection.setRelay(relay);
+    this.relayConnection.connect();
+  }
+
+  async getRelay() {
+    const relays: Relay[] = this.store.findAll('relay');
+
+    return relays.toArray().sort(r => r.priority)[0];
   }
 
   async getOpenGraph(url: string): Promise<OpenGraphData> {
@@ -26,13 +45,6 @@ export default class RelayManager extends Service {
     const json = await response.json();
 
     return (json || {}).data;
-  }
-
-  // TODO: these need to be 'find or create'
-  async populateStoreWithPreconfiguredRelays() {
-    const relays = await this.store.findAll('relay');
-
-    return relays[0];
   }
 }
 
