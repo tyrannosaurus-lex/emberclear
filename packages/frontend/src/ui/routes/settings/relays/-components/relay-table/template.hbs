@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th></th>
+      <th></th>
       <th>Socket URL</th>
       <th>Open Graph URL</th>
     </tr>
@@ -10,10 +11,14 @@
     {{#each @relays as |relay|}}
       <tr>
         <td>
+          Make default
+        </td>
+        <td>
           <a {{action this.remove relay}}>
             {{t 'buttons.remove'}}
           </a>
         </td>
+        <td>Priority</td>
         <td>{{relay.socket}}</td>
         <td>{{relay.og}}</td>
       </tr>
