@@ -6,12 +6,12 @@ const defaultRelays = [
   },
 ];
 
-export function initialize(applicationInstance: any) {
-  const store = applicationInstance.lookup('store:main');
-  const existing = store.findAll('relay');
+export async function initialize(applicationInstance: any) {
+  const store = applicationInstance.lookup('service:store');
+  const existing = await store.findAll('relay');
   const existingHosts = existing.map(e => e.host);
 
-  return Promise.all(
+  return await Promise.all(
     defaultRelays.map(defaultRelay => {
       if (existingHosts.includes(defaultRelay.host)) {
         return;

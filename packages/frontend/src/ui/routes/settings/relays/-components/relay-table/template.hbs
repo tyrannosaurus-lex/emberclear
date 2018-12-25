@@ -1,0 +1,22 @@
+<table data-test-relays>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Socket URL</th>
+      <th>Open Graph URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each @relays as |relay|}}
+      <tr>
+        <td>
+          <a {{action this.remove relay}}>
+            {{t 'buttons.remove'}}
+          </a>
+        </td>
+        <td>{{relay.socket}}</td>
+        <td>{{relay.og}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

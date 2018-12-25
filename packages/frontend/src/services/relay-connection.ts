@@ -79,7 +79,7 @@ export default class RelayConnection extends Service {
   //       this would greatly reduce the number of channels needed
   //       for chat rooms
   async connect(this: RelayConnection) {
-    this.establishConnection.perform();
+    // this.establishConnection.perform();
   }
 
   @dropTask
