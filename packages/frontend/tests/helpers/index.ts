@@ -21,7 +21,7 @@ export async function visit(url: string) {
   try {
     await dangerousVisit(url);
   } catch (e) {
-    console.error(e);
+    console.error('visit wrapper around default visit helper', e);
   }
 }
 

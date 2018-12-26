@@ -83,7 +83,7 @@ module('Acceptance | Sidebar', function(hooks) {
 
         module('offline contacts are to be hidden', function(hooks) {
           hooks.beforeEach(async function() {
-            await visit('/settings');
+            await visit('/settings/interface');
             await settings.toggleHideOfflineContacts();
             await waitFor(sidebar.selectors.offlineCount);
           });
@@ -116,7 +116,7 @@ module('Acceptance | Sidebar', function(hooks) {
 
         module('offline contacts are to be hidden', function(hooks) {
           hooks.beforeEach(async function() {
-            await visit('/settings');
+            await visit('/settings/interface');
             await settings.toggleHideOfflineContacts();
             await waitFor(sidebar.selectors.offlineCount);
           });

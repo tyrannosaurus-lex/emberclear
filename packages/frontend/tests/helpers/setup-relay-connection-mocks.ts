@@ -12,18 +12,27 @@ export function setupRelayConnectionMocks(
 ) {
   hooks.beforeEach(function() {
     stubService(
+      'relay-manager',
+      {
+        getRelay() {},
+        getOpenGraph() {},
+        connect() {},
+      },
+      [{ in: 'route:application', as: 'relayManager' }, { in: 'route:chat', as: 'relayManager' }]
+    );
+    stubService(
       'relay-connection',
       {
+        // get relay() {
+        //   throw new Error('service:relay-connection not properly mocked');
+        // },
+        setRelay() {},
         connect() {
           return;
         },
         ...overrides,
       },
-      [
-        { in: 'route:application', as: 'relayConnection' },
-        { in: 'route:chat', as: 'relayConnection' },
-        ...targets,
-      ]
+      [{ in: 'service:relay-manager', as: 'relayConnection' }, ...targets]
     );
   });
 }

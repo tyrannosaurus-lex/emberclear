@@ -3,26 +3,32 @@ import { render } from '@ember/test-helpers';
 import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-import { stubService } from 'emberclear/tests/helpers';
+import { stubService, setupRelayConnectionMocks } from 'emberclear/tests/helpers';
 import { TestContext } from 'ember-test-helpers';
 
 function disableOpenGraphFetching(hooks: NestedHooks, respondWith = {}) {
   hooks.beforeEach(function() {
-    stubService('relay-manager', {
-      getOpenGraph: (_url: string) => respondWith,
-    });
+    stubService(
+      'relay-manager',
+      {
+        getRelay() {},
+        getOpenGraph: async (_url: string) => await respondWith,
+      },
+      [
+        {
+          in: 'component:chat-history/message/embedded-resource',
+          as: 'relayManager',
+        },
+      ]
+    );
   });
 }
 
 module('Integration | Component | embedded-resource', function(hooks) {
   setupRenderingTest(hooks);
+  setupRelayConnectionMocks(hooks);
 
   hooks.beforeEach(() => {
-    stubService('relay-connection', {
-      connect() {
-        return;
-      },
-    });
     stubService('chat-scroller', {});
   });
 
@@ -43,7 +49,7 @@ module('Integration | Component | embedded-resource', function(hooks) {
       });
     });
 
-    module('there url is embeddable', function(hooks) {
+    module('the url is embeddable', function(hooks) {
       disableOpenGraphFetching(hooks);
 
       hooks.beforeEach(async function(this: TestContext) {
