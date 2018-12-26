@@ -5,6 +5,7 @@ import { service } from '@ember-decorators/service';
 import Relay from 'emberclear/src/data/models/relay';
 import ToastService from 'emberclear/src/services/toast';
 import RelayConnection from 'emberclear/src/services/relay-connection';
+import { RelayNotSetError } from 'emberclear/src/utils/errors';
 
 export default class RelayManager extends Service {
   @service toast!: ToastService;
@@ -14,25 +15,27 @@ export default class RelayManager extends Service {
   async connect() {
     const relay = await this.getRelay();
 
-    if (!relay) {
-      this.toast.error('there are no available relays.');
-      return;
-    }
-
     this.relayConnection.setRelay(relay);
     this.relayConnection.connect();
   }
 
-  async getRelay() {
-    const relays: Relay[] = this.store.findAll('relay');
+  async getRelay(): Promise<Relay> {
+    const relays: Relay[] = await this.store.findAll('relay');
 
-    return relays.toArray().sort(r => r.priority)[0];
+    const relay = relays.toArray().sort(r => r.priority)[0];
+
+    if (!relay) {
+      this.toast.error('there are no available relays.');
+      throw new RelayNotSetError();
+    }
+
+    return relay;
   }
 
   async getOpenGraph(url: string): Promise<OpenGraphData> {
-    const baseUrl = await this.getRelay().og;
+    const relay = await this.getRelay();
     const safeUrl = encodeURIComponent(url);
-    const ogUrl = `${baseUrl}?url=${safeUrl}`;
+    const ogUrl = `${relay.og}?url=${safeUrl}`;
     const response = await fetch(ogUrl, {
       credentials: 'omit',
       referrer: 'no-referrer',

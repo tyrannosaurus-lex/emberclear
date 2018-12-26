@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <th></th>
-      <th>Priority</th>
+      <th>#</th>
       <th>URLs</th>
       <th></th>
     </tr>
@@ -11,9 +11,15 @@
     {{#each @relays as |relay|}}
       <tr>
         <td>
-          <a {{action this.makeDefault relay}}>
-            Make default
-          </a>
+          {{#if (eq relay this.activeRelay)}}
+            <span class='tag is-primary'>Connected</span>
+          {{/if}}
+
+          {{#if (not (eq relay.priority 1))}}
+            <a {{action this.makeDefault relay}}>
+              Make default
+            </a>
+          {{/if}}
         </td>
         <td>{{relay.priority}}</td>
         <td>

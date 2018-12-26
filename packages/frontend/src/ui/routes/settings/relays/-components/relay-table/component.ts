@@ -1,8 +1,10 @@
 import Component from 'sparkles-component';
 import StoreService from 'ember-data/store';
 import { service } from '@ember-decorators/service';
+import { reads } from '@ember-decorators/object/computed';
 
 import Relay from 'emberclear/data/models/relay';
+import RelayConnection from 'emberclear/src/services/relay-connection';
 
 interface IArgs {
   relays: Relay[];
@@ -10,6 +12,9 @@ interface IArgs {
 
 export default class RelayTable extends Component<IArgs> {
   @service store!: StoreService;
+  @service relayConnection!: RelayConnection;
+
+  @reads('relayConnection.relay') activeRelay!: Relay;
 
   remove(relay: Relay) {
     relay.deleteRecord();
@@ -27,7 +32,7 @@ export default class RelayTable extends Component<IArgs> {
     relays
       .toArray()
       .sort(r => r.priority)
-      .forEach((nonDefaultRelay) => {
+      .forEach(nonDefaultRelay => {
         if (nonDefaultRelay.id === relay.id) return;
 
         nonDefaultRelay.set('priority', nextHighestPriority);

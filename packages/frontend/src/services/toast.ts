@@ -3,13 +3,15 @@ import Service from '@ember/service';
 import { service } from '@ember-decorators/service';
 import { isPresent } from '@ember/utils';
 
-const statusToBulmaClassMap = {
-  info: 'is-info',
-  success: 'is-success',
-  warning: 'is-warning',
-  error: 'is-danger',
-};
-
+function statusToClass(status: string) {
+  switch(status) {
+    case 'info': return 'is-info';
+    case 'success': return 'is-success';
+    case 'warning': return 'is-warning';
+    case 'error': return 'is-danger';
+    default: return 'is-info';
+  }
+}
 export default class Toast extends Service {
   // from ember-cli-notifications
   @service('notification-messages') notifications!: any;
@@ -33,6 +35,7 @@ export default class Toast extends Service {
   createToast(status: string, msg: string, title: string, options: any) {
     const message = isPresent(title) ? `${title}: ${msg}` : msg;
 
+    const colorClass = statusToClass(status);
 
     this.notifications.addNotification({
       autoClear: true,
@@ -42,7 +45,7 @@ export default class Toast extends Service {
       type: status,
       cssClasses: `
         notification
-        ${status} is-${status}
+        ${colorClass}
         p-xs has-shadow height-tall`,
     });
   }
