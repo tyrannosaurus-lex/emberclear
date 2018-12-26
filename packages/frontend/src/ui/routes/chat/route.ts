@@ -11,7 +11,7 @@ export interface IModel {
 }
 
 export default class ChatRoute extends Route {
-  @service relays!: RelayManager;
+  @service relayManager!: RelayManager;
   @service identity!: IdentityService;
   @service redirectManager!: RedirectManager;
 
@@ -36,6 +36,6 @@ export default class ChatRoute extends Route {
   }
 
   afterModel() {
-    this.relays.connect();
+    this.relayManager.connect();
   }
 }
