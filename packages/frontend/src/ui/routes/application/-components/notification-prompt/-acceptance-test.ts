@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { visit, currentURL, waitFor } from '@ember/test-helpers';
+import { visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
@@ -9,11 +9,7 @@ import {
   cancelLongRunningTimers,
   setupWindowNotification,
   refresh,
-  getService,
-  stubService,
 } from 'emberclear/tests/helpers';
-
-import NotificationService from 'emberclear/services/notification';
 
 import { page as app } from 'emberclear/tests/helpers/pages/app';
 
