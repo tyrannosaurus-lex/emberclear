@@ -1,11 +1,13 @@
 ## Change Log
 
-### 2018-12-10
+### 2018-12
 
+ - Enhancement: Split out the settings screen for future expandability.
+ - Enhancement: Allow the relays to be configured.
+ - Enhancement: Ensure that the default relays always exist as configuration options.
+ - Bugfix: Sometimes the toast messages would not have a background color, making them very hard to read.
+ - Chore: Reorganize some toplevel components to be a part of the application route's private collection.
  - Enhancement: for browsers that are not compatible, show a compatibility message.
-
-### 2018-12-09
-
  - Bugfix: Regression where notification prompt would not hide
 
 ### 2018-12-08
