@@ -288,6 +288,7 @@ ui:
       relays: Relays
       dangerZone: Danger Zone
     relays:
+      add: Add Relay
       URLs: URLs
       socket: socket
       openGraph: open graph
