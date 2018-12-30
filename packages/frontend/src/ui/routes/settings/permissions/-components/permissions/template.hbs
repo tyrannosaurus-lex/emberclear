@@ -1,10 +1,12 @@
 <div>
-  <h4>Notifications</h4>
+  <label class='label'>{{t 'compatibility.notifications'}}</label>
 
   {{#if this.isEnabled}}
-    <button {{action this.disable}} class='button'>Disable</button>
+    {{t 'status.enabled'}}
   {{else}}
-    <button {{action this.askNotifications}} class='button'>Enable</button>
+    <button {{action this.askNotifications}} class='button'>
+      {{t 'buttons.enabled'}}
+    </button>
   {{/if}}
 </div>
 
