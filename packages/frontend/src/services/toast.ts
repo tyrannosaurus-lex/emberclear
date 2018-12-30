@@ -4,12 +4,17 @@ import { service } from '@ember-decorators/service';
 import { isPresent } from '@ember/utils';
 
 function statusToClass(status: string) {
-  switch(status) {
-    case 'info': return 'is-info';
-    case 'success': return 'is-success';
-    case 'warning': return 'is-warning';
-    case 'error': return 'is-danger';
-    default: return 'is-info';
+  switch (status) {
+    case 'info':
+      return 'is-info';
+    case 'success':
+      return 'is-success';
+    case 'warning':
+      return 'is-warning';
+    case 'error':
+      return 'is-danger';
+    default:
+      return 'is-info';
   }
 }
 export default class Toast extends Service {

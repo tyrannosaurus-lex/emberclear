@@ -15,7 +15,7 @@ module.exports = function(defaults) {
   let disabledAddons = [];
   let environment = EmberApp.env();
   let isProduction = environment === 'production';
-  let isTest = environment === 'test';
+  // let isTest = environment === 'test';
 
   let swDisabled = process.env.SW_DISABLED;
   let version = gitRev.short();

@@ -35,4 +35,3 @@ export function hostFromURL(url: string) {
 
   return matches && matches[1];
 }
-
