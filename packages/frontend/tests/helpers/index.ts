@@ -37,12 +37,14 @@ export function setupWindowNotification(hooks: NestedHooks) {
   });
 }
 
-export async function refresh() {
+export async function refresh(mocking: () => void = () => undefined) {
   const url = currentURL();
   const ctx = getContext();
 
   await teardownContext(ctx);
   await setupContext(ctx);
+
+  await mocking();
 
   await visit(url);
 }
