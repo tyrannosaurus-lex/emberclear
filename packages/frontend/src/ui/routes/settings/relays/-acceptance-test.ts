@@ -51,6 +51,18 @@ module('Acceptance | Settings | Relays', function(hooks) {
       assert.equal(page.table.rows.length, 3, '1 row per relay');
     });
 
+    module('user removes a relay', function(hooks) {
+      hooks.beforeEach(async function(assert) {
+        assert.equal(page.table.rows.length, 3, 'there are 3 relays');
+
+        await page.table.rows.objectAt(1).remove();
+      });
+
+      test('there is one less row', function(assert) {
+        assert.equal(page.table.rows.length, 2, 'there are 2 relays');
+      });
+    });
+
     module('user clicks add relay', function(hooks) {
       hooks.beforeEach(async function(assert) {
         assert.notOk(page.form.isVisible, 'form is not visible');

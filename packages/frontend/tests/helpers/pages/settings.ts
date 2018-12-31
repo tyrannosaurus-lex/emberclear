@@ -14,7 +14,11 @@ export const page = create({
       save: clickable('[data-test-save-relay]'),
     },
     table: {
-      rows: collection('[data-test-relays] tbody tr'),
+      rows: collection('[data-test-relays] tbody tr', {
+        isConnected: isVisible('[data-test-connected]'),
+        remove: clickable('[data-test-remove]'),
+        makeDefault: clickable('[data-test-make-default]'),
+      }),
     },
   },
 });
