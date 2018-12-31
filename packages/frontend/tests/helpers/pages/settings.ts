@@ -21,6 +21,12 @@ export const page = create({
       }),
     },
   },
+  permissions: {
+    notifications: {
+      scope: '[data-test-notifications]',
+      isVisible: isVisible(),
+    },
+  },
 });
 
 export const settings = {
