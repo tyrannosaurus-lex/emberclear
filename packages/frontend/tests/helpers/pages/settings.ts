@@ -27,6 +27,17 @@ export const page = create({
       isVisible: isVisible(),
     },
   },
+  dangerZone: {
+    deleteMessages: {
+      scope: '[data-test-delete-messages]',
+      click: clickable(),
+      isVisible: isVisible(),
+    },
+  },
+  interface: {
+    scope: '[data-test-interface]',
+    isVisible: isVisible(),
+  }
 });
 
 export const settings = {
