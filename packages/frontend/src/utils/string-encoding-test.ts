@@ -60,7 +60,7 @@ module('Unit | Utility | String Encoding', function() {
   module('base64ToHex', function() {
     test('converts', function(assert) {
       const base64 = 'aGVsbG8gdGhlcmU='; // hello there
-      const expected = '68656c6c6f207468657265';
+      const expected = '68656C6C6F207468657265';
       const result = stringEncoding.base64ToHex(base64);
 
       assert.equal(result, expected);
