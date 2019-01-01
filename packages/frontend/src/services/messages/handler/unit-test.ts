@@ -7,6 +7,7 @@ import {
   stubService,
   attributesForUser,
   setupCurrentUser,
+  clearLocalStorage,
 } from 'emberclear/tests/helpers';
 
 import { TYPE, TARGET } from 'emberclear/src/data/models/message/model';
@@ -17,6 +18,8 @@ import ReceivedMessageHandler from './service';
 module('Unit | Service | messages/handler', function(hooks) {
   setupTest(hooks);
   setupCurrentUser(hooks);
+  clearLocalStorage(hooks);
+
 
   test('it exists', function(assert) {
     let service = getService('messages/handler');
