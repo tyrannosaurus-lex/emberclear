@@ -1,4 +1,4 @@
-import { module, test, skip } from 'qunit';
+import { module, test } from 'qunit';
 import StoreService from 'ember-data/store';
 import { setupTest } from 'ember-qunit';
 import uuid from 'uuid';
@@ -6,7 +6,6 @@ import uuid from 'uuid';
 import {
   getService,
   stubService,
-  attributesForUser,
   setupCurrentUser,
   createIdentity,
   clearLocalStorage,
@@ -18,7 +17,6 @@ import Message, { TYPE, TARGET } from 'emberclear/src/data/models/message/model'
 import IdentityService from 'emberclear/src/services/identity/service';
 
 import AutoResponder from './service';
-import { waitUntil } from '@ember/test-helpers';
 
 module('Unit | Service | messages/auto-responder', function(hooks) {
   setupTest(hooks);
