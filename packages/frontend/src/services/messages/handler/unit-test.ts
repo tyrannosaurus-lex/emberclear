@@ -20,7 +20,6 @@ module('Unit | Service | messages/handler', function(hooks) {
   setupCurrentUser(hooks);
   clearLocalStorage(hooks);
 
-
   test('it exists', function(assert) {
     let service = getService('messages/handler');
     assert.ok(service);
