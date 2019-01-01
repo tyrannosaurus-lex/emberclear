@@ -144,7 +144,7 @@ module('Unit | Service | messages/auto-responder', function(hooks) {
       const store = getService<StoreService>('store');
       const service = getService<AutoResponder>('messages/auto-responder');
 
-      const sender = await attributesForUser();
+      const sender = await createIdentity('some user');
       const receivedMessage = store.createRecord('message', {
         id: uuid(),
         sender,
