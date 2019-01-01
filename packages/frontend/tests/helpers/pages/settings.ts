@@ -37,7 +37,7 @@ export const page = create({
   interface: {
     scope: '[data-test-interface]',
     isVisible: isVisible(),
-  }
+  },
 });
 
 export const settings = {
