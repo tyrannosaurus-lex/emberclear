@@ -48,3 +48,15 @@ export async function refresh(mocking: () => void = () => undefined) {
 
   await visit(url);
 }
+
+export async function waitUntilTruthy(func: Function) {
+  return new Promise(resolve => {
+    setInterval(async () => {
+      let result = await func();
+
+      if (result) {
+        resolve();
+      }
+    }, 10);
+  });
+}
