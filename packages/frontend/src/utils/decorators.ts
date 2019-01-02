@@ -1,45 +1,72 @@
 import { PromiseMonitor } from 'ember-computed-promise-monitor';
 
-export function syncToLocalStorage<T>(
-  target: any,
-  propertyKey: string,
-  descriptor: PropertyDescriptor
-) {
-  const targetName = target.constructor.name;
-  const key = `${targetName}-${propertyKey}`;
+ // https://tc39.github.io/proposal-decorators/#sec-elementdescriptor-specification-type
+ interface ElementDescriptor {
+  descriptor: PropertyDescriptor;
+  initializer?: () => any; // unknown
+  key: string;
+  kind: 'method' | 'field' | 'initializer';
+  placement: 'own' | 'prototype' | 'static';
+  finisher?: (klass: any) => any
+}
 
-  descriptor.get = (): T => {
-    const lsValue = localStorage.getItem(key);
-    const json = (lsValue && JSON.parse(lsValue)) || {};
+interface MethodDecorator {
+  descriptor: PropertyDescriptor;
+  key: string;
+  kind: 'method' | 'field' | 'initializer';
+  placement: 'own' | 'prototype' | 'static';
+}
 
-    return json.value;
+export function syncToLocalStorage<T>(desc: MethodDecorator): ElementDescriptor {
+  const result: ElementDescriptor = {
+    ...desc,
+    kind: 'method',
+    descriptor: {
+      enumerable: false,
+      configurable: false,
+    },
   };
 
-  descriptor.set = value => {
-    const lsValue = JSON.stringify({ value });
+  result.finisher = (klass: Object) => {
+    const targetName = klass.constructor.name;
+    const key = `${targetName}-${desc.key}`;
 
-    localStorage.setItem(key, lsValue);
-  };
+    result.descriptor.get = (): T => {
+      const lsValue = localStorage.getItem(key);
+      const json = (lsValue && JSON.parse(lsValue)) || {};
+
+      return json.value;
+    },
+    result.descriptor.set = (value: any) => {
+      const lsValue = JSON.stringify({ value });
+
+      localStorage.setItem(key, lsValue);
+    }
+  }
+
+  result.descriptor.get = () => {};
+  result.descriptor.set = () => {};
+
+  return result;
 }
 
 export function monitor<T = any>(
-  _target: any,
-  _propertyKey: string,
-  descriptor: PropertyDescriptor
+  desc: ElementDescriptor
 ) {
+  const { descriptor } = desc;
   const { get: oldGet } = descriptor;
-  // TODO: assert that a getter exists
-  // TODO: assert that a setter does not exist
 
-  descriptor.get = function(): any {
-    const promise = oldGet!.apply(this);
+  return {
+    ...desc,
+    kind: 'method',
+    descriptor: {
+      ...desc.descriptor,
 
-    return new PromiseMonitor<T>(promise);
+      get(){
+        const promise = oldGet!.apply(this);
+
+        return new PromiseMonitor<T>(promise);
+      },
+    },
   };
-
-  descriptor.set = (/* value */) => {
-    throw new Error('a monitored property cannot be set');
-  };
-
-  return descriptor;
 }

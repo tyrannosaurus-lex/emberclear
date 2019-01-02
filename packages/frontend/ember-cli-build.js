@@ -40,6 +40,22 @@ module.exports = function(defaults) {
       extensions: 'js',
     },
 
+    autoImport: {
+      alias: {
+        'qr-scanner': 'qr-scanner.min.js',
+        // libsodium: 'libsodium/dist/modules/libsodium.js',
+        // 'libsodium-wrappers': 'libsodium-wrappers/dist/modules/libsodium-wrappers.js',
+      },
+      exclude: ['libsodium', 'libsodium-wrappers', 'phoenix', 'showdown', 'qrcode', 'uuid'],
+    },
+
+    // babel: {
+    //   plugins: [
+    //     // require('ember-auto-import/babel-plugin'),
+    //     require('@babel/plugin-transform-typescript'),
+    //   ],
+    // },
+
     'ember-cli-babel': {
       includePolyfill: false,
       disablePresetEnv: true,
@@ -103,11 +119,6 @@ module.exports = function(defaults) {
   // qrcode
   app.import('node_modules/qrcode/build/qrcode.min.js');
   app.import('vendor/shims/qrcode.js');
-
-  // qrcode scanner
-  app.import('node_modules/qr-scanner/qr-scanner.min.js', {
-    using: [{ transformation: 'es6', as: 'qr-scanner' }],
-  });
 
   // qr-scanner hardcoded this path.... -.-
   var qrScannerWorker = new Funnel('node_modules/qr-scanner/', {

@@ -3,10 +3,9 @@ import libsodiumWrapper, { KeyPair } from 'libsodium-wrappers';
 import { concat } from 'emberclear/src/utils/arrays/utils';
 
 export async function libsodium(): Promise<typeof libsodiumWrapper> {
-  const sodium = (libsodiumWrapper as any).sodium;
-  await sodium.ready;
+  await libsodiumWrapper.ready;
 
-  return sodium as typeof libsodiumWrapper;
+  return libsodiumWrapper as typeof libsodiumWrapper;
 }
 
 export async function genericHash(arr: Uint8Array): Promise<Uint8Array> {
