@@ -1,3 +1,4 @@
+import StoreService from 'ember-data/store';
 import Component, { tracked } from 'sparkles-component';
 import { Registry } from '@ember/service';
 import { service } from '@ember-decorators/service';
@@ -18,7 +19,7 @@ interface IArgs {
 
 export default class SidebarContact extends Component<IArgs> {
   @service router!: Registry['router'];
-  @service store;
+  @service store!: StoreService;
   @service settings!: SettingsService;
   @service sidebar!: SidebarService;
 
@@ -67,16 +68,16 @@ export default class SidebarContact extends Component<IArgs> {
     window.requestIdleCallback(() => this.findRelevantMessages.perform());
   }
 
-  didRender() {
-    window.requestIdleCallback(() => this.setupIntersectionObserver());
-  }
+  // didRender() {
+  //   window.requestIdleCallback(() => this.setupIntersectionObserver());
+  // }
 
   @task
   *findRelevantMessages() {
     const messages = yield this.store.findAll('message');
 
     this.messages = messages;
-    window.requestIdleCallback(() => this.setupIntersectionObserver());
+    this.setupIntersectionObserver();
   }
 
   private setupIntersectionObserver() {

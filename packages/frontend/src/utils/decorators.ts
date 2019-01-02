@@ -27,25 +27,19 @@ export function syncToLocalStorage<T>(desc: MethodDecorator): ElementDescriptor 
     },
   };
 
-  result.finisher = (klass: Object) => {
-    const targetName = klass.constructor.name;
-    const key = `${targetName}-${desc.key}`;
+  result.descriptor.get = function(): T {
+    const key = `${this.constructor.name}-${desc.key}`;
+    const lsValue = localStorage.getItem(key);
+    const json = (lsValue && JSON.parse(lsValue)) || {};
 
-    result.descriptor.get = (): T => {
-      const lsValue = localStorage.getItem(key);
-      const json = (lsValue && JSON.parse(lsValue)) || {};
+    return json.value;
+  };
+  result.descriptor.set = function(value: any) {
+    const key = `${this.constructor.name}-${desc.key}`;
+    const lsValue = JSON.stringify({ value });
 
-      return json.value;
-    },
-    result.descriptor.set = (value: any) => {
-      const lsValue = JSON.stringify({ value });
-
-      localStorage.setItem(key, lsValue);
-    }
+    localStorage.setItem(key, lsValue);
   }
-
-  result.descriptor.get = () => {};
-  result.descriptor.set = () => {};
 
   return result;
 }

@@ -11,6 +11,7 @@ import {
   getService,
   text,
   createIdentity,
+  waitUntilTruthy,
 } from 'emberclear/tests/helpers';
 
 import IdentityService from 'emberclear/src/services/identity/service';
@@ -27,6 +28,7 @@ module('Acceptance | Sidebar', function(hooks) {
   hooks.beforeEach(async function() {
     await visit('/chat');
     await sidebar.toggle();
+    await waitUntilTruthy(() => sidebar.isOpen());
   });
 
   module('Contacts', function() {
@@ -113,7 +115,7 @@ module('Acceptance | Sidebar', function(hooks) {
         });
 
         test('there are 3 rows of names', function(assert) {
-          assert.equal(sidebar.contacts.rows().length, 3);
+          assert.equal(sidebar.contacts.rows().length, 3, 'there are 3 contacts');
         });
 
         module('offline contacts are to be hidden', function(hooks) {

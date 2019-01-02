@@ -5417,13 +5417,14 @@ ember-sinon@^3.0.0:
     ember-cli-babel "^7.1.3"
     sinon "^7.1.1"
 
-"ember-source@https://s3.amazonaws.com/builds.emberjs.com/canary/shas/a662910a5ce72ce84ba8867a5abfcf1b30158dcf.tgz":
-  version "3.6.0-canary"
-  resolved "https://s3.amazonaws.com/builds.emberjs.com/canary/shas/a662910a5ce72ce84ba8867a5abfcf1b30158dcf.tgz#5dd742388013fa542a90b86210ea96c99dba4d2d"
+"ember-source@https://s3.amazonaws.com/builds.emberjs.com/canary/shas/f77abaf9d5995916e2ad1f0807b86cc2015c808b.tgz":
+  version "3.8.0-canary"
+  resolved "https://s3.amazonaws.com/builds.emberjs.com/canary/shas/f77abaf9d5995916e2ad1f0807b86cc2015c808b.tgz#edd1db48c10ef056b80d7c22b65dcd836f85c514"
   dependencies:
     broccoli-funnel "^2.0.1"
-    broccoli-merge-trees "^2.0.0"
+    broccoli-merge-trees "^3.0.2"
     chalk "^2.3.0"
+    ember-cli-babel "^7.2.0"
     ember-cli-get-component-path-option "^1.0.0"
     ember-cli-is-package-missing "^1.0.0"
     ember-cli-normalize-entity-name "^1.0.0"
@@ -5433,7 +5434,7 @@ ember-sinon@^3.0.0:
     ember-router-generator "^1.2.3"
     inflection "^1.12.0"
     jquery "^3.3.1"
-    resolve "^1.6.0"
+    resolve "^1.9.0"
 
 ember-template-lint@1.0.0-beta.6, ember-template-lint@^1.0.0-beta.5:
   version "1.0.0-beta.6"
@@ -10690,7 +10691,7 @@ resolve@1.5.0:
   dependencies:
     path-parse "^1.0.5"
 
-resolve@^1.1.3, resolve@^1.1.6, resolve@^1.1.7, resolve@^1.3.2, resolve@^1.3.3, resolve@^1.4.0, resolve@^1.5.0, resolve@^1.6.0, resolve@^1.7.1, resolve@^1.8.1:
+resolve@^1.1.3, resolve@^1.1.6, resolve@^1.1.7, resolve@^1.3.2, resolve@^1.3.3, resolve@^1.4.0, resolve@^1.5.0, resolve@^1.7.1, resolve@^1.8.1, resolve@^1.9.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.9.0.tgz#a14c6fdfa8f92a7df1d996cb7105fa744658ea06"
   integrity sha512-TZNye00tI67lwYvzxCxHGjwTNlUV70io54/Ed4j6PscB8xVfuBJpRenI/o6dVk0cY0PYTY27AgCoGGxRnYuItQ==
