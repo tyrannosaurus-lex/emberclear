@@ -43,8 +43,6 @@ module.exports = function(defaults) {
     autoImport: {
       alias: {
         'qr-scanner': 'qr-scanner.min.js',
-        // libsodium: 'libsodium/dist/modules/libsodium.js',
-        // 'libsodium-wrappers': 'libsodium-wrappers/dist/modules/libsodium-wrappers.js',
       },
       exclude: ['libsodium', 'libsodium-wrappers', 'phoenix', 'showdown', 'qrcode', 'uuid'],
     },
@@ -131,5 +129,8 @@ module.exports = function(defaults) {
     using: [{ transformation: 'cjs', as: 'uuid' }],
   });
 
-  return mergeTrees([app.toTree(), qrScannerWorker]);
+  return new Funnel(mergeTrees([app.toTree(), qrScannerWorker]), {
+    exclude: ['**/*-test.{ts,js}', '**/*-tests.{js,ts}'],
+    annotation: 'Module Unification Tests',
+  });
 };

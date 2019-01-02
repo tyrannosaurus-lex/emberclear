@@ -1,13 +1,13 @@
 import { PromiseMonitor } from 'ember-computed-promise-monitor';
 
- // https://tc39.github.io/proposal-decorators/#sec-elementdescriptor-specification-type
- interface ElementDescriptor {
+// https://tc39.github.io/proposal-decorators/#sec-elementdescriptor-specification-type
+interface ElementDescriptor {
   descriptor: PropertyDescriptor;
   initializer?: () => any; // unknown
   key: string;
   kind: 'method' | 'field' | 'initializer';
   placement: 'own' | 'prototype' | 'static';
-  finisher?: (klass: any) => any
+  finisher?: (klass: any) => any;
 }
 
 interface MethodDecorator {
@@ -39,14 +39,12 @@ export function syncToLocalStorage<T>(desc: MethodDecorator): ElementDescriptor 
     const lsValue = JSON.stringify({ value });
 
     localStorage.setItem(key, lsValue);
-  }
+  };
 
   return result;
 }
 
-export function monitor<T = any>(
-  desc: ElementDescriptor
-) {
+export function monitor<T = any>(desc: ElementDescriptor) {
   const { descriptor } = desc;
   const { get: oldGet } = descriptor;
 
@@ -56,7 +54,7 @@ export function monitor<T = any>(
     descriptor: {
       ...desc.descriptor,
 
-      get(){
+      get() {
         const promise = oldGet!.apply(this);
 
         return new PromiseMonitor<T>(promise);

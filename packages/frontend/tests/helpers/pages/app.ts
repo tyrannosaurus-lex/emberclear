@@ -8,7 +8,9 @@ import {
   isVisible,
   text,
   isPresent,
+  notHasClass,
   fillable,
+  property,
   clickable,
 } from 'ember-cli-page-object';
 
@@ -32,7 +34,7 @@ export const page = create({
   modals: {
     addContact: {
       scope: '[data-test-add-contact]',
-      isHidden: attribute('aria-hidden'),
+      isHidden: notHasClass('is-active'),
       hide: clickable('[aria-label="Close Modal"]'),
     },
   },

@@ -65,12 +65,11 @@ export default class SidebarContact extends Component<IArgs> {
   }
 
   didInsertElement() {
-    window.requestIdleCallback(() => this.findRelevantMessages.perform());
+    // WARNING:
+    // using requestIdleCallback causes errors during testing:
+    //   expected container not to be destroyed
+    this.findRelevantMessages.perform();
   }
-
-  // didRender() {
-  //   window.requestIdleCallback(() => this.setupIntersectionObserver());
-  // }
 
   @task
   *findRelevantMessages() {
