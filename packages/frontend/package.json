@@ -47,8 +47,7 @@
     "uuid": "^3.2.1"
   },
   "devDependencies": {
-    "@ember-decorators/babel-transforms": "^3.1.5",
-    "@ember-decorators/utils": "^3.1.0",
+    "@ember-decorators/babel-transforms": "^3.1.0",
     "@ember/optional-features": "^0.7.0",
     "@ember/test-helpers": "1.1.0",
     "@fortawesome/ember-fontawesome": "^0.1.0-8",
@@ -72,7 +71,7 @@
     "@types/showdown": "^1.7.5",
     "@types/url-parse": "^1.1.0",
     "@types/uuid": "^3.4.3",
-    "babel-eslint": "10.0.1",
+    "babel-eslint": "^8.0.0",
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-concat-analyser": "^4.2.0",
     "ember-auto-import": "^1.2.19",
@@ -99,7 +98,7 @@
     "ember-concurrency": "^0.8.26",
     "ember-concurrency-decorators": "^0.5.0",
     "ember-data": "^3.6.0",
-    "ember-decorators": "^3.1.0",
+    "ember-decorators": "^3.1.5",
     "ember-elsewhere": "^1.0.4",
     "ember-exam": "^2.0.0",
     "ember-export-application-global": "^2.0.0",
@@ -134,7 +133,7 @@
     "qunit-dom": "^0.8.0",
     "sass": "^1.13.2",
     "sass-lint": "^1.12.1",
-    "sparkles-component": "^1.2.0",
+    "sparkles-component": "github:buschtoens/sparkles-component#refactor/stage-2-decorators",
     "typescript": "^3.2.0",
     "typescript-eslint-parser": "20.1.1"
   },
