@@ -12,7 +12,6 @@ import {
   clearLocalStorage,
   setupCurrentUser,
   setupRelayConnectionMocks,
-  cancelLongRunningTimers,
   waitUntilTruthy,
   clearToasts,
 } from 'emberclear/tests/helpers';
@@ -25,7 +24,6 @@ module('Acceptance | Invitations', function(hooks) {
   setupApplicationTest(hooks);
   clearLocalStorage(hooks);
   setupRelayConnectionMocks(hooks);
-  cancelLongRunningTimers(hooks);
   clearToasts(hooks);
 
   module('Is not logged in', function(hooks) {
