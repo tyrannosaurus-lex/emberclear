@@ -33,6 +33,7 @@ module.exports = function(defaults) {
     // tests: isTest,
     hinting: false,
     minifyJS: { enabled: isProduction },
+    // TODO: find a way to remove legacy browser support from css
     minifyCSS: { enabled: isProduction },
 
     sourcemaps: {

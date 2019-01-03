@@ -4,6 +4,7 @@ import {
   teardownContext,
   getContext,
   currentURL,
+  getSettledState,
 } from '@ember/test-helpers';
 
 export { stubService } from './stub-service';
@@ -49,6 +50,15 @@ export async function refresh(mocking: () => void = () => undefined) {
   await visit(url);
 }
 
+export function clearToasts(hooks: NestedHooks) {
+  hooks.afterEach(function() {
+    const ctx = getContext();
+    const toasts = ctx.owner.lookup('service:notification-messages');
+    toasts.clear();
+    toasts.clearAll();
+  });
+}
+
 export async function waitUntilTruthy(func: Function, timeoutMs = 500) {
   let interval: NodeJS.Timeout;
 
@@ -60,10 +70,21 @@ export async function waitUntilTruthy(func: Function, timeoutMs = 500) {
     }, timeoutMs);
   });
 
+  let startTime = new Date();
   return Promise.race([
-    new Promise(resolve => {
+    new Promise((resolve, reject) => {
       let interval = setInterval(async () => {
-        let result = await func();
+        if (new Date() - startTime > 500) {
+          clearInterval(interval);
+          reject(`Timed out after ${timeoutMs}`);
+        }
+        let result = false;
+
+        try {
+          result = await func();
+        } catch (e) {
+          // ignored
+        }
 
         if (result) {
           clearInterval(interval);

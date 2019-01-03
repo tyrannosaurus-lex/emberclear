@@ -17,6 +17,11 @@ import {
 const toast = '[data-test-notification-message]';
 
 export const page = create({
+  toast: {
+    scope: '[data-test-notification-message]',
+    isVisible: isVisible(),
+    text: text(),
+  },
   headerUnread: {
     scope: '[data-test-unread-count]',
     isVisible: isVisible,

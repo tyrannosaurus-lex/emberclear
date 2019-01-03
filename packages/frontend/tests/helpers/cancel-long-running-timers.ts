@@ -1,19 +1,19 @@
 import { run, cancel, later } from '@ember/runloop';
 
 export function cancelLongRunningTimers(hooks: NestedHooks) {
-  hooks.beforeEach(function() {
-    if (window._breakTimerLoopsId) {
-      run.cancelTimers();
-      cancel(window._breakTimerLoopsId);
-    }
+  // hooks.beforeEach(function() {
+  //   if (window._breakTimerLoopsId) {
+  //     run.cancelTimers();
+  //     cancel(window._breakTimerLoopsId);
+  //   }
 
-    window._breakTimerLoopsId = later(() => {
-      run.cancelTimers();
-    }, 1000);
-  });
+  //   window._breakTimerLoopsId = later(() => {
+  //     run.cancelTimers();
+  //   }, 1000);
+  // });
 
-  hooks.afterEach(function() {
-    run.cancelTimers();
-    cancel(window._breakTimerLoopsId);
-  });
+  // hooks.afterEach(function() {
+  //   run.cancelTimers();
+  //   cancel(window._breakTimerLoopsId);
+  // });
 }
