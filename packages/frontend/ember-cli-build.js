@@ -42,7 +42,7 @@ module.exports = function(defaults) {
 
     autoImport: {
       alias: {
-        'qr-scanner': 'qr-scanner.min.js',
+        'qr-scanner': 'qr-scanner/qr-scanner.min.js',
       },
       exclude: ['libsodium', 'libsodium-wrappers', 'phoenix', 'showdown', 'qrcode', 'uuid'],
     },

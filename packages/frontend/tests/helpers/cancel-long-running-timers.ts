@@ -13,6 +13,7 @@ export function cancelLongRunningTimers(hooks: NestedHooks) {
   });
 
   hooks.afterEach(function() {
+    run.cancelTimers();
     cancel(window._breakTimerLoopsId);
   });
 }
