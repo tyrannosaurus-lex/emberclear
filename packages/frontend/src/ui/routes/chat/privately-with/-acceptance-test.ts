@@ -91,6 +91,8 @@ module('Acceptance | Chat | Privately With', function(hooks) {
 
       test('redirects', async function(assert) {
         await settled();
+        await waitFor(app.selectors.toast);
+
         assert.equal(currentURL(), '/chat');
       });
 
