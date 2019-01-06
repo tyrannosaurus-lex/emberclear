@@ -47,7 +47,7 @@ export default class AddModal extends Component<IArgs> {
     this.scanning = !this.scanning;
   }
 
-  @task * onScan(this: AddModal, identityJson: string) {
+  @task *onScan(this: AddModal, identityJson: string) {
     const identity = JSON.parse(identityJson);
 
     yield this.tryCreate(identity);
