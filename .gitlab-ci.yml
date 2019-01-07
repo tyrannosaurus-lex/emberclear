@@ -6,12 +6,12 @@ stages:
   - analyze
   - deploy
 
-cache:
-  # untracked: true
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - ${CI_PROJECT_DIR}/.cache_yarn
-    - ${CI_PROJECT_DIR}/packages/frontend/node_modules
+# cache:
+#   # untracked: true
+#   key: ${CI_COMMIT_REF_SLUG}
+#   paths:
+#     - ${CI_PROJECT_DIR}/.cache_yarn
+#     - ${CI_PROJECT_DIR}/packages/frontend/node_modules
 
 # image: node:10
 image: danlynn/ember-cli:3.6.1
@@ -52,7 +52,7 @@ variables:
 #       than it is to rely on gitlab's slow cache
 before_script:
   - time npm install -g yarn@latest
-  # - time ./run yarn install
+  - time ./run yarn install
 
 Security via Synk:
   stage: setup
