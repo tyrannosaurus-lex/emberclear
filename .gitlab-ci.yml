@@ -91,7 +91,7 @@ All Tests:
   dependencies: [ setup ]
   script:
     - time ./scripts/install-chrome-apt
-    - time ./run yarn test
+    - time COVERAGE=true ./run yarn test
   artifacts:
     paths:
       - ${CI_PROJECT_DIR}/packages/frontend/coverage*
