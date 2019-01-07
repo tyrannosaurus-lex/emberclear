@@ -225,4 +225,7 @@ pages:
 # to install everything at every stage than to rely on cache...
 setup:
   stage: setup
-  script: [ time ./run yarn install ]
+  script:
+    - echo "skip"
+    # - time ./run yarn install
+
