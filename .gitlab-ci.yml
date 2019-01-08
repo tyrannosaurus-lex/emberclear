@@ -23,7 +23,7 @@ variables:
   DOCKER_DRIVER: overlay2
   NETLIFY_CLI_VERSION: 0.4.0
   NODE_OPTIONS: --max-old-space-size=2048
-  # COVERAGE: true
+  COVERAGE: true
 
 
 # TODO: HACK: for now, it's faster to install everything
