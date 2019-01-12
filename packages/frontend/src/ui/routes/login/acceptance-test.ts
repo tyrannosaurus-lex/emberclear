@@ -2,6 +2,7 @@ import DS from 'ember-data';
 import { module, test } from 'qunit';
 import { currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
+import { percySnapshot } from 'ember-percy';
 
 import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/src/utils/mnemonic/utils';
 
@@ -56,8 +57,9 @@ module('Acceptance | Login', function(hooks) {
     setupCurrentUser(hooks);
 
     module('visits /login', function(hooks) {
-      hooks.beforeEach(async function() {
+      hooks.beforeEach(async function(assert) {
         await visit('/login');
+        percySnapshot(assert);
       });
 
       test('redirects', function(assert) {
