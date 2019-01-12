@@ -97,6 +97,16 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
     ENV.SW_DISABLED = process.env.SW_DISABLED;
+
+    ENV.percy = {
+      // breakpoints from bulma.io
+      breakpointsConfig: {
+        mobile: 768,
+        desktop: 1024,
+        widescreen: 1216,
+      },
+      defaultBreakpoints: ['mobile', 'desktop', 'widescreen'],
+    };
   }
 
   if (environment === 'production') {

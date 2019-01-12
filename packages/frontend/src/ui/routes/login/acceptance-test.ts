@@ -37,6 +37,7 @@ const behaviors = {
           const expected = 'There was a problem logging in...';
 
           assert.contains(text, expected);
+          percySnapshot(assert);
         });
 
         test('navigation does not occur', function(assert) {
@@ -57,9 +58,8 @@ module('Acceptance | Login', function(hooks) {
     setupCurrentUser(hooks);
 
     module('visits /login', function(hooks) {
-      hooks.beforeEach(async function(assert) {
+      hooks.beforeEach(async function() {
         await visit('/login');
-        percySnapshot(assert);
       });
 
       test('redirects', function(assert) {
@@ -75,6 +75,7 @@ module('Acceptance | Login', function(hooks) {
 
     test('is not redirected', function(assert) {
       assert.equal(currentURL(), '/login');
+      percySnapshot(assert);
     });
 
     behaviors.invalid.clickLogin();
@@ -95,7 +96,7 @@ module('Acceptance | Login', function(hooks) {
       behaviors.invalid.clickLogin();
     });
 
-    module('both name and mnemonic are filled in', function(hooks) {
+    module('both name and mnemonic are filled in', function() {
       module('with valid values', function(hooks) {
         hooks.beforeEach(async function() {
           const mnemonic = await mnemonicFromNaClBoxPrivateKey(samplePrivateKey);
@@ -106,6 +107,7 @@ module('Acceptance | Login', function(hooks) {
 
         test('redirects to chat', function(assert) {
           assert.equal(currentURL(), '/chat');
+          percySnapshot(assert);
         });
 
         test('sets the "me" identity', function(assert) {
