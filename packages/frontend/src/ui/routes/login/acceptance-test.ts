@@ -2,7 +2,7 @@ import DS from 'ember-data';
 import { module, test } from 'qunit';
 import { currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
-import { percySnapshot } from 'ember-percy';
+import { percySnapshot, QUnitAssert } from 'ember-percy';
 
 import { mnemonicFromNaClBoxPrivateKey } from 'emberclear/src/utils/mnemonic/utils';
 
@@ -37,7 +37,7 @@ const behaviors = {
           const expected = 'There was a problem logging in...';
 
           assert.contains(text, expected);
-          percySnapshot(assert);
+          percySnapshot(assert as any);
         });
 
         test('navigation does not occur', function(assert) {
@@ -75,7 +75,7 @@ module('Acceptance | Login', function(hooks) {
 
     test('is not redirected', function(assert) {
       assert.equal(currentURL(), '/login');
-      percySnapshot(assert);
+      percySnapshot(assert as any);
     });
 
     behaviors.invalid.clickLogin();
@@ -107,7 +107,7 @@ module('Acceptance | Login', function(hooks) {
 
         test('redirects to chat', function(assert) {
           assert.equal(currentURL(), '/chat');
-          percySnapshot(assert);
+          percySnapshot(assert as any);
         });
 
         test('sets the "me" identity', function(assert) {
