@@ -100,12 +100,21 @@ module.exports = function(environment) {
 
     ENV.percy = {
       // breakpoints from bulma.io
+      // mobile: 768,
+      // desktop: 1024,
+      // widescreen: 1216,
       breakpointsConfig: {
+        phone: 540,
         mobile: 768,
         desktop: 1024,
-        widescreen: 1216,
+        // widescreen: 1216,
       },
-      defaultBreakpoints: ['mobile', 'desktop', 'widescreen'],
+      defaultBreakpoints: [
+        'phone',
+        'mobile',
+        'desktop',
+        // 'widescreen',
+      ],
     };
   }
 
