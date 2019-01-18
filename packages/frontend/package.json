@@ -47,6 +47,7 @@
     "uuid": "^3.2.1"
   },
   "devDependencies": {
+    "@css-blocks/ember-cli": "^0.20.0-beta.5",
     "@ember-decorators/babel-transforms": "^5.0.0",
     "@ember/optional-features": "^0.7.0",
     "@ember/test-helpers": "1.1.0",
