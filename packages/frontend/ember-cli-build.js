@@ -72,11 +72,10 @@ module.exports = function(defaults) {
     },
 
     postcssOptions: {
-      extension: 'scss',
-      enabled: true,
-      parser: require('postcss-scss'),
-      filter: {
+      compile: {
+        extension: 'scss',
         enabled: true,
+        parser: require('postcss-scss'),
         plugins: [
           {
             module: require('@csstools/postcss-sass'),
@@ -86,14 +85,18 @@ module.exports = function(defaults) {
               ],
             },
           },
-          {
-            module: purgecss,
-            options: {
-              content: ['./src/**/*.hbs', './src/**/.js', './src/**/.ts'],
-            },
-          },
         ],
-      },
+        filter: {
+          plugins: [
+            {
+              module: purgecss,
+              options: {
+                content: ['./src/**/*.hbs', './src/**/.js', './src/**/.ts'],
+              },
+            },
+          ],
+        },
+      }
     },
 
     eslint: {
