@@ -71,34 +71,34 @@ module.exports = function(defaults) {
       strip: isProduction,
     },
 
-    // postcssOptions: {
-    //   compile: {
-    //     extension: 'scss',
-    //     enabled: false,
-    //     //   parser: require('postcss-scss'),
-    //     //   plugins: [
-    //     //     {
-    //     //       module: require('@csstools/postcss-sass'),
-    //     //       options: {
-    //     //         includePaths: [
-    //     //           'node_modules/tachyons-sass',
-    //     //         ],
-    //     //       },
-    //     //     },
-    //     //   ],
-    //   },
-    //   filter: {
-    //     enabled: false,
-    //     plugins: [
-    //       {
-    //         module: purgecss,
-    //         options: {
-    //           content: ['./src/**/*.hbs', './src/**/.js', './src/**/.ts'],
-    //         },
-    //       },
-    //     ],
-    //   },
-    // },
+    postcssOptions: {
+      compile: {
+        extension: 'scss',
+        enabled: false,
+        //   parser: require('postcss-scss'),
+        //   plugins: [
+        //     {
+        //       module: require('@csstools/postcss-sass'),
+        //       options: {
+        //         includePaths: [
+        //           'node_modules/tachyons-sass',
+        //         ],
+        //       },
+        //     },
+        //   ],
+      },
+      filter: {
+        enabled: true,
+        plugins: [
+          {
+            module: purgecss,
+            options: {
+              content: ['./src/**/*.hbs', './src/**/.js', './src/**/.ts'],
+            },
+          },
+        ],
+      },
+    },
 
     eslint: {
       testGenerator: 'qunit',
