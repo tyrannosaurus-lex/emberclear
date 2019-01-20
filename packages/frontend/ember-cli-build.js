@@ -75,20 +75,9 @@ module.exports = function(defaults) {
       compile: {
         extension: 'scss',
         enabled: false,
-        //   parser: require('postcss-scss'),
-        //   plugins: [
-        //     {
-        //       module: require('@csstools/postcss-sass'),
-        //       options: {
-        //         includePaths: [
-        //           'node_modules/tachyons-sass',
-        //         ],
-        //       },
-        //     },
-        //   ],
       },
       filter: {
-        enabled: true,
+        enabled: false, // total savings: 4KB.
         plugins: [
           {
             module: purgecss,
