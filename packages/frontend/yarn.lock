@@ -1582,6 +1582,11 @@ amdefine@>=0.0.4:
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
 
+animation-frame@~0.2.4:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/animation-frame/-/animation-frame-0.2.5.tgz#cdf5a91a69ad2c85ddac2b82daf7290300f05960"
+  integrity sha1-zfWpGmmtLIXdrCuC2vcpAwDwWWA=
+
 ansi-escapes@^1.1.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-1.4.0.tgz#d3a8a83b319aa67793662b13e761c7911422306e"
@@ -5406,6 +5411,22 @@ ember-factory-for-polyfill@^1.3.1:
   dependencies:
     ember-cli-version-checker "^2.1.0"
 
+ember-gestures@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/ember-gestures/-/ember-gestures-1.1.1.tgz#b2d583846aae2dfc0c38b1b6bd934efc761230d1"
+  integrity sha512-Io5XkGXzEPYg+5nWvEyQKeqL2QTqe3B2/+34BtJeJLXZOpwz89JH4UBbh/yv41uG25mKFzpmmavt7xS0Ir1Mog==
+  dependencies:
+    animation-frame "~0.2.4"
+    broccoli-funnel "^2.0.1"
+    broccoli-merge-trees "^2.0.0"
+    broccoli-stew "^1.5.0"
+    ember-cli-babel "^6.8.2"
+    ember-cli-htmlbars "^2.0.1"
+    ember-cli-version-checker "^2.1.0"
+    ember-getowner-polyfill "^2.2.0"
+    hammerjs "^2.0.8"
+    rsvp "^3.1.0"
+
 ember-get-config@^0.2.4:
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/ember-get-config/-/ember-get-config-0.2.4.tgz#118492a2a03d73e46004ed777928942021fe1ecd"
@@ -5421,6 +5442,18 @@ ember-getowner-polyfill@^2.2.0:
   dependencies:
     ember-cli-version-checker "^2.1.0"
     ember-factory-for-polyfill "^1.3.1"
+
+ember-hammertime@^1.2.4:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/ember-hammertime/-/ember-hammertime-1.6.0.tgz#8333ef636b29f87d35ee9bded217cc0c7ccaf027"
+  integrity sha512-YfaE5yfrwJDidQ2LTNWY2UGDyLNcwD5xMNMu8AnSXztmrGLlGEvcirePJb75EchDZnwx5Mbtp38Wt5KEOGY2tw==
+  dependencies:
+    broccoli-funnel "^2.0.1"
+    broccoli-merge-trees "^3.0.1"
+    broccoli-stew "^2.0.0"
+    ember-cli-babel "^6.16.0"
+    ember-get-config "^0.2.4"
+    hammer-timejs "^1.1.0"
 
 ember-hbs-minifier@^0.3.0:
   version "0.3.0"
@@ -7238,6 +7271,16 @@ growly@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
   integrity sha1-8QdIy+dq+WS3yWyTxrzCivEgwIE=
+
+hammer-timejs@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/hammer-timejs/-/hammer-timejs-1.1.0.tgz#fc07ec1e4012228fe51b6a51218ec12661a32a42"
+  integrity sha1-/AfsHkASIo/lG2pRIY7BJmGjKkI=
+
+hammerjs@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
+  integrity sha1-BO93hiz/K7edMPdpIJWTAiK/YPE=
 
 handlebars@^4.0.11, handlebars@^4.0.4, handlebars@^4.0.6:
   version "4.0.12"
