@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 
 import { A } from '@ember/array';
+import { computed } from '@ember-decorators/object';
 import { notEmpty } from '@ember-decorators/object/computed';
 
 import { syncToLocalStorage } from 'emberclear/src/utils/decorators';
@@ -18,6 +19,128 @@ export default class Sidebar extends Service {
   get isShown(): boolean {
     return false;
   }
+
+  type =           'left'; // 'left' or 'right'
+  width =          85;     // 0-100
+  maxWidth =       300;   // in px
+  maskEnabled =    true;
+  shadowEnabled =  true;
+  triggerVelocity = 0.3;
+
+  // private
+  isDragging = false;
+  isTransitioning = false;
+  position = 0;
+  dxCorrection = 0;
+
+  @computed('width', 'maxWidth')
+  get _width(){
+    return Math.min(this.width) / 100 * window.innerWidth, this.maxWidth);
+  }
+
+  panOpen(e){
+    this.set('isDragging', true);
+
+    const { current: { distanceX } } = e;
+
+    const width = this._width;
+
+    // enforce limits on the offset [0, width]
+    const targetPosition = Math.min(Math.max(distanceX, 0), width);
+
+    this.set('position', targetPosition);
+  }
+
+  panOpenEnd(e){
+    this.set('isDragging', false);
+
+    const { current: { distanceX, velocityX, } } = e;
+
+    const triggerVelocity = this.triggerVelocity;
+
+    const width = this._width;
+
+    const dx = distanceX;
+    const vx = velocityX;
+
+    // when overall horizontal velocity is high, force open/close and skip the rest
+    if (vx > triggerVelocity || dx > width / 2) {
+      this.show();
+    } else {
+      this.hide();
+    }
+  }
+
+  // pan handlers for closing the menu
+  didPan(e){
+    const {
+      current: {
+        distanceX,
+        x
+      }
+    } = e;
+
+    const windowWidth = window.innerWidth;
+    const width = this._width;
+
+    const dx = distanceX;
+    const cx = x;
+
+    if(this.isOpen && !this.isDragging){
+      // calculate and set a correction delta if the pan started outside the opened menu
+      if(cx < width) {
+        this.set('isDragging', true);
+        this.set('dxCorrection', dx);
+      }
+    }
+
+    if(this.get('isDragging')){
+      let targetPosition = dx;
+
+      // correct targetPosition with dxCorrection set earlier
+      targetPosition -= this.get('dxCorrection');
+
+      // enforce limits on the offset [0, width]
+      if(cx < width){
+        if(targetPosition > 0){
+          targetPosition = 0;
+        } else if(targetPosition < -1 * width){
+          targetPosition = -1 * width;
+        }
+        this.set('position', width + targetPosition);
+      }
+    }
+  }
+
+  didPanEnd(e){
+    if(this.isDragging){
+      this.set('isDragging', false);
+
+      const {
+        current: {
+          distanceX,
+          velocityX
+        }
+      } = e;
+
+      const triggerVelocity = this.triggerVelocity;
+
+      const width = this._width;
+
+      const dx = distanceX;
+      const vx = velocityX;
+
+      // the pan action is over, cleanup and set the correct final menu position
+      if (vx < -1 * triggerVelocity || -1 * dx > width / 2){
+        this.hide();
+      } else {
+        this.show();
+      }
+
+      this.set('dxCorrection', 0);
+    }
+  }
+
 
   show() {
     this.set('isShown', true);

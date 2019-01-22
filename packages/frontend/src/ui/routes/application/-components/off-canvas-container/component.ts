@@ -16,6 +16,9 @@ export default class OffCanvasContainer extends TouchComponent {
   @reads('identity.isLoggedIn')
   isLoggedIn!: boolean;
 
+  openDetectionWidth = 15;
+  isDraggingOpen = false;
+
   @action
   toggleSidebar(this: OffCanvasContainer) {
     this.sidebar.toggle();
@@ -25,5 +28,17 @@ export default class OffCanvasContainer extends TouchComponent {
     console.log(e);
 
     this.sidebar.toggle();
+  }
+
+  didPanStart(e) {
+
+  }
+
+  didPan(e) {
+
+  }
+
+  didPanEnd(e) {
+
   }
 }
