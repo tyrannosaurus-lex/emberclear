@@ -36,8 +36,21 @@ module.exports = {
     // verbose
     'getter-return': 'off',
 
+    // typescript
+    '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/no-empty-interface': 'off',
+    '@typescript-eslint/explicit-member-accessibility': 'off',
+    // this one has to be disabled, because not all of my deps use real types
+    // ... or, my custom type defs are incorrect
+    '@typescript-eslint/interface-name-prefix': 'off', // ['error', 'always'],
+    // typescript isn't smart enough to know when we _know_ data will exist
+    '@typescript-eslint/no-non-null-assertion': 'off',
+
     // prettier
     'prettier/prettier': 'error',
+
+    // better handled by prettier:
+    '@typescript-eslint/indent': 'off',
   },
   overrides: [
     // {
@@ -61,10 +74,13 @@ module.exports = {
         'config/**/*.js',
         'tests/dummy/config/**/*.js'
       ],
-      parserOptions: {
-        sourceType: 'script',
-        ecmaVersion: 2015
+      rules: {
+        '@typescript-eslint/camelcase': 'off',
       },
+      // parserOptions: {
+      //   sourceType: 'script',
+      //   ecmaVersion: 2015
+      // },
       env: {
         browser: false,
         node: true
