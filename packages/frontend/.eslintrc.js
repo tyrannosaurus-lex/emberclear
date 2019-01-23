@@ -23,15 +23,19 @@ module.exports = {
   //   browser: true
   // },
   rules: {
-    'semi': ['error', 'always'],
+    // ember specific
     'ember/avoid-leaking-state-in-ember-objects': 'warn',
+    'ember/no-ember-testing-in-module-scope': 'off', // needed for tasks atm
+    'ember/use-brace-expansion': 'off', // won't matter with @tracked
+
+    // cleanliness
     'no-console': 'warn',
     'no-cond-assign': 'off',
     'no-useless-escape': 'off',
     'require-yield': 'off',
 
-    // doesn't support deep nesting
-    'qunit/no-identical-names': 'warn',
+    // tests / qunit
+    'qunit/no-identical-names': 'warn', // doesn't support deep nesting
 
     // verbose
     'getter-return': 'off',
@@ -76,6 +80,7 @@ module.exports = {
       ],
       rules: {
         '@typescript-eslint/camelcase': 'off',
+        '@typescript-eslint/no-var-requires': 'off'
       },
       // parserOptions: {
       //   sourceType: 'script',
