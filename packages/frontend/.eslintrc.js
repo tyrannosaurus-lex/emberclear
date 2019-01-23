@@ -1,30 +1,29 @@
 module.exports = {
   root: true,
-  parserOptions: {
-    ecmaVersion: 2017,
-    sourceType: 'module'
-  },
-  parser: "typescript-eslint-parser",
+  // parserOptions: {
+  //   ecmaVersion: 2017,
+  //   sourceType: 'module'
+  // },
+
+  parser: '@typescript-eslint/parser',
   plugins: [
     'ember',
     'prettier',
-    'qunit'
+    'qunit',
+    '@typescript-eslint',
   ],
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
-    // prettier disabled, because it does not yet support
-    // - multiline object destructuring
-    // - multiline arrays (for large arrays)
-    'prettier',
     'plugin:qunit/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
   ],
-  env: {
-    browser: true
-  },
+  // env: {
+  //   browser: true
+  // },
   rules: {
     'semi': ['error', 'always'],
-    'prettier/prettier': 'error',
     'ember/avoid-leaking-state-in-ember-objects': 'warn',
     'no-console': 'warn',
     'no-cond-assign': 'off',
@@ -36,17 +35,20 @@ module.exports = {
 
     // verbose
     'getter-return': 'off',
+
+    // prettier
+    'prettier/prettier': 'error',
   },
   overrides: [
-    {
-      files: ['**/*.ts'],
-      rules: {
-        // Better enforced by TS
-        'no-undef': 'off',
-        'no-unused-vars': 'off',
-        'ember/no-attrs-snapshot': 'off'
-      }
-    },
+    // {
+    //   files: ['**/*.ts'],
+    //   rules: {
+    //     // Better enforced by TS
+    //     'no-undef': 'off',
+    //     'no-unused-vars': 'off',
+    //     'ember/no-attrs-snapshot': 'off'
+    //   }
+    // },
     // node files
     {
       files: [
