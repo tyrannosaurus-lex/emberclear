@@ -28,11 +28,12 @@ module.exports = {
     'ember/no-ember-testing-in-module-scope': 'off', // needed for tasks atm
     'ember/use-brace-expansion': 'off', // won't matter with @tracked
 
-    // cleanliness
+    // cleanliness & consistency
     'no-console': 'warn',
     'no-cond-assign': 'off',
     'no-useless-escape': 'off',
     'require-yield': 'off',
+    '@typescript-eslint/camelcase': 'off', // temp disable, because route params are snake case
 
     // tests / qunit
     'qunit/no-identical-names': 'warn', // doesn't support deep nesting
