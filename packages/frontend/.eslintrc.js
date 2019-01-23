@@ -34,12 +34,10 @@ module.exports = {
     'no-useless-escape': 'off',
     'require-yield': 'off',
     '@typescript-eslint/camelcase': 'off', // temp disable, because route params are snake case
+    'getter-return': 'off',
 
     // tests / qunit
     'qunit/no-identical-names': 'warn', // doesn't support deep nesting
-
-    // verbose
-    'getter-return': 'off',
 
     // typescript
     '@typescript-eslint/no-use-before-define': 'off',
@@ -50,6 +48,7 @@ module.exports = {
     '@typescript-eslint/interface-name-prefix': 'off', // ['error', 'always'],
     // typescript isn't smart enough to know when we _know_ data will exist
     '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off', // implicit return types are fine
 
     // prettier
     'prettier/prettier': 'error',
