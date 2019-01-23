@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
 declare global {
+  interface Prism {
+    highlightAll: () => void;
+  }
+
   interface IDecoratorArgs extends Array<any | string | PropertyDescriptor> {
     0: any;
     1: string;

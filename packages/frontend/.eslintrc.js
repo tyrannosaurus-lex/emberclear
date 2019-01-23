@@ -66,6 +66,14 @@ module.exports = {
     //     'ember/no-attrs-snapshot': 'off'
     //   }
     // },
+    {
+      files: [
+        'src/services/prism-manager.ts'
+      ],
+      rules: {
+        'no-undef': 'off',
+      },
+    },
     // node files
     {
       files: [
