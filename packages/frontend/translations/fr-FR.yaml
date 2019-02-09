@@ -2,7 +2,7 @@
 appname: emberclear
 subheader: Tchat cryptée. Pas d'historique. Pas de log.
 authoredBy: par Preston Sego
-redditCommunity: Reddit Community
+redditCommunity: Communautée Reddit
 todo: 'A faire: Remplir ceci correctement'
 qrCode:
   error: QR Code n'a pas pu être généré
@@ -11,8 +11,8 @@ connection:
   connected: Connecté !
   status:
     socket:
-      error: An error occurred in the socket connection!
-      close: The socket connection has been dropped!
+      error: Une erreur s'est produite dans la connexion socket !
+      close: La connexion de socket a été abandonnée !
     timeout: Problème réseau. Veuillez patienter ...
   errors:
     send:
@@ -22,7 +22,7 @@ connection:
 buttons:
   delete: supprimer
   resend: ré-envoyer
-  resendAutomatically: resend automatically
+  resendAutomatically: renvoyer automatiquement
   enable: Enable
   save: Sauvegarder
   next: Suivant
