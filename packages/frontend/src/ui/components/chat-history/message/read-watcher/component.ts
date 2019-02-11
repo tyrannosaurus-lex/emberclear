@@ -15,11 +15,10 @@ export default class ReadWatcher extends Component<IArgs> {
   constructor(args: IArgs) {
     super(args);
 
-    useReadWatcher({
+    useReadWatcher(this, {
       selector: '.messages',
       action: this.args.markRead,
       message: this.args.message,
-      context: this,
     });
   }
 }

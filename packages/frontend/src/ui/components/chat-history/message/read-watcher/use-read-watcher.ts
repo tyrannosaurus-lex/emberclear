@@ -5,10 +5,9 @@ interface IArgs {
   selector: string;
   action: () => void;
   message: Message;
-  context: any;
 }
 
-export function useReadWatcher({ action, selector, message, context }: IArgs) {
+export function useReadWatcher(context: any, { action, selector, message }: IArgs) {
   let io: IntersectionObserver;
   let messageElement!: Element;
 
