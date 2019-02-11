@@ -14,13 +14,11 @@ export default class QRScanner extends Component<IArgs> {
   constructor(args: IArgs) {
     super(args);
 
-    // how to handle camera not found / permission denied?
-    // more functions passed to useQRScanner?
     useQRScanner(this, {
       selector: '#qr-preview',
       onScan: this.args.onScan,
       onActive: () => (this.started = true),
-      onError: e => {
+      onError: (e: Error | string) => {
         if (typeof e === 'string' && e.includes('Camera not found')) {
           this.cameraNotFound = true;
         }

@@ -6,7 +6,7 @@ interface IArgs {
   selector: string;
   onScan: (qrContent: string) => void;
   onActive: () => void;
-  onError: (e: Error) => void;
+  onError: (e: Error | string) => void;
 }
 
 export function useQRScanner(context: any, { selector, onScan, onActive, onError }: IArgs) {
