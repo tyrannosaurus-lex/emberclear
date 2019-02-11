@@ -1,7 +1,6 @@
 import Component, { tracked } from 'sparkles-component';
 
-import QrScanner from 'qr-scanner';
-// import { NoCameraError } from 'emberclear/src/utils/errors';
+import { useQRScanner } from './use-qr-scanner';
 
 interface IArgs {
   onScan: (qrContent: string) => void;
@@ -9,44 +8,17 @@ interface IArgs {
 }
 
 export default class QRScanner extends Component<IArgs> {
-  scanner?: QrScanner = undefined;
-
   @tracked started = false;
 
-  didInsertElement() {
-    this.mountScanner();
-  }
+  constructor(args: IArgs) {
+    super(args);
 
-  async destroy() {
-    await this.unmountScanner();
-  }
-
-  async unmountScanner() {
-    if (!this.scanner) return;
-
-    this.scanner.stop();
-    this.scanner._qrWorker && this.scanner._qrWorker.terminate();
-  }
-
-  async mountScanner(this: QRScanner) {
-    const scanner = this.newScanner();
-
-    this.scanner = scanner;
-
-    await scanner.start();
-
-    this.started = true;
-  }
-
-  newScanner(): QrScanner {
-    const video = document.querySelector('#qr-preview')!;
-    const scanner = new QrScanner(video, (result: string) => {
-      scanner.stop();
-      scanner._qrWorker.terminate();
-
-      this.args.onScan(result);
+    // how to handle camera not found / permission denied?
+    // more functions passed to useQRScanner?
+    useQRScanner(this, {
+      selector: '#qr-preview',
+      onScan: this.args.onScan,
+      onActive: () => (this.started = true),
     });
-
-    return scanner;
   }
 }

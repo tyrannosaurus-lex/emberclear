@@ -71,11 +71,11 @@ export function useReadWatcher(context: any, { action, selector, message }: IArg
 
   // install the effect
   // willDestroy in Glimmer
-  context.willDestroyElement = function() {
+  context.destroy = function() {
     willDestroyElement();
 
-    if (context.willDestroyElement) {
-      context.willDestroyElement();
+    if (context.destroy) {
+      context.destroy();
     }
   }.bind(context);
 
