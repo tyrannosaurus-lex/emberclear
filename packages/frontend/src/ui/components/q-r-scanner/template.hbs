@@ -7,6 +7,10 @@
     <div style='width: 250px; height: 250px;' class='loader'></div>
   {{/unless}}
 
+  {{#if this.cameraNotFound}}
+    No camera was found. Perhaps camera permissions have been disabled?
+  {{/if}}
+
   <video
     id='qr-preview'
     class='w-100 {{if this.started 'is-block' 'is-hidden'}}'

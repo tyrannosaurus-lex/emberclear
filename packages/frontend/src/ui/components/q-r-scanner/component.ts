@@ -9,6 +9,7 @@ interface IArgs {
 
 export default class QRScanner extends Component<IArgs> {
   @tracked started = false;
+  @tracked cameraNotFound = false;
 
   constructor(args: IArgs) {
     super(args);
@@ -19,6 +20,11 @@ export default class QRScanner extends Component<IArgs> {
       selector: '#qr-preview',
       onScan: this.args.onScan,
       onActive: () => (this.started = true),
+      onError: e => {
+        if (typeof e === 'string' && e.includes('Camera not found')) {
+          this.cameraNotFound = true;
+        }
+      },
     });
   }
 }

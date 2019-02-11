@@ -6,9 +6,10 @@ interface IArgs {
   selector: string;
   onScan: (qrContent: string) => void;
   onActive: () => void;
+  onError: (e: Error) => void;
 }
 
-export function useQRScanner(context: any, { selector, onScan, onActive }: IArgs) {
+export function useQRScanner(context: any, { selector, onScan, onActive, onError }: IArgs) {
   let scanner: QrScanner;
 
   useEffect(context, {
@@ -20,9 +21,14 @@ export function useQRScanner(context: any, { selector, onScan, onActive }: IArgs
     },
     didInsert: async () => {
       scanner = newScanner();
-      await scanner.start();
 
-      onActive();
+      try {
+        await scanner.start();
+
+        onActive();
+      } catch (e) {
+        onError(e);
+      }
     },
   });
 
