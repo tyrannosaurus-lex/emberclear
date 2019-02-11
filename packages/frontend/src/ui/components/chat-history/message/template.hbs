@@ -16,25 +16,16 @@
   <div class='message-header'>
     <span class='from p-r-md'>
       {{#if this.hasSender}}
-
         {{#link-to 'chat.privately-with' @message.from}}
           {{this.senderName}}
         {{/link-to}}
-
       {{else}}
         <em>{{t 'ui.chat.sender.removed'}}</em>
       {{/if}}
     </span>
 
     <span class='sentAt is-size-7 has-hover-tip'>
-      {{format-date
-        @message.sentAt
-        year='numeric'
-        month='numeric'
-        day='numeric'
-        hour='numeric'
-        minute='numeric'
-      }}
+      <Date @date={{@message.sentAt}} />
 
       {{#if @message.receivedAt}}
         <HoverTip>
