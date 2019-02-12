@@ -13,12 +13,14 @@ export function useQRScanner(context: any, { selector, onScan, onActive, onError
   let scanner: QrScanner;
 
   useEffect(context, {
+
     willDestroy: () => {
       if (!scanner) return;
 
       scanner.stop();
       scanner._qrWorker && scanner._qrWorker.terminate();
     },
+
     didInsert: async () => {
       scanner = newScanner();
 
@@ -45,3 +47,4 @@ export function useQRScanner(context: any, { selector, onScan, onActive, onError
     return _scanner;
   };
 }
+

@@ -18,11 +18,13 @@ export default class QRScanner extends Component<IArgs> {
       selector: '#qr-preview',
       onScan: this.args.onScan,
       onActive: () => (this.started = true),
-      onError: (e: Error | string) => {
-        if (typeof e === 'string' && e.includes('Camera not found')) {
-          this.cameraNotFound = true;
-        }
-      },
+      onError: this.onError,
     });
+  }
+
+  onError(e: Error | string) {
+    if (typeof e === 'string' && e.includes('Camera not found')) {
+      this.cameraNotFound = true;
+    }
   }
 }
