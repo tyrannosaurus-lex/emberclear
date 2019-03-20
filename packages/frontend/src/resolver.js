@@ -10,8 +10,8 @@ let moduleConfig = buildResolverConfig(config.modulePrefix);
  * to add support for them.
  */
 
- //////////////
- // ember-intl
+//////////////
+// ember-intl
 moduleConfig.types = Object.assign(moduleConfig.types, {
   'ember-intl@adapter': { definitiveCollection: 'main' },
   'ember-intl@translation': { definitiveCollection: 'main' },
