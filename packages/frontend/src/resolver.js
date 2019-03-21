@@ -18,6 +18,7 @@ moduleConfig.types = Object.assign(moduleConfig.types, {
   translation: { definitiveCollection: 'main' },
   formats: { definitiveCollection: 'main' },
   cldr: { definitiveCollection: 'main' },
+  util: { definitiveCollection: 'main' },
 });
 moduleConfig.collections.main.types.push('translation');
 
