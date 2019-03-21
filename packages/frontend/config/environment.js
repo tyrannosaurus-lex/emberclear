@@ -77,7 +77,7 @@ module.exports = function(environment) {
 
   ENV['ember-a11y-testing'] = {
     componentOptions: {
-      turnAuditOff: true, // Change to true to disable the audit in development
+      turnAuditOff: false,
     },
   };
 
