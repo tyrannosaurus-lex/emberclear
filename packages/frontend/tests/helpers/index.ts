@@ -42,8 +42,6 @@ export function setupWindowNotification(hooks: NestedHooks) {
 export function assertExternal(assert: any) {
   percySnapshot(assert);
   a11yAuditIf();
-
-
 }
 
 export async function refresh(mocking: () => void = () => undefined) {
