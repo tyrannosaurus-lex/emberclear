@@ -26,7 +26,6 @@ module.exports = function(environment) {
         'ember-metal-tracked-properties': true,
         EMBER_GLIMMER_ANGLE_BRACKET_INVOCATION: true,
         EMBER_MODULE_UNIFICATION: true,
-
       },
       EXTEND_PROTOTYPES: false,
     },
