@@ -6,6 +6,7 @@ module.exports = function(environment) {
       features: {
         EMBER_RESOLVER_MODULE_UNIFICATION: true,
         EMBER_GLIMMER_ANGLE_BRACKET_INVOCATION: true,
+        EMBER_MODULE_UNIFICATION: true,
       },
     },
     modulePrefix: 'emberclear',
@@ -24,6 +25,8 @@ module.exports = function(environment) {
         'ember-glimmer-angle-bracket-invocation': true,
         'ember-metal-tracked-properties': true,
         EMBER_GLIMMER_ANGLE_BRACKET_INVOCATION: true,
+        EMBER_MODULE_UNIFICATION: true,
+
       },
       EXTEND_PROTOTYPES: false,
     },
