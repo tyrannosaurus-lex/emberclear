@@ -109,8 +109,6 @@
     "ember-keyboard": "^4.0.0",
     "ember-load-initializers": "2.0.0",
     "ember-localforage-adapter": "^3.0.0-beta4",
-    "ember-template-component-import": "github:lifeart/ember-template-component-import#mu-support",
-
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-percy": "^1.5.0",
     "ember-purify": "^4.2.0",
@@ -124,7 +122,7 @@
     "ember-sinon": "^3.0.0",
     "ember-source": "https://s3.amazonaws.com/builds.emberjs.com/canary/shas/f77abaf9d5995916e2ad1f0807b86cc2015c808b.tgz",
     "ember-template-lint": "1.1.0",
-    "ember-test-selectors": "2.1.0",
+    "ember-test-selectors": "^3.0.0-beta.1",
     "ember-web-app": "^3.0.0-beta.1",
     "eslint": "^5.12.1",
     "eslint-config-prettier": "^4.0.0",
