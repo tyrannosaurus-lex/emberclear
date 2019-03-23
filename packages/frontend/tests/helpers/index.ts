@@ -1,8 +1,4 @@
-import {
-  visit as dangerousVisit,
-  getContext,
-  getSettledState,
-} from '@ember/test-helpers';
+import { visit as dangerousVisit, getContext, getSettledState } from '@ember/test-helpers';
 import a11yAuditIf from 'ember-a11y-testing/test-support/audit-if';
 import { percySnapshot } from 'ember-percy';
 
@@ -41,5 +37,3 @@ export function clearToasts(hooks: NestedHooks) {
     toasts.clearAll();
   });
 }
-
-

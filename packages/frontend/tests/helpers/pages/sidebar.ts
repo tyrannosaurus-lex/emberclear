@@ -1,7 +1,7 @@
 import { find, click, triggerKeyEvent, fillIn, findAll } from '@ember/test-helpers';
 
 import { create, clickable, isVisible, text } from 'ember-cli-page-object';
-import { waitUntilTruthy } from "../waitUntilTruthy";
+import { waitUntilTruthy } from '../waitUntilTruthy';
 
 const wrapper = '[data-test-offcanvas-wrapper]';
 const toggleButton = '[data-test-hamburger-toggle]';
@@ -12,7 +12,7 @@ const contacts = '[data-test-sidebar-contacts]';
 export const openSidebar = async () => {
   await page.toggle();
   await waitUntilTruthy(() => sidebar.isOpen());
-}
+};
 
 export const page = create({
   scope: '[data-test-offcanvas-wrapper]',

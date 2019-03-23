@@ -18,8 +18,7 @@ export async function waitUntilTruthy(func: Function, timeoutMs = 500) {
         let result = false;
         try {
           result = await func();
-        }
-        catch (e) {
+        } catch (e) {
           // ignored
         }
         if (result) {
