@@ -1,6 +1,7 @@
 import { find, click, triggerKeyEvent, fillIn, findAll } from '@ember/test-helpers';
 
 import { create, clickable, isVisible, text } from 'ember-cli-page-object';
+import { waitUntilTruthy } from "../waitUntilTruthy";
 
 const wrapper = '[data-test-offcanvas-wrapper]';
 const toggleButton = '[data-test-hamburger-toggle]';
@@ -8,8 +9,14 @@ const sidebarContainer = '[data-test-sidebar-container]';
 const channelForm = '[data-test-channel-form]';
 const contacts = '[data-test-sidebar-contacts]';
 
+export const openSidebar = async () => {
+  await page.toggle();
+  await waitUntilTruthy(() => sidebar.isOpen());
+}
+
 export const page = create({
   scope: '[data-test-offcanvas-wrapper]',
+  toggle: clickable(`${sidebarContainer} ${toggleButton}`),
   contacts: {
     scope: '[data-test-sidebar-contacts]',
     clickAdd: clickable('[data-test-add-friend]'),
@@ -29,7 +36,7 @@ export const sidebar = {
 
   wrapper: () => find(wrapper),
 
-  toggle: () => click(`${wrapper} ${sidebarContainer} > ${toggleButton}`),
+  toggle: () => click(`${wrapper} ${sidebarContainer} ${toggleButton}`),
 
   isOpen: () => !!find(`${wrapper} .is-sidebar-visible`),
   isPresent: () => !!find(`${wrapper} ${sidebarContainer}`),

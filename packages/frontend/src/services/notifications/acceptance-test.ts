@@ -5,8 +5,8 @@ import { setupApplicationTest } from 'ember-qunit';
 import {
   clearLocalStorage,
   setupRelayConnectionMocks,
-  setupWindowNotification,
   getService,
+  setupWindowNotification,
 } from 'emberclear/tests/helpers';
 
 import Notifications from './service';

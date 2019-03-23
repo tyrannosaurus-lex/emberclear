@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import StoreService from 'ember-data/store';
 
-import { visit, currentURL, settled, waitFor } from '@ember/test-helpers';
+import { visit, currentURL, settled, waitFor, find } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 import {
@@ -11,11 +11,10 @@ import {
   getService,
   text,
   createIdentity,
-  waitUntilTruthy,
 } from 'emberclear/tests/helpers';
 
 import IdentityService from 'emberclear/src/services/identity/service';
-import { sidebar, page } from 'emberclear/tests/helpers/pages/sidebar';
+import { sidebar, page, openSidebar } from 'emberclear/tests/helpers/pages/sidebar';
 import { settings } from 'emberclear/tests/helpers/pages/settings';
 
 module('Acceptance | Sidebar', function(hooks) {
@@ -26,14 +25,13 @@ module('Acceptance | Sidebar', function(hooks) {
 
   hooks.beforeEach(async function() {
     await visit('/chat');
-    await sidebar.toggle();
-    await waitUntilTruthy(() => sidebar.isOpen());
+    await openSidebar();
   });
 
   module('Contacts', function() {
     module('the add contact button is clicked', function(hooks) {
       hooks.beforeEach(async function() {
-        await sidebar.contacts.clickAdd();
+        await page.contacts.clickAdd();
       });
 
       test('a navigation occurred', function(assert) {
