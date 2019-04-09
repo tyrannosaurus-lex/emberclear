@@ -102,7 +102,7 @@
     "ember-data": "^3.6.0",
     "ember-decorators": "5.1.4",
     "ember-elsewhere": "^1.0.4",
-    "ember-exam": "^2.0.0",
+    "ember-exam": "^3.0.0",
     "ember-export-application-global": "^2.0.0",
     "ember-hbs-minifier": "^0.3.0",
     "ember-intl": "^3.1.1",
