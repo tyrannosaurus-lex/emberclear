@@ -117,5 +117,10 @@ module.exports = function(defaults) {
     using: [{ transformation: 'cjs', as: 'uuid' }],
   });
 
-  return mergeTrees([app.toTree(), qrScannerWorker]);
+  // const combined = mergeTrees([app.toTree(), qrScannerWorker]);
+  // return combined;
+  const Webpack = require('@embroider/webpack').Webpack;
+  return require('@embroider/compat').compatBuild(app, Webpack, {
+    extraPublicTrees: [qrScannerWorker],
+  });
 };
