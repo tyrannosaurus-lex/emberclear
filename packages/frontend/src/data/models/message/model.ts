@@ -1,6 +1,6 @@
 import Model from 'ember-data/model';
-import DS from 'ember-data';
-const { attr, hasMany, belongsTo } = DS;
+import attr from 'ember-data/attr';
+import { hasMany, belongsTo } from 'ember-data/relationships';
 import { not } from '@ember/object/computed';
 
 import Identity from 'emberclear/data/models/identity/model';

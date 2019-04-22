@@ -18,6 +18,7 @@ module.exports = function(environment) {
         EMBER_GLIMMER_ANGLE_BRACKET_INVOCATION: true,
         EMBER_GLIMMER_ANGLE_BRACKET_NESTED_LOOKUP: true,
         EMBER_GLIMMER_ANGLE_BRACKET_BUILT_INS: true,
+        EMBER_GLIMMER_FN_HELPER: true,
       },
       EXTEND_PROTOTYPES: false,
     },
