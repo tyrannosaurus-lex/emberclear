@@ -12,6 +12,7 @@ import IdentityService from 'emberclear/src/services/identity/service';
 
 import { parseURLs } from 'emberclear/src/utils/string/utils';
 import { convertAndSanitizeMarkdown } from 'emberclear/src/utils/dom/utils';
+import Task from 'ember-concurrency/task';
 
 interface IArgs {
   message: Message;
@@ -75,5 +76,5 @@ export default class MessageDisplay extends Component<IArgs> {
       }
     }
   })
-  markRead;
+  markRead!: Task;
 }

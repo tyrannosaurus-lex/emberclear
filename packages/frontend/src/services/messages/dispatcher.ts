@@ -16,6 +16,7 @@ import MessageFactory from 'emberclear/services/messages/factory';
 import { toHex } from 'emberclear/src/utils/string-encoding';
 import { build as toPayloadJson } from './-utils/builder';
 import { encryptForSocket } from './-utils/encryptor';
+import Task from 'ember-concurrency/task';
 
 export default class MessageDispatcher extends Service {
   @service notifications!: Notifications;
@@ -70,7 +71,7 @@ export default class MessageDispatcher extends Service {
       this.sendToUser.perform(msg, identity);
     });
   })
-  sendToAll: any;
+  sendToAll!: Task;
 
   sendToChannel(msg: Message, channel: Channel) {
     const members = channel.members;
@@ -111,7 +112,7 @@ export default class MessageDispatcher extends Service {
       console.debug(e.name, e);
     }
   })
-  sendToUser: any;
+  sendToUser!: Task;
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.

@@ -6,6 +6,7 @@ import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 
 import RelayManager from 'emberclear/services/relay-manager';
+import Task from 'ember-concurrency/task';
 
 // https://stackoverflow.com/a/8260383/356849
 const YT_PATTERN = /^.*(youtu.be\/|\/v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -32,13 +33,13 @@ export default class EmbeddedResource extends Component<IArgs> {
     this.setup.perform();
   }
 
-  @task(function*() {
+  @task(function*(this: EmbeddedResource) {
     if (!this.args.url) return;
 
     this.parseUrl();
     this.fetchOpenGraph();
   })
-  setup;
+  setup!: Task;
 
   @or('embedUrl', 'isImage', 'hasOgData') shouldRender!: boolean;
 

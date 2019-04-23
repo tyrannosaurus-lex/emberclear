@@ -8,6 +8,7 @@ import { timeout, task } from 'ember-concurrency';
 import ChatScroller from 'emberclear/services/chat-scroller';
 import Identity from 'emberclear/src/data/models/identity/model';
 import Channel from 'emberclear/src/data/models/channel';
+import Task from 'ember-concurrency/task';
 
 interface IArgs {
   to: Identity | Channel;
@@ -43,5 +44,5 @@ export default class ChatHistory extends Component<IArgs> {
       }
     }
   }).keepLatest())
-  autoScrollToBottom;
+  autoScrollToBottom!: Task;
 }

@@ -11,6 +11,7 @@ import {
   hasServiceWorker,
   hasWebWorker,
 } from './-utils/detection';
+import Task from 'ember-concurrency/task';
 
 export default class Compatibility extends Component {
   @tracked hasCamera!: boolean;
@@ -43,7 +44,7 @@ export default class Compatibility extends Component {
 
     this.hasNotifications = check(hasNotifications());
   }).drop())
-  detectFeatures;
+  detectFeatures!: Task;
 
   private checkSuccess(value: boolean) {
     if (value) {

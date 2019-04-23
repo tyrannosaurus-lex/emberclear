@@ -10,6 +10,7 @@ import Relay from 'emberclear/src/data/models/relay';
 
 import { toHex } from 'emberclear/src/utils/string-encoding';
 import { ConnectionError, RelayNotSetError } from 'emberclear/src/utils/errors';
+import Task from 'ember-concurrency/task';
 
 interface ISendPayload {
   to: string;
@@ -127,7 +128,7 @@ export default class RelayConnection extends Service {
 
     yield this.ensureConnectionToChannel.perform();
   }).drop())
-  establishConnection: any;
+  establishConnection!: Task;
 
   @(task(function*(this: RelayConnection) {
     const { t } = this.intl;
@@ -138,7 +139,7 @@ export default class RelayConnection extends Service {
 
     yield this.setupChannel();
   }).drop())
-  ensureConnectionToChannel: any;
+  ensureConnectionToChannel!: Task;
 
   private async setupChannel() {
     return new Promise((resolve, reject) => {
@@ -189,7 +190,7 @@ export default class RelayConnection extends Service {
     // ping for user statuses
     this.dispatcher.pingAll();
   }).drop())
-  handleConnected: any;
+  handleConnected!: Task;
 
   handleMessage = (data: RelayMessage) => {
     this.processor.receive(data);

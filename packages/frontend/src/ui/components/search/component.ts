@@ -5,6 +5,7 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
+import Task from 'ember-concurrency/task';
 
 interface IArgs {
   isActive: boolean;
@@ -51,5 +52,5 @@ export default class SearchModal extends Component<IArgs> {
 
     this.channelResults = channelResults.slice(0, 5);
   }).keepLatest())
-  search: any;
+  search!: Task;
 }
