@@ -1,16 +1,16 @@
-import DS from 'ember-data';
 import Component from '@ember/component';
-
 import { inject as service } from '@ember/service';
 import { alias, equal } from '@ember/object/computed';
 import { isPresent } from '@ember/utils';
+import StoreService from 'ember-data/store';
+import RouterService from '@ember/routing/router-service';
 
 const PRIVATE_CHAT_REGEX = /chat\/privately-with\/(.+)/;
 const CHANNEL_REGEX = /chat\/in-channel\/(.+)/;
 
 export default class extends Component {
-  @service store!: DS.Store;
-  @service router!: Router;
+  @service store!: StoreService;
+  @service router!: RouterService;
 
   @alias('router.currentRouteName') routeName!: string;
   @equal('routeName', 'chat.index') isRootChat!: boolean;

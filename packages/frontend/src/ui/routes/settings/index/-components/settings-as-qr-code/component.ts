@@ -7,6 +7,7 @@ import IdentityService from 'emberclear/services/identity/service';
 import Settings from 'emberclear/services/settings';
 
 import { convertObjectToQRCodeDataURL } from 'emberclear/src/utils/string-encoding';
+import Task from 'ember-concurrency/task';
 
 export default class SettingsAsQrCode extends Component {
   @service identity!: IdentityService;
@@ -23,5 +24,5 @@ export default class SettingsAsQrCode extends Component {
 
     return qrCode;
   }).on('didInsertElement'))
-  qrCodeTask;
+  qrCodeTask!: Task;
 }

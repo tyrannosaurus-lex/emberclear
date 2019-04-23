@@ -1,4 +1,4 @@
-import Component from 'sparkles-component';
+import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
 import { later } from '@ember/runloop';
@@ -19,8 +19,8 @@ export default class LocaleSwitcher extends Component<IArgs> {
   @tracked isActive = false;
   dropDownId = uuid();
 
-  constructor(args: IArgs) {
-    super(args);
+  constructor() {
+    super(...arguments);
 
     this.options = [
       { locale: 'de-de', label: 'Deutsche' },

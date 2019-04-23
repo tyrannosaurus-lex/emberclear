@@ -1,4 +1,4 @@
-import Component from 'sparkles-component';
+import Component from '@glimmer/component';
 
 import { inject as service } from '@ember/service';
 import { reads } from '@ember/object/computed';
@@ -13,7 +13,8 @@ interface IArgs {
 export default class ModalStatic extends Component<IArgs> {
   @service modals!: Modals;
 
-  didInsertElement() {
+  constructor() {
+    super(...arguments);
     const { initiallyActive, name } = this.args;
 
     if (initiallyActive) {
@@ -21,7 +22,6 @@ export default class ModalStatic extends Component<IArgs> {
     }
   }
 
-  // @computed('args.name')
   get modal() {
     return this.modals.find(this.args.name);
   }

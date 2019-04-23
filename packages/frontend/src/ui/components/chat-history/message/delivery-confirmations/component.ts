@@ -1,5 +1,5 @@
 import StoreService from 'ember-data/store';
-import Component from 'sparkles-component';
+import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
 import { inject as service } from '@ember/service';
@@ -11,6 +11,7 @@ import Identity from 'emberclear/src/data/models/identity/model';
 import Channel from 'emberclear/src/data/models/channel';
 import IdentityService from 'emberclear/src/services/identity/service';
 import MessageDispatcher from 'emberclear/src/services/messages/dispatcher';
+import Task from 'ember-concurrency/task';
 
 const TIMEOUT_MS = 1000;
 
@@ -33,11 +34,7 @@ export default class DeliveryConfirmation extends Component<IArgs> {
     return this.args.message.to === this.identity.uid;
   }
 
-  didInsertElement() {
-    this.waitForConfirmation.perform();
-  }
-
-  @(task(function*() {
+  @(task(function*(this: DeliveryConfirmation) {
     if (this.timedOut) return;
 
     yield timeout(TIMEOUT_MS);
@@ -46,9 +43,9 @@ export default class DeliveryConfirmation extends Component<IArgs> {
       this.timedOut = true;
     }
   }).drop())
-  waitForConfirmation;
+  waitForConfirmation!: Task;
 
-  @(task(function*() {
+  @(task(function*(this: DeliveryConfirmation) {
     const { message } = this.args;
     let to: Identity | Channel;
 
@@ -70,20 +67,20 @@ export default class DeliveryConfirmation extends Component<IArgs> {
 
     yield this.waitForConfirmation.perform();
   }).drop())
-  resend;
+  resend!: Task;
 
-  @(task(function*() {
+  @(task(function*(this: DeliveryConfirmation) {
     const { message } = this.args;
 
     yield message.destroyRecord();
   }).drop())
-  deleteMessage;
+  deleteMessage!: Task;
 
-  @(task(function*() {
+  @(task(function*(this: DeliveryConfirmation) {
     const { message } = this.args;
 
     message.set('queueForResend', true);
     yield message.save();
   }).drop())
-  resendAutomatically;
+  resendAutomatically!: Task;
 }

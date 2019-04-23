@@ -3,7 +3,7 @@ declare module 'ember-concurrency' {
 
   export function task(
     generator: Function
-  ): {
+  ): PropertyDecorator & {
     drop(): PropertyDecorator;
     keepLatest(): PropertyDecorator;
     maxConcurrency(num: number): PropertyDecorator;

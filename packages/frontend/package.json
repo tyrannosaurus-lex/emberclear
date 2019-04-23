@@ -140,7 +140,6 @@
     "qunit-dom": "^0.8.0",
     "sass": "^1.16.1",
     "sass-lint": "^1.12.1",
-    "sparkles-component": "github:rwjblue/sparkles-component",
     "testem-failure-only-reporter": "^0.0.1",
     "typescript": "^3.4.2"
   },

@@ -2,7 +2,6 @@ import StoreService from 'ember-data/store';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
-import { Registry } from '@ember/service';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { reads, gt } from '@ember/object/computed';
@@ -14,13 +13,14 @@ import { selectUnreadDirectMessages } from 'emberclear/src/data/models/message/u
 import SettingsService from 'emberclear/src/services/settings';
 import SidebarService from 'emberclear/src/services/sidebar/service';
 import { TABLET_WIDTH } from 'emberclear/src/utils/breakpoints';
+import RouterService from '@ember/routing/router-service';
 
 interface IArgs {
   contact: Identity;
 }
 
 export default class SidebarContact extends Component<IArgs> {
-  @service router!: Registry['router'];
+  @service router!: RouterService;
   @service store!: StoreService;
   @service settings!: SettingsService;
   @service sidebar!: SidebarService;

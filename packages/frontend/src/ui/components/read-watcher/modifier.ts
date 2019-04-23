@@ -1,26 +1,24 @@
-import Component from 'sparkles-component';
+import Modifier from 'ember-oo-modifiers';
 
 import Message from 'emberclear/data/models/message/model';
 import { isInElementWithinViewport } from 'emberclear/src/utils/dom/utils';
 
-interface IArgs {
-  message: Message;
+interface NamedArgs {
   markRead: () => void;
 }
 
-export default class ReadWatcher extends Component<IArgs> {
+class ReadWatcher extends Modifier {
   messageElement!: Element;
   io?: IntersectionObserver;
   focusHandler!: () => void;
+  message!: Message;
+  markMessageRead!: () => void;
 
-  constructor(args: IArgs) {
-    super(args);
-
+  didInsertElement([message]: [Message], { markRead }: NamedArgs) {
+    this.message = message;
+    this.markMessageRead = markRead;
     this.focusHandler = this.respondToWindowFocus.bind(this);
-  }
-
-  didInsertElement() {
-    this.messageElement = document.getElementById(this.args.message.id)!;
+    this.messageElement = document.getElementById(message.id)!;
     this.maybeSetupReadWatcher();
   }
 
@@ -40,7 +38,7 @@ export default class ReadWatcher extends Component<IArgs> {
   }
 
   private markRead() {
-    this.args.markRead();
+    this.markMessageRead();
     this.disconnect();
   }
 
@@ -54,21 +52,17 @@ export default class ReadWatcher extends Component<IArgs> {
   }
 
   private maybeSetupReadWatcher() {
-    const { message } = this.args;
-
-    if (message.readAt) return;
+    if (this.message.readAt) return;
 
     window.addEventListener('focus', this.focusHandler);
     this.setupIntersectionObserver();
   }
 
   private setupIntersectionObserver() {
-    const { message } = this.args;
-
     const io = new IntersectionObserver(
       entries => {
         const isVisible = entries[0].intersectionRatio !== 0;
-        const canBeSeen = !message.isSaving && document.hasFocus();
+        const canBeSeen = !this.message.isSaving && document.hasFocus();
 
         if (isVisible && canBeSeen) {
           this.markRead();
@@ -84,3 +78,5 @@ export default class ReadWatcher extends Component<IArgs> {
     this.io = io;
   }
 }
+
+export default Modifier.modifier(ReadWatcher);

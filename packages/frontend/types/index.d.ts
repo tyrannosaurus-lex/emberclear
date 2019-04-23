@@ -5,7 +5,11 @@ import DOMPurify from 'dompurify';
 declare module '@ember/test-helpers' {
   interface AppContext {
     element: HTMLElement;
-    owner: ApplicationInstance;
+    owner: {
+      application: ApplicationInstance;
+      register: (name: string, obj: any) => void;
+      lookup: <T = any>(name: string) => T;
+    };
   }
 
   export function getContext(): AppContext;

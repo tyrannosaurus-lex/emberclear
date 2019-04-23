@@ -1,4 +1,4 @@
-import Component from 'sparkles-component';
+import Component from '@glimmer/component';
 import { computed } from '@ember/object';
 import { reads, not } from '@ember/object/computed';
 

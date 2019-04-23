@@ -1,5 +1,5 @@
 import StoreService from 'ember-data/store';
-import Component from 'sparkles-component';
+import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
 import { computed } from '@ember/object';
@@ -11,6 +11,7 @@ import ENV from 'emberclear/config/environment';
 import { fromHex } from 'emberclear/src/utils/string-encoding';
 
 import Identity from 'emberclear/services/identity/service';
+import Task from 'ember-concurrency/task';
 
 export default class AddModal extends Component {
   @service('notifications') toast!: Toast;
@@ -42,14 +43,14 @@ export default class AddModal extends Component {
     this.scanning = !this.scanning;
   }
 
-  @task(function*(identityJson: string) {
+  @task(function*(this: AddModal, identityJson: string) {
     const identity = JSON.parse(identityJson);
 
     yield this.tryCreate(identity);
 
     this.scanning = false;
   })
-  onScan;
+  onScan!: Task;
 
   onScanError(e: Error) {
     this.toast.error(e.message);

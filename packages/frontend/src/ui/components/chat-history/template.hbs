@@ -1,4 +1,7 @@
-<div class='message-list flex-column justify-content-end no-overflow'>
+<div
+  class='message-list flex-column justify-content-end no-overflow'
+  {{did-insert (perform this.autoScrollToBottom)}}
+>
   <ConnectionStatus class='p-absolute top span transition-all base-z' />
 
   {{!--

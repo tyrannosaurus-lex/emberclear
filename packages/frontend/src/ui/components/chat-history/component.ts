@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import Component from 'sparkles-component';
+import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
 import { inject as service } from '@ember/service';
@@ -18,10 +18,6 @@ export default class ChatHistory extends Component<IArgs> {
   @service chatScroller!: ChatScroller;
 
   @tracked isLastVisible = true;
-
-  didInsertElement() {
-    this.autoScrollToBottom.perform();
-  }
 
   scrollToBottom() {
     this.chatScroller.scrollToBottom();

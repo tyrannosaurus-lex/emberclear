@@ -7,12 +7,13 @@ import IdentityService from 'emberclear/src/services/identity/service';
 import { inLocalStorage } from 'emberclear/src/utils/decorators';
 
 import Toast from 'emberclear/src/services/toast';
+import RouterService from '@ember/routing/router-service';
 
 export default class Notifications extends Service {
   @service toast!: Toast;
   @service intl!: Intl;
   @service identity!: IdentityService;
-  @service router;
+  @service router!: RouterService;
 
   @tracked askToEnableNotifications = true;
   @tracked isHiddenUntilBrowserRefresh = false;

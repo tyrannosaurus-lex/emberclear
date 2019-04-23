@@ -1,4 +1,3 @@
-import DS from 'ember-data';
 import { run } from '@ember/runloop';
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
@@ -10,6 +9,7 @@ import { reads } from '@ember/object/computed';
 import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
 import { toHex } from 'emberclear/src/utils/string-encoding';
 import Identity from 'emberclear/data/models/identity/model';
+import StoreService from 'ember-data/store';
 
 // The purpose of this service is to be an interface that
 // handles syncing between the data store and persistent localstorage.
@@ -21,7 +21,7 @@ import Identity from 'emberclear/data/models/identity/model';
 // the only time the localstorage copy of the identity is written to
 // is upon update and initial creation of the identity data.
 export default class IdentityService extends Service {
-  @service store!: DS.Store;
+  @service store!: StoreService;
 
   @tracked record?: Identity;
 

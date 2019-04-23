@@ -2,9 +2,11 @@ import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
+import StoreService from 'ember-data/store';
 import Identity, { STATUS } from 'emberclear/src/data/models/identity/model';
 import SettingsService from 'emberclear/src/services/settings';
 import { TABLET_WIDTH } from 'emberclear/src/utils/breakpoints';
+import RouterService from '@ember/routing/router-service';
 
 interface IArgs {
   contacts: Identity[];
@@ -13,8 +15,8 @@ interface IArgs {
 
 export default class ContactsSidebar extends Component<IArgs> {
   @service settings!: SettingsService;
-  @service router;
-  @service store;
+  @service router!: RouterService;
+  @service store!: StoreService;
 
   get allContacts(): Identity[] {
     return this.store.peekAll('identity');

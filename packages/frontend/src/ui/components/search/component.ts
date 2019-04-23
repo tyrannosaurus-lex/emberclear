@@ -6,6 +6,7 @@ import { action } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
 import Task from 'ember-concurrency/task';
+import StoreService from 'ember-data/store';
 
 interface IArgs {
   isActive: boolean;
@@ -13,7 +14,7 @@ interface IArgs {
 }
 
 export default class SearchModal extends Component<IArgs> {
-  @service store;
+  @service store!: StoreService;
 
   @tracked searchText = '';
   @tracked identityResults = [];

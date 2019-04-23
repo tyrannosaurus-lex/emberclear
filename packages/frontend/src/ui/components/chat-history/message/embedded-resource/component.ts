@@ -1,4 +1,4 @@
-import Component from 'sparkles-component';
+import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
 import { or } from '@ember/object/computed';
@@ -29,7 +29,9 @@ export default class EmbeddedResource extends Component<IArgs> {
   @tracked title?: string;
   @tracked siteName?: string;
 
-  didInsertElement() {
+  constructor() {
+    super(...arguments);
+
     this.setup.perform();
   }
 

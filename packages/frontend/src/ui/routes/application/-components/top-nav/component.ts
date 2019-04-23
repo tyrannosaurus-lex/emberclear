@@ -1,6 +1,5 @@
 import Component from '@ember/component';
 import StoreService from 'ember-data/store';
-import { Registry } from '@ember/service';
 import { inject as service } from '@ember/service';
 
 import { alias, equal } from '@ember/object/computed';
@@ -8,10 +7,11 @@ import { alias, equal } from '@ember/object/computed';
 import IdentityService from 'emberclear/services/identity/service';
 import Sidebar from 'emberclear/services/sidebar/service';
 import { selectUnreadMessages } from 'emberclear/src/data/models/message/utils';
+import RouterService from '@ember/routing/router-service';
 
 export default class TopNav extends Component {
   @service identity!: IdentityService;
-  @service router!: Registry['router'];
+  @service router!: RouterService;
   @service sidebar!: Sidebar;
   @service store!: StoreService;
 

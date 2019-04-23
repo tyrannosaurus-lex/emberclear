@@ -1,13 +1,14 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
+import StoreService from 'ember-data/store';
 import Identity, { Status } from 'emberclear/src/data/models/identity/model';
 import ContactManager from 'emberclear/services/contact-manager';
 
 // TODO: does this need to be its own service?
 //       should these functions move to the ContactManager?
 export default class StatusManager extends Service {
-  @service store;
+  @service store!: StoreService;
   @service contactManager!: ContactManager;
 
   async markOffline(uid: string) {

@@ -3,10 +3,11 @@ import { inject as service } from '@ember/service';
 import { notEmpty, and, alias, not, match } from '@ember/object/computed';
 
 import IdentityService from 'emberclear/services/identity/service';
+import RouterService from '@ember/routing/router-service';
 
 export default class SetupController extends Controller {
   @service identity!: IdentityService;
-  @service router;
+  @service router!: RouterService;
 
   @notEmpty('identity.record.privateKey') identityAlreadyExists!: boolean;
   @alias('identity.allowOverride') allowOverride!: boolean;

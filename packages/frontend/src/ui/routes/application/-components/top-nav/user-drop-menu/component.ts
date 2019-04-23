@@ -1,5 +1,4 @@
-import { DS } from 'ember-data';
-import Component from 'sparkles-component';
+import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 
 import uuid from 'uuid';
@@ -8,14 +7,15 @@ import { later } from '@ember/runloop';
 import { inject as service } from '@ember/service';
 import { reads } from '@ember/object/computed';
 
-import { Registry } from '@ember/service';
+import StoreService from 'ember-data/store';
 import IdentityService from 'emberclear/services/identity/service';
 import { keepInViewPort } from 'emberclear/src/utils/dom/utils';
+import RouterService from '@ember/routing/router-service';
 
 export default class UserDropMenu extends Component {
   @service identity!: IdentityService;
-  @service store!: DS.Store;
-  @service router!: Registry['router'];
+  @service store!: StoreService;
+  @service router!: RouterService;
 
   @tracked showDropdown = false;
   @tracked dropDownId = uuid();

@@ -1,7 +1,7 @@
 import { getContext } from '@ember/test-helpers';
 
 export const textFor = (selector: string): string => {
-  const context = getContext() as any;
+  const context = getContext();
   const root = context.element;
 
   const element = root.querySelector(selector);

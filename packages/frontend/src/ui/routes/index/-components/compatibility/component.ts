@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import Component from 'sparkles-component';
+import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { task } from 'ember-concurrency';
 
@@ -28,11 +28,12 @@ export default class Compatibility extends Component {
     return this.totalCount !== this.successCount;
   }
 
-  didInsertElement() {
+  constructor() {
+    super(...arguments);
     this.detectFeatures.perform();
   }
 
-  @(task(function*() {
+  @(task(function*(this: Compatibility) {
     let check = this.checkSuccess.bind(this);
     if (!Ember.testing) {
       this.hasIndexedDb = check(yield hasIndexedDb());

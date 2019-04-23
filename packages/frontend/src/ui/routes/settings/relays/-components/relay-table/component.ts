@@ -1,4 +1,4 @@
-import Component from 'sparkles-component';
+import Component from '@glimmer/component';
 import StoreService from 'ember-data/store';
 import { inject as service } from '@ember/service';
 import { reads } from '@ember/object/computed';

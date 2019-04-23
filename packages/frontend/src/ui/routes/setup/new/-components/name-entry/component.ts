@@ -1,18 +1,18 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { Registry } from '@ember/service';
 import { isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { task } from 'ember-concurrency';
 
 import IdentityService from 'emberclear/services/identity/service';
+import RouterService from '@ember/routing/router-service';
 
 // TODO: https://adfinis-sygroup.github.io/ember-validated-form/latest/
 // use a form validation library ^
 export default class NameEntry extends Component {
   @service identity!: IdentityService;
-  @service router!: Registry['router'];
+  @service router!: RouterService;
 
   @tracked name!: string;
 

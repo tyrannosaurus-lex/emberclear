@@ -1,6 +1,5 @@
-import Component from 'sparkles-component';
-import { computed } from '@ember/object';
-import { gt, reads } from '@ember/object/computed';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 
 import Message from 'emberclear/src/data/models/message/model';
 import Identity from 'emberclear/src/data/models/identity/model';
@@ -17,7 +16,7 @@ interface IArgs {
 export default class UnreadManagement extends Component<IArgs> {
   messagesElement!: HTMLElement;
 
-  didInsertElement() {
+  @action findMessagesContainer() {
     this.messagesElement = document.querySelector('.messages') as HTMLElement;
   }
 
@@ -29,22 +28,24 @@ export default class UnreadManagement extends Component<IArgs> {
     return unread;
   }
 
-  @reads('unreadMessages.length') numberOfUnread!: number;
-  @gt('numberOfUnread', 0) hasUnreadMessages!: boolean;
+  get numberOfUnread() {
+    return this.unreadMessages.length;
+  }
 
-  @computed('hasUnreadMessages')
+  get hasUnreadMessages() {
+    return this.numberOfUnread > 0;
+  }
+
   get shouldRender() {
     if (!this.hasUnreadMessages) return false;
 
     return this.hasUnreadOffScreen();
   }
 
-  @computed('unreadMessages')
   get firstUnreadMessage(): Message | undefined {
     return this.unreadMessages[0];
   }
 
-  @computed('firstUnreadMessage')
   get dateOfFirstUnreadMessage(): Date | undefined {
     if (this.firstUnreadMessage) {
       return this.firstUnreadMessage.receivedAt;
