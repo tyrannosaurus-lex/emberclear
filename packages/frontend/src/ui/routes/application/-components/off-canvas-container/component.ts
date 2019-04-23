@@ -4,7 +4,7 @@ import { action } from '@ember/object';
 import { reads } from '@ember/object/computed';
 
 import IdentityService from 'emberclear/services/identity/service';
-import Sidebar from 'emberclear/services/sidebar';
+import Sidebar from 'emberclear/services/sidebar/service';
 
 export default class OffCanvasContainer extends Component {
   @service identity!: IdentityService;

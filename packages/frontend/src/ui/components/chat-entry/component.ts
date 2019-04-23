@@ -2,11 +2,12 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { later } from '@ember/runloop';
 
-import { action, computed } from '@ember/object';
+import { action } from '@ember/object';
 
 import { reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 
+import StoreService from 'ember-data/store';
 import MessageDispatcher from 'emberclear/services/messages/dispatcher';
 import MessageFactory from 'emberclear/services/messages/factory';
 import Identity from 'emberclear/src/data/models/identity/model';
@@ -19,7 +20,7 @@ interface IArgs {
 export default class ChatEntry extends Component<IArgs> {
   @service('messages/dispatcher') messageDispatcher!: MessageDispatcher;
   @service('messages/factory') messageFactory!: MessageFactory;
-  @service store;
+  @service store!: StoreService;
 
   @tracked text?: string;
   @tracked isDisabled = false;

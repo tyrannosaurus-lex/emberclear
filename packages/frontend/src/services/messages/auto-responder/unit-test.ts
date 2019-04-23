@@ -46,7 +46,7 @@ module('Unit | Service | messages/auto-responder', function(hooks) {
 
           stubService('messages/dispatcher', {
             sendToUser: {
-              perform(_response: Message, _to: Identity) {
+              perform(/* _response: Message, _to: Identity */) {
                 assert.ok(false, 'this method should not get called');
               },
             },

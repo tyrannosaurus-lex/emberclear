@@ -1,8 +1,8 @@
+import StoreService from 'ember-data/store';
 import Component from 'sparkles-component';
 import { tracked } from '@glimmer/tracking';
 
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
 import { not, notEmpty } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
 
@@ -20,7 +20,7 @@ interface IArgs {
 
 export default class DeliveryConfirmation extends Component<IArgs> {
   @service identity!: IdentityService;
-  @service store;
+  @service store: StoreService;
   @service('messages/dispatcher') dispatcher!: MessageDispatcher;
 
   @tracked timedOut = false;

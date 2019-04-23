@@ -1,8 +1,6 @@
 import Component from 'sparkles-component';
-import { tracked } from '@glimmer/tracking';
 
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
 import { reads } from '@ember/object/computed';
 
 import Modals from 'emberclear/services/modals';

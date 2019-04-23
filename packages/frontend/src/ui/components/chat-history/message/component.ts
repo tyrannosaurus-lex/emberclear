@@ -1,8 +1,6 @@
 import Component from '@glimmer/component';
-import { computed, action } from '@ember/object';
-import { reads } from '@ember/object/computed';
+import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import PromiseMonitor from 'ember-computed-promise-monitor';
 import { timeout, task } from 'ember-concurrency';
 
 import ChatScroller from 'emberclear/services/chat-scroller';
@@ -14,7 +12,6 @@ import IdentityService from 'emberclear/src/services/identity/service';
 
 import { parseURLs } from 'emberclear/src/utils/string/utils';
 import { convertAndSanitizeMarkdown } from 'emberclear/src/utils/dom/utils';
-import { monitor } from 'emberclear/src/utils/decorators';
 
 interface IArgs {
   message: Message;

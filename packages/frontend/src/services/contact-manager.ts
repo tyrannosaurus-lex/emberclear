@@ -1,4 +1,4 @@
-import DS from 'ember-data';
+import StoreService from 'ember-data/store';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { run } from '@ember/runloop';
@@ -8,7 +8,7 @@ import Identity from 'emberclear/data/models/identity/model';
 import { fromHex } from 'emberclear/src/utils/string-encoding';
 
 export default class ContactManager extends Service {
-  @service store!: DS.Store;
+  @service store!: StoreService;
 
   async findOrCreate(uid: string, name: string): Promise<Identity> {
     return await run(async () => {
@@ -52,7 +52,7 @@ export default class ContactManager extends Service {
     return identities.filter(i => i.id !== 'me');
   }
 
-  async addContact(_info: any) {
+  async addContact(/* _info: any */) {
     try {
       // const existing = this.find(info.id);
       // return? error?

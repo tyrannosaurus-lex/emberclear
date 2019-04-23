@@ -8,6 +8,7 @@ module.exports = {
     'plugin:qunit/recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier',
+    'prettier/@typescript-eslint',
   ],
   rules: {
     // ember specific
@@ -27,6 +28,8 @@ module.exports = {
     'qunit/no-identical-names': 'warn', // doesn't support deep nesting
 
     // typescript
+    //
+    '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',

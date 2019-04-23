@@ -1,9 +1,4 @@
-import {
-  visit as dangerousVisit,
-  getContext,
-  getSettledState,
-  teardownContext,
-} from '@ember/test-helpers';
+import { visit as dangerousVisit } from '@ember/test-helpers';
 import a11yAuditIf from 'ember-a11y-testing/test-support/audit-if';
 import { percySnapshot } from 'ember-percy';
 import { getService } from './get-service';

@@ -1,3 +1,4 @@
+import StoreService from 'ember-data/store';
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
@@ -7,7 +8,7 @@ import IdentityService from 'emberclear/services/identity/service';
 
 export default class ContactsTable extends Component {
   @service identity!: IdentityService;
-  @service store;
+  @service store: StoreService;
 
   get contacts() {
     let myId = this.identity.id;

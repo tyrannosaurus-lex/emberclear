@@ -3,7 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { Registry } from '@ember/service';
 import { isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
-import { action, computed } from '@ember/object';
+import { action } from '@ember/object';
 import { task } from 'ember-concurrency';
 
 import IdentityService from 'emberclear/services/identity/service';
@@ -21,7 +21,7 @@ export default class NameEntry extends Component {
   }
 
   @action
-  createIdentity(e: Event) {
+  createIdentity() {
     this.create.perform();
   }
 

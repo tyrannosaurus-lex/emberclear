@@ -2,7 +2,7 @@ import StoreService from 'ember-data/store';
 import Component from 'sparkles-component';
 import { tracked } from '@glimmer/tracking';
 
-import { action, computed } from '@ember/object';
+import { computed } from '@ember/object';
 import { reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';

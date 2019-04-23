@@ -1,4 +1,4 @@
-import DS from 'ember-data';
+import StoreService from 'ember-data/store';
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 
@@ -11,7 +11,7 @@ import ContactManager from 'emberclear/services/contact-manager';
 import AutoResponder from 'emberclear/src/services/messages/auto-responder/service';
 
 export default class ReceivedMessageHandler extends Service {
-  @service store!: DS.Store;
+  @service store!: StoreService;
   @service intl!: Intl;
   @service notifications!: Notifications;
   @service statusManager!: StatusManager;
@@ -63,7 +63,7 @@ export default class ReceivedMessageHandler extends Service {
     return message;
   }
 
-  private async handleInfoChannelInfo(message: Message, raw: RelayJson) {
+  private async handleInfoChannelInfo(message: Message /* raw: RelayJson */) {
     return message;
   }
 
@@ -98,7 +98,7 @@ export default class ReceivedMessageHandler extends Service {
     return message;
   }
 
-  private async handleChannelChat(message: Message, raw: RelayJson) {
+  private async handleChannelChat(message: Message /* raw: RelayJson */) {
     // TODO: if message is a channel message, deconstruct the channel info
 
     return message;

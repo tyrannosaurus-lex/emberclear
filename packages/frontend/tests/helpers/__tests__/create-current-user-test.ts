@@ -1,4 +1,3 @@
-import { DS } from 'ember-data';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
@@ -8,6 +7,7 @@ import {
   createCurrentUser,
   setupCurrentUser,
   clearLocalStorage,
+  getStore,
 } from 'emberclear/tests/helpers';
 
 module('TestHelper | create-current-user', function(hooks) {
@@ -15,26 +15,26 @@ module('TestHelper | create-current-user', function(hooks) {
   clearLocalStorage(hooks);
 
   test('a new user is created and kept in cache', async function(assert) {
-    const before = getService<DS.Store>('store').peekAll('identity');
+    const before = getStore().peekAll('identity');
 
     assert.equal(before.length, 0);
 
     await createCurrentUser();
 
-    const after = getService<DS.Store>('store').peekAll('identity');
+    const after = getStore().peekAll('identity');
 
     assert.equal(after.length, 1);
     assert.equal(after.firstObject.id, 'me');
   });
 
   test('a new user is created and stored', async function(assert) {
-    const before = await getService<DS.Store>('store').findAll('identity');
+    const before = await getStore().findAll('identity');
 
     assert.equal(before.length, 0);
 
     await createCurrentUser();
 
-    const after = await getService<DS.Store>('store').findAll('identity');
+    const after = await getStore().findAll('identity');
 
     assert.equal(after.length, 1);
     assert.equal(after.firstObject.id, 'me');

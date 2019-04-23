@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 import IdentityService from 'emberclear/services/identity/service';
-import Sidebar from 'emberclear/services/sidebar';
+import Sidebar from 'emberclear/services/sidebar/service';
 
 export default class LogoutRoute extends Route {
   @service identity!: IdentityService;

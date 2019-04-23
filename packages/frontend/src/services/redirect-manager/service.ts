@@ -1,6 +1,5 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
 
 import { inLocalStorage } from 'emberclear/src/utils/decorators';
 

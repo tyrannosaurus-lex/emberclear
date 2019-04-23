@@ -10,6 +10,7 @@ import {
   setupCurrentUser,
   getService,
   createIdentity,
+  getStore,
 } from 'emberclear/tests/helpers';
 
 import IdentityService from 'emberclear/src/services/identity/service';
@@ -132,7 +133,7 @@ module('Acceptance | Sidebar', function(hooks) {
     });
   });
 
-  module('Channels', function(hooks) {
+  module('Channels', function() {
     test('the channel form is not visible', function(assert) {
       const form = page.channels.form.isVisible;
 
@@ -140,7 +141,7 @@ module('Acceptance | Sidebar', function(hooks) {
     });
 
     test('there are 0 channels', async function(assert) {
-      const store = getService<DS.Store>('store');
+      const store = getStore();
       const known = await store.findAll('channel');
 
       assert.equal(known.length, 0);

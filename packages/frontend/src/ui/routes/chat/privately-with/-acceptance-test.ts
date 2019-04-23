@@ -10,9 +10,7 @@ import {
   clearLocalStorage,
   setupRelayConnectionMocks,
   setupCurrentUser,
-  getStore,
   getService,
-  waitUntilTruthy,
   clearToasts,
   createIdentity,
 } from 'emberclear/tests/helpers';
@@ -294,7 +292,7 @@ module('Acceptance | Chat | Privately With', function(hooks) {
           });
 
           module('a confirmation is received', function() {
-            skip('the message is shown, with successful confirmation', function(assert) {});
+            skip('the message is shown, with successful confirmation', function() {});
           });
         });
       });
