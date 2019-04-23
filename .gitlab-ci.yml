@@ -69,7 +69,6 @@ Lint SCSS:
 Check Types:
   stage: quality
   dependencies: [ setup ]
-  allow_failure: true
   script:
     - time ./run yarn tsc
 
