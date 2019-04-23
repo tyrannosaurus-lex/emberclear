@@ -8,6 +8,7 @@ import {
   attributesForUser,
   setupCurrentUser,
   clearLocalStorage,
+  getStore,
 } from 'emberclear/tests/helpers';
 
 import { TYPE, TARGET } from 'emberclear/src/data/models/message/model';
@@ -35,7 +36,7 @@ module('Unit | Service | messages/handler', function(hooks) {
       });
 
       test('the message is saved', async function(assert) {
-        const store = getService('store');
+        const store = getStore();
         const service = getService<ReceivedMessageHandler>('messages/handler');
         const me = getService<IdentityService>('identity');
         const sender = await attributesForUser();

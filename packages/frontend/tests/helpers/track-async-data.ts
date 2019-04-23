@@ -4,7 +4,7 @@ export function trackAsyncDataRequests(hooks: NestedHooks) {
   hooks.beforeEach(function() {
     const store = getStore();
 
-    store.generateStackTracesForTrackedRequests = true;
-    store.shouldTrackAsyncRequests = true;
+    (store as any).generateStackTracesForTrackedRequests = true;
+    (store as any).shouldTrackAsyncRequests = true;
   });
 }

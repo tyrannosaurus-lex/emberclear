@@ -18,3 +18,12 @@ declare module '@ember/test-helpers' {
 declare module 'dom-purify' {
   export default DOMPurify;
 }
+
+declare module '@ember/service' {
+  interface Registry {
+    ['notification-messages']: {
+      clear(): void;
+      clearAll(): void;
+    };
+  }
+}
