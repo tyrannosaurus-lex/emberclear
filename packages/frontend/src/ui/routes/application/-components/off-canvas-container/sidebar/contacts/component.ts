@@ -1,8 +1,6 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
-import RouterService from '@ember/routing/router-service';
-import DS from 'ember-data';
 
 import StoreService from 'ember-data/store';
 import Identity, { STATUS } from 'emberclear/src/data/models/identity/model';
