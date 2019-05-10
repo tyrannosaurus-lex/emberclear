@@ -15,10 +15,12 @@ module.exports = function(environment) {
         EMBER_MODULE_UNIFICATION: true,
         EMBER_NATIVE_DECORATOR_SUPPORT: true,
         EMBER_METAL_TRACKED_PROPERTIES: true,
-        EMBER_GLIMMER_ANGLE_BRACKET_INVOCATION: true,
         EMBER_GLIMMER_ANGLE_BRACKET_NESTED_LOOKUP: true,
         EMBER_GLIMMER_ANGLE_BRACKET_BUILT_INS: true,
         EMBER_GLIMMER_FN_HELPER: true,
+        EMBER_GLIMMER_ON_MODIFIER: true,
+        // Maybe no longer need?
+        EMBER_GLIMMER_ANGLE_BRACKET_INVOCATION: true,
       },
       EXTEND_PROTOTYPES: false,
     },

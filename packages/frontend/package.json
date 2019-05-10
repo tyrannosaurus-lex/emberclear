@@ -112,7 +112,6 @@
     "ember-load-initializers": "2.0.0",
     "ember-localforage-adapter": "^3.0.0-beta4",
     "ember-maybe-import-regenerator": "^0.1.6",
-    "ember-on-modifier": "^0.12.1",
     "ember-oo-modifiers": "^0.3.0",
     "ember-percy": "^1.5.0",
     "ember-purify": "^4.2.0",
