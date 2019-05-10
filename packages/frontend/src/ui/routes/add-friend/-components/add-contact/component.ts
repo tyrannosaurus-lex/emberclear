@@ -12,11 +12,13 @@ import { fromHex } from 'emberclear/src/utils/string-encoding';
 
 import Identity from 'emberclear/services/identity/service';
 import Task from 'ember-concurrency/task';
+import ContactManager from 'emberclear/services/contact-manager';
 
 export default class AddModal extends Component {
   @service('notifications') toast!: Toast;
   @service identity!: Identity;
   @service store!: StoreService;
+  @service contactManager!: ContactManager;
 
   @tracked scanning = false;
 
@@ -72,13 +74,7 @@ export default class AddModal extends Component {
       return;
     }
 
-    await this.store
-      .createRecord('identity', {
-        name,
-        id: publicKey,
-        publicKey: fromHex(publicKey),
-      })
-      .save();
+    await this.contactManager.create(publicKey, name);
 
     this.toast.info(`${identity.name || 'Friend'} added!`);
   }

@@ -36,3 +36,4 @@ export async function createIdentity(name: string, attributes = {}): Promise<Ide
 
   return record;
 }
+

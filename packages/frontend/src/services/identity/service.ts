@@ -8,8 +8,8 @@ import { reads } from '@ember/object/computed';
 
 import { generateAsymmetricKeys } from 'emberclear/src/utils/nacl/utils';
 import { toHex } from 'emberclear/src/utils/string-encoding';
-import Identity from 'emberclear/data/models/identity/model';
 import StoreService from 'ember-data/store';
+import MeModel from 'emberclear/data/models/me/model';
 
 // The purpose of this service is to be an interface that
 // handles syncing between the data store and persistent localstorage.
@@ -23,12 +23,13 @@ import StoreService from 'ember-data/store';
 export default class IdentityService extends Service {
   @service store!: StoreService;
 
-  @tracked record?: Identity;
+  @tracked record?: MeModel;
 
   // safety for not accidentally blowing away an existing identity
   @tracked allowOverride = false;
 
   @reads('record.id') id?: string;
+  // TODO: convert to normal getters, and throw if no record
   @reads('record.name') name?: string;
   @reads('record.publicKey') publicKey?: Uint8Array;
   @reads('record.privateKey') privateKey?: Uint8Array;
@@ -47,7 +48,7 @@ export default class IdentityService extends Service {
     const { publicKey, privateKey } = await generateAsymmetricKeys();
 
     // remove existing record
-    await this.store.unloadAll('identity');
+    await this.store.unloadAll('me');
 
     await this.setIdentity(name, privateKey, publicKey);
     this.allowOverride = false;
@@ -61,7 +62,7 @@ export default class IdentityService extends Service {
     privateKey: Uint8Array,
     publicKey: Uint8Array
   ) {
-    const record = this.store.createRecord('identity', {
+    const record = this.store.createRecord('me', {
       id: 'me',
       name,
       publicKey,
@@ -85,9 +86,9 @@ export default class IdentityService extends Service {
     return await this.exists();
   }
 
-  async load(this: IdentityService): Promise<Identity | null> {
+  async load(this: IdentityService): Promise<MeModel | null> {
     try {
-      const existing = await this.store.findRecord('identity', 'me', { backgroundReload: true });
+      const existing = await this.store.findRecord('me', 'me', { backgroundReload: true });
 
       run(() => (this.record = existing));
 
@@ -100,7 +101,7 @@ export default class IdentityService extends Service {
     return null;
   }
 
-  async identity(this: IdentityService): Promise<Identity | null> {
+  async identity(this: IdentityService): Promise<MeModel | null> {
     if (!this.record) return await this.load();
 
     return this.record;

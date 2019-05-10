@@ -3,14 +3,15 @@ import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { run } from '@ember/runloop';
 
-import Identity from 'emberclear/data/models/identity/model';
 
 import { fromHex } from 'emberclear/src/utils/string-encoding';
+import Contact from 'emberclear/data/models/contact/model';
+import ArrayProxy from '@ember/array/proxy';
 
 export default class ContactManager extends Service {
   @service store!: StoreService;
 
-  async findOrCreate(uid: string, name: string): Promise<Identity> {
+  async findOrCreate(uid: string, name: string): Promise<Contact> {
     return await run(async () => {
       try {
         // an exception thrown here is never caught
@@ -21,7 +22,7 @@ export default class ContactManager extends Service {
     });
   }
 
-  async findAndSetName(uid: string, name: string): Promise<Identity> {
+  async findAndSetName(uid: string, name: string): Promise<Contact> {
     let record = await this.find(uid);
 
     // always update the name
@@ -32,10 +33,10 @@ export default class ContactManager extends Service {
     return record;
   }
 
-  async create(uid: string, name: string): Promise<Identity> {
+  async create(uid: string, name: string): Promise<Contact> {
     const publicKey = fromHex(uid);
 
-    let record = this.store.createRecord('identity', {
+    let record = this.store.createRecord('contact', {
       id: uid,
       publicKey,
       name,
@@ -46,10 +47,10 @@ export default class ContactManager extends Service {
     return record;
   }
 
-  async allContacts(): Promise<Identity[]> {
-    const identities = await this.store.findAll('identity');
+  async allContacts(): Promise<ArrayProxy<Contact>> {
+    const contacts = await this.store.findAll('contact');
 
-    return identities.filter(i => i.id !== 'me');
+    return contacts;
   }
 
   async addContact(/* _info: any */) {
@@ -63,7 +64,7 @@ export default class ContactManager extends Service {
   }
 
   find(uid: string) {
-    return this.store.findRecord('identity', uid);
+    return this.store.findRecord('contact', uid);
   }
 }
 
